@@ -6,10 +6,10 @@ title: JUNSEOK
 logo:
 author: themefisher
 description: this is meta description
-email: steve.fruits@email.com
-phone: +880 2544 658 256
-address: 125/A, CA Commercial Area, California, USA
-copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
+email: mhjj315@gmail.com
+phone: +82 1020468380
+address: 780, Taejang-ro, Gimpo-si, Gyeonggi-do, Republic of Korea
+copyright: Copyright &copy; 2023 Developed by JunSeok
 
 menu:
   - { name: About, link: "/about" }
@@ -300,4 +300,4 @@ client-slider-items:
 # Contact Section
 
 contact-title: Contact Info
-contact-email: steve.fruits@email.com
+contact-email: mhjj315@gmail.com
