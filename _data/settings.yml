@@ -13,7 +13,7 @@ copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.c
 
 menu:
   - { name: About, link: "/about" }
-  - { name: Blog, link: "/blog" }
+  # - { name: Blog, link: "/blog" }
   - { name: Portfolio, link: "/portfolio" }
   - { name: Contact, link: "/contact" }
 
@@ -36,7 +36,7 @@ disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
 # Hero Section
 
 hero:
-  hero-title: Hi! I’m <br> Christoher <br> UX designer
+  hero-title: 안녕하세요! <br> UI/UX 퍼블리셔 <br> 어준석입니다:)
 
 social:
   - { icon: "ti-facebook", link: "#" }
