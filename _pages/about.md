@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About Me
-author: JunSeok
+author: JUNSEOK EO
 image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
