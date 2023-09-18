@@ -143,21 +143,21 @@ education:
 services-title: Services
 services:
   - {
-      name: UI Design,
+      name: UI Development,
       icon: ti-palette,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "웹 퍼블리싱에 대한 이해도를 바탕으로 재활용과 유지보수가 쉬운 코드를 짤 수 있도록 여러 가능성 및 예외 상황을 고려하며 개발을 진행합니다.",
       active: ,# Add true to select section
     }
   - {
-      name: UX Design,
+      name: UX Experience,
       icon: ti-vector,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "고객 입장에서의 사용성을 고려하며 웹 접근성, 웹 표준, SEO 최적화는 물론 UI가이드를 수립하고 통일성 있고 일관적인 UX를 제공할수 있도록 끊임없이 생각합니다.",
       active: true, # Add true to select section
     }
   - {
-      name: Interaction Design,
+      name: Co-Work,
       icon: ti-panel,
-      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      description: "프로젝트의 목적성을 우선적으로 고려하며 동료들과의 협업을 중요하게 생각합니다. 서로의 생각과 의견을 끊임없이 공유하며 결과물을 도출해냅니다.",
       active: ,# Add true to select section
     }
 
