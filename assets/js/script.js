@@ -98,8 +98,8 @@
     adaptiveHeight: true,
   });
 
-  // clients logo slider
-  $(".client-logo-slider").slick({
+  // skills logo slider
+  $(".skills-logo-slider").slick({
     infinite: true,
     slidesToShow: 5,
     slidesToScroll: 1,
