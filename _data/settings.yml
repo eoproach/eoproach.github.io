@@ -99,22 +99,16 @@ skills:
 experience-title: Experience
 experience:
   - {
-      name: Junior UX Designer,
+      name: Eilab,
       icon: "icon-1.png",
-      date: "Jan 2007 - Feb 2009",
-      organization: "WEBEX",
+      date: "2014. 11 ~ 2018. 03",
+      organization: "First",
     }
   - {
-      name: UX & UI Designer,
+      name: JEJUair,
       icon: "icon-2.png",
-      date: "Mar 2009 - Aug 2014",
-      organization: "AUGMEDIX",
-    }
-  - {
-      name: Senior UI Designer,
-      icon: "icon-3.png",
-      date: "Sep 2014 - Present",
-      organization: "THEMEFISHER",
+      date: "2018. 08 ~ ing",
+      organization: "Second",
     }
 
 #-------------------------------
