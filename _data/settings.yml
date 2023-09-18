@@ -183,59 +183,54 @@ portfolio-home-items:
 
 # Portfolio Page
 portfolio-label:
-  - { title: "UI/UX Design", type: "design" }
-  - { title: "BRANDING", type: "branding" }
-  - { title: "ILLUSTRATION", type: "illustration" }
+  - { title: "EILAB", type: "EILAB" }
+  - { title: "JEJUAIR", type: "JEJUAIR" }
 
 portfolio-items:
   - image: "assets/images/portfolio/item-1.png"
     url: "#"
     portfolio-type:
-      - type: "design"
-      - type: "illustration"
+      - type: "EILAB"
 
   - image: "assets/images/portfolio/item-2.png"
     url: "#"
     portfolio-type:
-      - type: "branding"
+      - type: "EILAB"
 
   - image: "assets/images/portfolio/item-3.png"
     url: "#"
     portfolio-type:
-      - type: "illustration"
+      - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-6.png"
+  - image: "assets/images/portfolio/item-4.png"
     url: "#"
     portfolio-type:
-      - type: "design"
-      - type: "branding"
-
-  - image: "assets/images/portfolio/item-8.png"
-    url: "#"
-    portfolio-type:
-      - type: "illustration"
+      - type: "EILAB"
 
   - image: "assets/images/portfolio/item-5.png"
     url: "#"
     portfolio-type:
-      - type: "design"
+      - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-1.png"
+  - image: "assets/images/portfolio/item-6.png"
     url: "#"
     portfolio-type:
-      - type: "branding"
-
-  - image: "assets/images/portfolio/item-3.png"
-    url: "#"
-    portfolio-type:
-      - type: "design"
-      - type: "illustration"
-      - type: "branding"
+      - type: "EILAB"
 
   - image: "assets/images/portfolio/item-7.png"
     url: "#"
     portfolio-type:
-      - type: "illustration"
+      - type: "EILAB"
+
+  - image: "assets/images/portfolio/item-8.png"
+    url: "#"
+    portfolio-type:
+      - type: "EILAB"
+
+  - image: "assets/images/portfolio/item-9.png"
+    url: "#"
+    portfolio-type:
+      - type: "JEJUAIR"
 
 #-------------------------------
 # Skills Logo Slider Section
