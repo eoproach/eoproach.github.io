@@ -244,37 +244,34 @@ portfolio-items:
       - type: "illustration"
 
 #-------------------------------
-# Client Slider Section
+# Skill Logo Slider Section
 
-client-slider-items:
-  - logo: "assets/images/clients-logo/client-logo-1.png"
+skill-slider-items:
+  - logo: "assets/images/skills-logo/skills-logo-1.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-2.png"
+  - logo: "assets/images/skills-logo/skills-logo-2.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-3.png"
+  - logo: "assets/images/skills-logo/skills-logo-3.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-4.png"
+  - logo: "assets/images/skills-logo/skills-logo-4.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-5.png"
+  - logo: "assets/images/skills-logo/skills-logo-5.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-1.png"
+  - logo: "assets/images/skills-logo/skills-logo-6.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-2.png"
+  - logo: "assets/images/skills-logo/skills-logo-7.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-3.png"
+  - logo: "assets/images/skills-logo/skills-logo-8.svg"
     url: "#"
 
-  - logo: "assets/images/clients-logo/client-logo-4.png"
-    url: "#"
-
-  - logo: "assets/images/clients-logo/client-logo-5.png"
+  - logo: "assets/images/skills-logo/skills-logo-9.svg"
     url: "#"
 
 #-------------------------------
