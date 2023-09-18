@@ -244,9 +244,9 @@ portfolio-items:
       - type: "illustration"
 
 #-------------------------------
-# Skill Logo Slider Section
+# Skills Logo Slider Section
 
-skill-slider-items:
+skills-slider-items:
   - logo: "assets/images/skills-logo/skills-logo-1.svg"
     url: "#"
 
