@@ -166,20 +166,27 @@ services:
 
 # Portfolio Home Section
 portfolio-home-items:
-  - image: "assets/images/portfolio/item-1.png"
+  - image: "assets/images/portfolio/item-1.jpg"
     url: "#"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "assets/images/portfolio/item-2.jpg"
     url: "#"
 
-  - image: "assets/images/portfolio/item-3.png"
+  - image: "assets/images/portfolio/item-3.jpg"
     url: "#"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "assets/images/portfolio/item-4.jpg"
     url: "#"
 
-  - image: "assets/images/portfolio/item-5.png"
+  - image: "assets/images/portfolio/item-5.jpg"
     url: "#"
+
+  - image: "assets/images/portfolio/item-6.jpg"
+    url: "#"
+
+  - image: "assets/images/portfolio/item-7.jpg"
+    url: "#"
+    
 
 # Portfolio Page
 portfolio-label:
