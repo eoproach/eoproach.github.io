@@ -187,47 +187,47 @@ portfolio-label:
   - { title: "JEJUAIR", type: "JEJUAIR" }
 
 portfolio-items:
-  - image: "assets/images/portfolio/item-1.png"
+  - image: "assets/images/portfolio/item-1.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-2.png"
+  - image: "assets/images/portfolio/item-2.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-3.png"
+  - image: "assets/images/portfolio/item-3.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-4.png"
+  - image: "assets/images/portfolio/item-4.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-5.png"
+  - image: "assets/images/portfolio/item-5.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-6.png"
+  - image: "assets/images/portfolio/item-6.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-7.png"
+  - image: "assets/images/portfolio/item-7.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-8.png"
+  - image: "assets/images/portfolio/item-8.jpg"
     url: "#"
     portfolio-type:
       - type: "EILAB"
 
-  - image: "assets/images/portfolio/item-9.png"
+  - image: "assets/images/portfolio/item-9.jpg"
     url: "#"
     portfolio-type:
       - type: "JEJUAIR"
