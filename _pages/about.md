@@ -6,13 +6,25 @@ image: assets/images/about/author.jpg
 signature: assets/images/about/signature.png
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-commodo consequat.
+안녕하세요! 웹 퍼블리셔 어준석입니다.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident.
+HTML, CSS, Script 등 프레임워크 환경에서 컴포넌트 단위의 마크업 작업을 능숙하게 할 수 있어요. 
+어디에서도 잘 보이는 반응형은 물론 웹 접근성과 웹 표준을 고려한 웹 페이지를 그려내기 위해 늘 고민합니다. 
+맡은 프로젝트의 목적을 우선적으로 생각하며, 함께하는 팀원 들과의 원활한 협업을 중요하게 생각해요. 
+다양한 직군의 동료들과 함께 멋지고 즐거운 UI/UX를 만드는 데 관심이 많습니다.
 
-Deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+"성장과 팀워크를 중시하는 퍼블리셔"
+
+저는 단순히 웹 페이지를 코딩할 줄 아는 사람이 아니라 어떻게 하면 팀원들과 더 성장하고 팀워크를 다질 수 있을까를 고민하는 사람입니다. 
+만약 성장이 없다면 사람은 매너리즘에 빠지기 쉽고 그렇게 되면 정체 되기 마련입니다. 
+사람은 성장함으로써 동력과 에너지를 얻고 변화하고 발전합니다. 개개인의 성장은 그만큼 개인의 역량이 커지는 것이고 자연스럽게 회사의 성장과 직결됩니다.
+
+우리가 일상에서 스쳐 지나는 모든 것들은 "관계"가 있습니다. 
+좋은 성장과 팀워크 라는 것은 결국 사람들 사이의 관계 속에서 만들어지고 발전합니다. 
+관계에 소홀하면 결코 좋은 서비스가 나올 수 없습니다. 
+먼저 자신의 전문성을 갖추면서 서로 다른 분야의 전문가 의견에 귀를 기울이고 소신있는 의견을 제안하여 
+상호보완적인 관계를 형성한다면 충분히 좋은 웹 서비스를 탄생 시킬 수 있을 것입니다. 
+
+이전의 업무들을 통해 함께하는 구성원들의 업무와 고충을 이해하기 위해 시간을 투자하고, 
+디자이너와 개발자 사이의 갈등을 조율하기 위해서 인내심과 이해, 결단력과 추진력이 동시에 필요하다는 것을 경험하였습니다. 
+구성원들 속에서 관계와 협업을 통해 최고의 팀워크를 구축하고 이를 통해 회사와 제 자신이 동반성장 할 수 있는 기회가 되길 희망합니다.
