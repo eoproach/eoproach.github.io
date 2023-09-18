@@ -220,16 +220,6 @@ portfolio-items:
   - image: "assets/images/portfolio/item-7.jpg"
     url: "#"
     portfolio-type:
-      - type: "EILAB"
-
-  - image: "assets/images/portfolio/item-8.jpg"
-    url: "#"
-    portfolio-type:
-      - type: "EILAB"
-
-  - image: "assets/images/portfolio/item-9.jpg"
-    url: "#"
-    portfolio-type:
       - type: "JEJUAIR"
 
 #-------------------------------
