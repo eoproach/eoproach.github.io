@@ -100,13 +100,13 @@ experience-title: Experience
 experience:
   - {
       name: Eilab,
-      icon: "icon-1.png",
+      icon: "eilab_logo.webp",
       date: "2014. 11 ~ 2018. 03",
       organization: "First",
     }
   - {
       name: JEJUair,
-      icon: "icon-2.png",
+      icon: "jeju_air_logo.svg",
       date: "2018. 08 ~ ing",
       organization: "Second",
     }
