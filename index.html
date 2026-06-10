@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>사이다 낚시왕</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <p class="eyebrow">SBI 디지털금융실 게이미피케이션</p>
+      <h1>🎣 사이다 낚시왕</h1>
+      <p>출석하고, 낚시하고, 강화하고, 금융 퀴즈로 미끼를 모아보세요.</p>
+    </header>
+
+    <section class="stats" aria-label="내 기록">
+      <div><strong id="baitCount">0</strong><span>미끼</span></div>
+      <div><strong id="pointCount">0</strong><span>포인트</span></div>
+      <div><strong id="rodLevel">1</strong><span>낚싯대 Lv</span></div>
+    </section>
+
+    <main>
+      <section class="pond" aria-label="낚시터">
+        <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+        <div class="water"><div class="float" id="float">🔴</div><div class="wave w1"></div><div class="wave w2"></div></div>
+      </section>
+
+      <section class="panel">
+        <p class="notice" id="notice">오늘의 출석 보상을 받고 낚시를 시작하세요.</p>
+        <div class="actions">
+          <button id="attendanceBtn" class="btn secondary">출석 보상 받기</button>
+          <button id="startBtn" class="btn primary">낚시 시작</button>
+        </div>
+        <div class="gauge-wrap" id="gaugeWrap" hidden>
+          <div class="gauge"><div class="success-zone" id="successZone"></div><div class="pointer" id="pointer"></div></div>
+          <button id="catchBtn" class="btn primary full">지금 당기기!</button>
+        </div>
+      </section>
+
+      <section class="result-card" id="resultCard" hidden>
+        <div class="fish-emoji" id="resultEmoji">🐟</div>
+        <h2 id="resultTitle">잡았다!</h2>
+        <p id="resultDesc"></p>
+      </section>
+
+      <section class="panel grid2">
+        <div>
+          <div class="section-title"><h2>🎁 7일 출석판</h2><small id="attendanceProgress">0/7</small></div>
+          <div class="attendance-board" id="attendanceBoard"></div>
+        </div>
+        <div>
+          <div class="section-title"><h2>⚡ 낚싯대 강화</h2><small id="upgradeCost">0P</small></div>
+          <p class="mini" id="rodDesc">성공 구간이 넓어집니다.</p>
+          <button id="upgradeBtn" class="btn secondary full">강화하기</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>✅ 오늘의 미션</h2><small id="missionProgress">0/3</small></div>
+        <ul class="mission-list" id="missionList"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="section-title"><h2>💡 금융 퀴즈</h2><small>정답 시 미끼 +2</small></div>
+        <p class="quiz" id="quizQuestion"></p>
+        <div class="quiz-options" id="quizOptions"></div>
+      </section>
+
+      <section class="book">
+        <div class="section-title"><h2>물고기 도감 <small id="bookRate"></small></h2><button id="resetBtn" class="text-btn">초기화</button></div>
+        <ul id="fishBook" class="fish-book"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/fishData.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/fishing.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
