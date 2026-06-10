@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SBI 사이다 낚시왕</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar">🐧</div>
+        <b>팽팽이</b><small>LV.<span id="level">1</span></small>
+        <div class="expbar"><i id="expBar"></i></div>
+      </div>
+      <button class="nav active" data-view="home">🏠<span>홈</span></button>
+      <button class="nav" data-view="map">🗺️<span>지도</span></button>
+      <button class="nav" data-view="book">📖<span>도감</span></button>
+      <button class="nav" data-view="rod">🎣<span>낚싯대</span></button>
+      <button class="nav" data-view="quiz">❓<span>퀴즈</span></button>
+      <button class="nav" data-view="help">⚙️<span>안내</span></button>
+    </aside>
+
+    <header class="topbar">
+      <div class="brand"><span>SBI</span> 사이다 낚시왕 <em>💧</em></div>
+      <div class="wallet"><span>🪱 <b id="bait">0</b></span><span>🪙 <b id="coin">0</b></span><span>💎 <b id="gem">0</b></span><span id="clock">☀️ AM 08:30</span></div>
+    </header>
+
+    <main class="stage">
+      <section class="view home-view active" id="homeView">
+        <div class="lake-card">
+          <div class="skyline"><span></span><span></span><span></span></div>
+          <div class="penguin"><div class="hat">SBI</div><div class="face"></div><div class="scarf"></div><div class="body"></div><div class="feet"></div><div class="rod"></div></div>
+          <div class="bobber" id="bobber"></div>
+          <div class="ripples"></div>
+          <div class="map-chip" id="currentMapChip">1. 얼음적금 섬 · 쉬움</div>
+          <button class="big-fish" id="fishBtn">낚시하기 <small>x1</small></button>
+        </div>
+        <div class="dashboard">
+          <section class="panel missions"><h2>오늘의 미션</h2><div id="missionList"></div><button id="claimMission" class="btn green">보상 받기 🎁</button></section>
+          <section class="panel attendance"><h2>출석 보상</h2><div id="attendanceList" class="attendance-list"></div><button id="attendanceBtn" class="btn blue">오늘 출석</button></section>
+          <section class="panel inventory"><h2>미끼 보유</h2><button class="bait-card selected" data-bait="normal">🪱 일반 미끼 <b id="normalBait">0</b></button><button class="bait-card" data-bait="gold">🦂 황금 미끼 <b id="goldBait">0</b></button><button class="bait-card" data-bait="legend">🪄 전설 미끼 <b id="legendBait">0</b></button></section>
+        </div>
+      </section>
+
+      <section class="view map-view" id="mapView"><div class="section-head"><h1>세계 지도</h1><p>맵마다 난이도와 출현 물고기가 달라집니다.</p></div><div class="world-map" id="worldMap"></div></section>
+      <section class="view book-view" id="bookView"><div class="section-head"><h1>물고기 도감</h1><p>수집률 <b id="collectRate">0%</b></p></div><div class="tabs"><button class="tab active" data-grade="all">전체</button><button class="tab" data-grade="일반">일반</button><button class="tab" data-grade="희귀">희귀</button><button class="tab" data-grade="영웅">영웅</button><button class="tab" data-grade="전설">전설</button></div><div class="fish-grid" id="fishGrid"></div></section>
+      <section class="view rod-view" id="rodView"><div class="panel upgrade"><h1>낚싯대 강화</h1><p>강화할수록 성공 영역이 넓어지고 희귀 물고기 확률이 올라갑니다.</p><div class="rod-preview">🎣</div><h2>현재 Lv.<span id="rodLevel">1</span></h2><p>강화 비용: <b id="upgradeCost">100</b> 코인</p><button id="upgradeBtn" class="btn gold">강화하기</button></div></section>
+      <section class="view quiz-view" id="quizView"><div class="panel quiz"><h1>금융 퀴즈</h1><p>정답을 맞히면 미끼를 드려요.</p><h2 id="quizQuestion"></h2><div id="quizOptions"></div></div></section>
+      <section class="view help-view" id="helpView"><div class="panel"><h1>게임 안내</h1><p><b>SBI 사이다 낚시왕</b>은 매일 접속, 미션, 도감 수집, 세계지도 탐험을 통해 반복 방문을 유도하는 게이미피케이션 서비스 프로토타입입니다.</p><p>데이터는 브라우저 localStorage에 저장됩니다.</p><button id="resetBtn" class="btn danger">데이터 초기화</button></div></section>
+    </main>
+  </div>
+
+  <div class="modal" id="catchModal" hidden>
+    <div class="catch-card"><button class="close" id="closeModal">×</button><div class="banner">물고기 획득!</div><div class="new" id="newBadge">NEW!</div><div class="fish-art" id="caughtIcon">🐟</div><div class="fish-info"><h2 id="caughtName">사이다 붕어</h2><span id="caughtGrade" class="grade">일반</span><dl><dt>무게</dt><dd id="caughtWeight">0.35KG</dd><dt>길이</dt><dd id="caughtLength">21.4cm</dd></dl><p id="caughtDesc">사이다 호수에서 가장 흔하게 잡히는 붕어.</p><div class="reward"><span>⭐ EXP +<b id="expGain">18</b></span><span>🪙 +<b id="coinGain">34</b></span></div><button class="btn blue" id="confirmCatch">확인</button></div></div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
