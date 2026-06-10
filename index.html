@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SBI 사이다 낚시왕</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="phone" id="app">
+    <section class="screen active" id="screen-home" data-screen="home">
+      <img src="assets/screens/home.webp" alt="SBI 사이다 낚시왕 홈" class="screen-img" />
+      <button class="hotspot fish" data-go="fishing" aria-label="낚시하기"></button>
+      <button class="hotspot map" data-go="map" aria-label="세계지도"></button>
+      <button class="tab tab-home is-active" data-go="home" aria-label="홈"></button>
+      <button class="tab tab-mission" data-go="mission" aria-label="미션"></button>
+      <button class="tab tab-dex" data-go="dex" aria-label="도감"></button>
+      <button class="tab tab-rod" data-go="rod" aria-label="낚싯대"></button>
+    </section>
+
+    <section class="screen" id="screen-map" data-screen="map">
+      <img src="assets/screens/map.webp" alt="세계지도" class="screen-img" />
+      <button class="back" data-go="home" aria-label="뒤로"></button>
+      <button class="map-row row1" data-go="fishing" aria-label="얼음적금 섬 선택"></button>
+      <button class="map-row row2" data-go="fishing" aria-label="저축빙벽 선택"></button>
+      <nav class="bottom-nav"><button data-go="home">홈</button><button data-go="mission">미션</button><button data-go="dex">도감</button><button data-go="rod">낚싯대</button></nav>
+    </section>
+
+    <section class="screen" id="screen-fishing" data-screen="fishing">
+      <img src="assets/screens/fishing.webp" alt="낚시하기" class="screen-img" />
+      <button class="back" data-go="home" aria-label="나가기"></button>
+      <button class="bite" id="biteBtn" aria-label="입질 터치">입질!</button>
+      <div class="gauge-modal" id="gaugeModal" aria-hidden="true">
+        <div class="bubble">물고기가 입질하고 있어요!<br>게이지를 멈춰보세요!</div>
+        <div class="gauge" id="gauge"><span class="zone bad left"></span><span class="zone warn left"></span><span class="zone good"></span><span class="zone warn right"></span><span class="zone bad right"></span><i id="pointer"></i></div>
+        <button class="stop" id="stopBtn">클릭!</button>
+      </div>
+      <div class="result" id="result" aria-hidden="true">
+        <h2 id="resultTitle">성공!</h2>
+        <div class="fish-card">
+          <strong id="fishName">사이다 붕어</strong><em>일반</em>
+          <p id="fishInfo">무게 0.35KG · 길이 21.4cm</p>
+          <small>EXP +18 · 골드 +34</small>
+        </div>
+        <button id="confirmBtn">확인</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-dex" data-screen="dex"><img src="assets/screens/dex.webp" alt="물고기 도감" class="screen-img" /><button class="back" data-go="home" aria-label="뒤로"></button></section>
+    <section class="screen" id="screen-mission" data-screen="mission"><img src="assets/screens/mission.webp" alt="미션" class="screen-img" /><button class="back" data-go="home" aria-label="뒤로"></button></section>
+    <section class="screen" id="screen-rod" data-screen="rod"><img src="assets/screens/rod.webp" alt="낚싯대" class="screen-img" /><button class="back" data-go="home" aria-label="뒤로"></button></section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
