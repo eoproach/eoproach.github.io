@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>사이다 낚시왕</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="phone" aria-label="사이다 낚시왕 게임">
+    <section id="home" class="screen is-active" aria-labelledby="homeTitle">
+      <header class="top-area">
+        <div class="profile-card">
+          <div class="avatar"><span>🐧</span></div>
+          <div class="profile-info">
+            <strong id="homeTitle">LV. <span id="level">1</span> 펭펭이</strong>
+            <div class="level-bar"><span id="expBar"></span></div>
+            <small id="expText">0 / 100</small>
+          </div>
+        </div>
+        <div class="wallet">
+          <div><span>🪙</span><strong id="gold">0</strong><button type="button">+</button></div>
+          <div><span>💎</span><strong id="diamond">0</strong><button type="button">+</button></div>
+        </div>
+      </header>
+
+      <nav class="quick-icons" aria-label="빠른 메뉴">
+        <button type="button" onclick="claimDaily()"><span>📅</span>출석체크</button>
+        <button type="button" onclick="goTab('achievements')"><span>🏆</span>업적</button>
+        <button type="button"><span>✉️</span>우편</button>
+        <button type="button"><span>⚙️</span>설정</button>
+      </nav>
+
+      <section class="fishing-stage" aria-label="현재 낚시터">
+        <div class="map-plaque">
+          <small>현재 맵</small>
+          <h2 id="mapName">고요한 물안개 연못</h2>
+          <em id="mapLevel">Lv. 1 이상</em>
+        </div>
+        <div class="weather"></div>
+        <div class="sea"></div>
+        <div class="dock"></div>
+        <div class="bucket">🪣</div>
+        <div class="penguin-hero">🐧</div>
+        <div class="rod-line"></div>
+        <button type="button" class="treasure" onclick="goTab('shop')">🎁<small>미끼상자</small></button>
+        <button type="button" class="idle-reward" onclick="claimDaily()">🎁<small>방치 보상</small></button>
+      </section>
+
+      <div class="main-cta-wrap">
+        <button id="fishBtn" type="button" class="fish-cta"><span>🎣</span> 낚시하기</button>
+        <div class="bait-chip">🐛 미끼 <strong id="bait">30</strong>/30</div>
+      </div>
+
+      <section class="result-card" aria-live="polite">
+        <p id="message">낚시 버튼을 눌러 첫 물고기를 잡아보세요!</p>
+      </section>
+    </section>
+
+    <section id="maps" class="screen" aria-labelledby="mapsTitle">
+      <header class="screen-head">
+        <button type="button" class="back" onclick="goTab('home')">‹</button>
+        <h1 id="mapsTitle">맵 선택</h1>
+        <span></span>
+      </header>
+      <div id="mapList" class="map-list"></div>
+    </section>
+
+    <section id="collection" class="screen" aria-labelledby="collectionTitle">
+      <header class="screen-head">
+        <button type="button" class="back" onclick="goTab('home')">‹</button>
+        <h1 id="collectionTitle">도감</h1>
+        <strong class="book-count">📖 <span id="collectionCount">0 / 100</span></strong>
+      </header>
+      <div class="filter-tabs" aria-label="도감 필터">
+        <button class="is-on" type="button">전체</button><button type="button">1맵</button><button type="button">2맵</button><button type="button">3맵</button><button type="button">4맵</button>
+      </div>
+      <div id="collectionGrid" class="collection-grid"></div>
+      <aside class="bonus-card"><span>🧰</span><strong>도감 보너스</strong><em>물고기 판매 가격 +<b id="bonusRate">0</b>%</em><button type="button">보상 받기</button></aside>
+    </section>
+
+    <section id="shop" class="screen" aria-labelledby="shopTitle">
+      <header class="screen-head">
+        <button type="button" class="back" onclick="goTab('home')">‹</button>
+        <h1 id="shopTitle">상점</h1>
+        <strong class="mini-wallet">🪙 <span id="shopGold">0</span>  💎 <span id="shopDiamond">0</span></strong>
+      </header>
+      <div class="filter-tabs"><button class="is-on" type="button">추천</button><button type="button">미끼</button><button type="button">다이아</button><button type="button">장비</button></div>
+      <div id="shopGrid" class="shop-grid"></div>
+    </section>
+
+    <section id="achievements" class="screen" aria-labelledby="achievementsTitle">
+      <header class="screen-head">
+        <button type="button" class="back" onclick="goTab('home')">‹</button>
+        <h1 id="achievementsTitle">업적</h1>
+        <span></span>
+      </header>
+      <div class="filter-tabs"><button class="is-on" type="button">일반</button><button type="button">성장</button><button type="button">도감</button><button type="button">특별</button></div>
+      <div id="achievementList" class="achievement-list"></div>
+    </section>
+
+    <footer class="bottom-nav" aria-label="하단 메뉴">
+      <button type="button" class="nav-btn is-active" data-target="home"><span>🏠</span>홈</button>
+      <button type="button" class="nav-btn" data-target="maps"><span>🗺️</span>맵</button>
+      <button type="button" class="nav-btn" data-target="collection"><span>📘</span>도감</button>
+      <button type="button" class="nav-btn" data-target="shop"><span>🏪</span>상점</button>
+      <button type="button" class="nav-btn" data-target="achievements"><span>🏆</span>업적</button>
+    </footer>
+
+    <div id="catchModal" class="catch-modal" aria-hidden="true">
+      <div class="catch-panel">
+        <button type="button" class="close-modal" onclick="closeCatchModal()">×</button>
+        <div class="new-badge">NEW</div>
+        <div id="catchIcon" class="catch-icon">🐟</div>
+        <h2>새로운 물고기 획득!</h2>
+        <strong id="catchName">송사리</strong>
+        <p id="catchMeta">일반 · 10골드 · EXP 5</p>
+        <button type="button" onclick="closeCatchModal()">확인</button>
+      </div>
+    </div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
