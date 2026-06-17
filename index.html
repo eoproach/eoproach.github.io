@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>사이다 낚시왕</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">SBI 게이미피케이션</p>
+        <h1>🎣 사이다 낚시왕</h1>
+        <p class="subtitle">펭펭이와 함께 전설의 물고기를 수집하세요.</p>
+      </div>
+      <div class="penguin" aria-label="펭펭이">🐧</div>
+    </section>
+
+    <section class="status-grid" aria-label="플레이어 정보">
+      <article><span>Lv</span><strong id="level">1</strong></article>
+      <article><span>EXP</span><strong id="expText">0 / 100</strong></article>
+      <article><span>골드</span><strong id="gold">0</strong></article>
+      <article><span>다이아</span><strong id="diamond">0</strong></article>
+      <article><span>미끼</span><strong id="bait">30</strong></article>
+      <article><span>도감</span><strong id="collectionRate">0%</strong></article>
+    </section>
+
+    <section class="panel map-panel">
+      <div class="panel-title">
+        <div>
+          <p>현재 맵</p>
+          <h2 id="mapName">고요한 물안개 연못</h2>
+        </div>
+        <button id="changeMapBtn" class="secondary">맵 변경</button>
+      </div>
+      <div class="map-visual">
+        <div class="water"></div>
+        <div class="boat">⛵</div>
+      </div>
+      <div class="actions">
+        <button id="fishBtn" class="primary">낚시하기</button>
+        <button id="autoBtn" class="secondary">자동낚시 OFF</button>
+      </div>
+      <p id="message" class="message">미끼를 사용해 물고기를 낚아보세요.</p>
+    </section>
+
+    <section class="panel rod-panel">
+      <div class="panel-title">
+        <div>
+          <p>장비</p>
+          <h2 id="rodName">나무 낚싯대 +0</h2>
+        </div>
+        <button id="upgradeBtn" class="secondary">강화</button>
+      </div>
+      <div class="bar"><span id="expBar"></span></div>
+      <p id="rodInfo" class="hint">강화 비용: 100골드 · 희귀 확률과 판매 보너스가 증가합니다.</p>
+    </section>
+
+    <nav class="tabs" aria-label="메뉴">
+      <button class="tab active" data-tab="maps">맵</button>
+      <button class="tab" data-tab="collection">도감</button>
+      <button class="tab" data-tab="shop">상점</button>
+      <button class="tab" data-tab="achievements">업적</button>
+    </nav>
+
+    <section id="maps" class="panel tab-panel active"></section>
+    <section id="collection" class="panel tab-panel"></section>
+    <section id="shop" class="panel tab-panel"></section>
+    <section id="achievements" class="panel tab-panel"></section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
