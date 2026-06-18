@@ -1,0 +1,3311 @@
+:root{
+  --primary:#008ff6;
+  --primary-2:#00aeef;
+  --sky:#8fe2ff;
+  --bg:#f3fbff;
+  --card:#ffffff;
+  --ink:#10223f;
+  --muted:#6d7f99;
+  --line:#d9edf9;
+  --gold:#ffc83d;
+  --rare:#7d5cff;
+  --hero:#00b894;
+  --danger:#ff5c68;
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --shadow:0 14px 34px rgba(0,85,160,.16);
+  --inner:inset 0 0 0 1px rgba(255,255,255,.55);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Segoe UI",sans-serif;background:linear-gradient(180deg,#e6f8ff,#fff);color:var(--ink)}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+.app-shell{min-height:100vh;display:grid;place-items:center;padding:24px}
+.device{position:relative;width:min(390px,100vw);height:min(844px,100vh);background:var(--bg);border:1px solid #bde8fb;border-radius:34px;box-shadow:var(--shadow);overflow:hidden}
+.screen{display:none;position:absolute;inset:0;padding:18px 14px 86px;overflow:auto;background:linear-gradient(180deg,#f8fdff 0%,#ecf8ff 100%)}
+.screen.is-active{display:block}
+h1,h2,p{margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;box-shadow:0 8px 22px rgba(40,110,170,.08)}
+.home-hero{position:relative;display:flex;justify-content:space-between;gap:12px;background:linear-gradient(150deg,#0077e6,#00bdf5);border-radius:0 0 28px 28px;margin:-18px -14px 14px;padding:24px 18px 22px;color:white;box-shadow:0 10px 26px rgba(0,110,210,.25)}
+.profile{display:flex;gap:12px;align-items:center}
+.penguin{width:74px;height:74px;border-radius:24px;background:radial-gradient(circle at 40% 30%,#fff,#dff7ff 55%,#1f3555 56%);display:grid;place-items:center;font-size:48px;box-shadow:var(--inner)}
+.profile-info{display:grid;gap:5px;min-width:170px}
+.profile-info strong{font-size:18px}.profile-info span,.profile-info small{font-size:12px;opacity:.9}
+.progress{height:12px;border-radius:99px;background:rgba(255,255,255,.28);overflow:hidden}
+.progress i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#62f5ff,#37ffb2)}
+.header-actions{display:flex;gap:7px}.header-actions button{width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.18)}
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.wallet-grid article{display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 5px 15px rgba(0,80,150,.06)}
+.wallet-grid span{font-size:28px}.coin{display:grid;place-items:center;width:32px;height:32px;background:var(--gold);color:white;border-radius:50%;font-weight:900}
+.wallet-grid strong{display:block}.wallet-grid small{color:var(--muted);font-size:11px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.section-title h2{font-size:17px}.section-title button{font-size:12px;color:var(--muted)}
+.mission-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.mission-list li{display:grid;grid-template-columns:24px 1fr auto;align-items:center;font-size:13px;padding:7px 0;border-bottom:1px solid #edf6fb}
+.mission-list li:last-child{border-bottom:0}.mission-list span{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#2d88ff;color:white;font-size:11px}.mission-list .ok{background:#20c96b}.mission-list em{font-style:normal;background:#f0f6fb;border:1px solid #d7e7f0;border-radius:99px;padding:3px 10px;font-size:11px;color:#496178}
+.fish-cta{width:100%;margin:12px 0;border-radius:24px;min-height:94px;background:linear-gradient(135deg,#00b7f5,#0078e7);color:white;box-shadow:0 10px 24px rgba(0,126,230,.24);display:grid;place-items:center;gap:2px;position:relative;overflow:hidden}
+.fish-cta:before{content:"";position:absolute;inset:auto -20px -30px;height:70px;background:rgba(255,255,255,.18);border-radius:50%}.fish-cta span{font-size:32px}.fish-cta strong{font-size:22px}.fish-cta small{opacity:.85}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.quick-grid button{padding:16px;border-radius:18px;background:white;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,80,150,.06);font-weight:800}
+.event-banner{position:relative;border-radius:22px;background:linear-gradient(135deg,#14b8ff,#0874df);color:white;padding:16px;min-height:74px;overflow:hidden}.event-banner strong,.event-banner span{display:block}.event-banner b{position:absolute;right:18px;bottom:3px;font-size:48px}
+.sub-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;height:38px}.sub-header button{width:36px;height:36px;border-radius:50%;background:white;box-shadow:0 4px 12px rgba(0,80,150,.1);font-size:24px}.sub-header strong{font-size:18px}.sub-header span{font-size:12px;color:#20466a}.floating{position:relative;z-index:5;color:white}.floating button{color:#123;background:rgba(255,255,255,.85)}
+.fishing-screen{background:linear-gradient(#36bfff 0%,#c8f5ff 42%,#0782bd 43%,#015f9e 100%);overflow:hidden}
+.sky{position:absolute;left:0;right:0;top:0;height:44%;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.9) 0 30px,transparent 31px),linear-gradient(#30b8ff,#b8edff)}
+.lake-scene{position:absolute;inset:70px 0 170px;overflow:hidden}.mountains{position:absolute;left:-30px;right:-30px;bottom:180px;height:180px;background:linear-gradient(135deg,transparent 35%,#72b27c 36% 52%,transparent 53%),linear-gradient(45deg,transparent 35%,#9cd9f5 36% 54%,transparent 55%);opacity:.85}.dock{position:absolute;left:0;bottom:120px;width:170px;height:38px;background:#9a6a32;border-radius:0 14px 14px 0}.penguin-fishing{position:absolute;left:70px;bottom:135px;font-size:86px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}.rod-line{position:absolute;left:155px;bottom:218px;width:145px;height:2px;background:#4b2d19;transform:rotate(-32deg);transform-origin:left center}.bobber{position:absolute;left:270px;bottom:118px;width:18px;height:26px;border-radius:99px;background:linear-gradient(#ff3858 0 45%,#fff 46%);animation:float 1.2s infinite ease-in-out}.water{position:absolute;left:-20px;right:-20px;bottom:0;height:170px;background:repeating-radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.18) 0 2px,transparent 3px 42px),linear-gradient(#16a5d9,#00649f)}
+@keyframes float{50%{transform:translateY(10px)}}
+.fishing-panel{position:absolute;left:18px;right:18px;bottom:22px;background:rgba(5,34,71,.82);color:white;border-radius:26px;padding:16px;text-align:center;backdrop-filter:blur(8px)}.fishing-panel p{font-weight:800;margin-bottom:12px}
+.gauge{position:relative;height:22px;border-radius:99px;overflow:hidden;display:flex;background:white;margin:0 12px 18px}.gauge i{flex:1}.gauge .bad{background:#ef4353}.gauge .good{background:#ffd34e}.gauge .best{background:#36db8d}.gauge b{position:absolute;top:-8px;left:50%;width:6px;height:38px;background:white;border-radius:6px;box-shadow:0 0 0 2px #134b83;animation:gaugeMove 1.35s linear infinite alternate}
+@keyframes gaugeMove{from{left:5%}to{left:93%}}
+.round-action{width:104px;height:104px;border-radius:50%;background:linear-gradient(#37a8ff,#086bda);border:6px solid rgba(255,255,255,.45);color:white;font-size:24px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.result-screen{display:none;background:radial-gradient(circle at 50% 20%,#1977df,#03245d 70%);color:white}.result-screen.is-active{display:grid;place-items:center}
+.result-card{width:100%;text-align:center}.result-card h1{background:linear-gradient(#39a9ff,#006fe4);display:inline-block;padding:12px 34px;border-radius:12px;font-size:22px}.fish-illust{font-size:96px;margin:28px auto 6px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))}.badge{display:inline-grid;place-items:center;border-radius:99px;color:white;font-weight:900;font-size:12px;padding:5px 10px}.rare{background:var(--rare)}.hero{background:var(--hero)}.grade{display:inline-block;background:var(--rare);padding:4px 12px;border-radius:99px}.reward-list{list-style:none;margin:22px 0;padding:16px;background:white;color:var(--ink);border-radius:22px;text-align:left}.reward-list li{display:flex;justify-content:space-between;padding:13px 8px;border-bottom:1px solid #edf2f7}.reward-list li:last-child{border:0}.reward-list span{color:var(--muted)}
+.button-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.button-row button,.bottom-primary{height:56px;border-radius:16px;color:white;font-weight:900}.primary,.bottom-primary{background:linear-gradient(#2aa8ff,#006de0)}.secondary{background:linear-gradient(#ffc93d,#ff9300)}
+.map-screen{background:linear-gradient(#0789e8,#20bff2 55%,#0b8ad5)}.world-map{position:relative;height:720px;background:radial-gradient(circle at 80% 14%,#1b8ab7 0 48px,transparent 49px),radial-gradient(circle at 22% 72%,#39c47f 0 58px,transparent 59px),radial-gradient(circle at 63% 58%,#f6d35a 0 44px,transparent 45px);border-radius:26px;overflow:hidden;border:1px solid rgba(255,255,255,.4)}
+.spot{position:absolute;min-width:130px;padding:10px 12px;border-radius:99px;background:rgba(7,55,95,.75);color:white;font-size:18px;box-shadow:0 8px 18px rgba(0,0,0,.22)}.spot span{display:block;font-size:12px;font-weight:900}.locked{filter:saturate(.6);opacity:.9}.s1{left:105px;top:40px}.s2{left:45px;top:150px}.s3{right:20px;top:130px}.s4{right:35px;top:260px}.s5{left:60px;top:330px}.s6{right:42px;top:420px}.s7{right:20px;bottom:115px;background:#0874df}.s8{left:28px;bottom:60px}
+.region-visual{height:210px;border-radius:24px;margin-bottom:12px;background:linear-gradient(rgba(255,255,255,.15),rgba(255,255,255,.1)),radial-gradient(circle at 50% 80%,#00a7d7 0 90px,transparent 91px),linear-gradient(145deg,#80d6ff,#c7f4ff 42%,#4ab979 43% 62%,#1688c4 63%);box-shadow:var(--shadow)}
+.region-summary{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:15px;margin-bottom:12px}.region-summary small{display:block;color:var(--muted);margin:7px 0 3px}.region-summary strong{font-size:20px}
+.donut{width:108px;height:108px;border-radius:50%;background:conic-gradient(var(--primary) calc(var(--value)*1%),#e7f2f9 0);display:grid;place-items:center;position:relative}.donut:before{content:"";position:absolute;inset:14px;background:white;border-radius:50%}.donut b,.donut span{position:relative}.donut b{font-size:27px}.donut span{font-size:11px;color:var(--muted);grid-row:1;margin-top:42px}.legend-fish div{display:flex;gap:12px;align-items:center}.legend-fish span{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#eef5fa;font-size:28px}.legend-fish small{display:block;color:var(--muted)}
+.bottom-primary{position:absolute;left:14px;right:14px;bottom:84px;width:auto}.bottom-primary small{margin-left:8px}
+.tabs{display:flex;gap:7px;margin:10px 0 14px}.tabs.wrap{flex-wrap:wrap}.tabs button{flex:1;min-width:64px;height:36px;border-radius:10px;background:#e9f2f8;color:#38536c;font-size:12px;font-weight:800}.tabs .active{background:linear-gradient(#279fff,#006ddb);color:white}
+.task-list,.shop-list,.achievement-list{display:grid;gap:10px}.task-list article,.shop-list article,.achievement-list article{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.task-list progress{display:block;width:140px;height:8px;margin-top:8px}.task-list b{color:#ff9b00}.task-list button{background:linear-gradient(#38c976,#12a95b);color:white;border-radius:10px;padding:8px 12px;font-weight:800}
+.collection-head{display:flex;align-items:center;justify-content:center;gap:24px;padding:8px 0 12px}.collection-head strong{font-size:18px}.fish-grid,.rod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.fish-grid button,.rod-grid button{min-height:112px;background:white;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.fish-grid span{font-size:38px}.fish-grid strong,.fish-grid small,.rod-grid span{display:block}.fish-grid small{color:var(--muted);font-size:11px}.unknown{filter:grayscale(1);opacity:.65}
+.fish-detail-visual{border-radius:24px;min-height:280px;background:radial-gradient(circle at 50% 35%,#66e4ff,#007fc1 70%);display:grid;place-items:center;color:white;margin-bottom:12px;padding:18px}.fish-detail-visual div{font-size:112px}.fish-detail-visual h1{font-size:28px}.detail-table dl{display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid #edf2f7;padding:12px 0;margin:0}.detail-table dl:last-child{border-bottom:0}.detail-table dt{color:var(--primary);font-weight:900}.detail-table dd{margin:0;color:#2f4054}
+.equipped-card{display:grid;grid-template-columns:135px 1fr;gap:14px;background:white;border:1px solid var(--line);border-radius:24px;padding:14px;margin-bottom:16px}.rod-img{height:170px;border-radius:18px;background:linear-gradient(#55d5ff,#0e83d8);display:grid;place-items:center;font-size:74px}.equipped-card h2{font-size:17px;margin:10px 0}.equipped-card p{font-size:13px;color:#1166a8;margin:5px 0}.list-title{font-size:17px;margin:0 0 10px}
+.rod-grid button{font-size:46px}.rod-grid span{font-size:11px;color:#37516d;font-weight:800}
+.shop-list article{grid-template-columns:46px 1fr auto}.shop-list span{font-size:34px}.shop-list small{display:block;color:var(--muted);margin-top:3px}.shop-list b{color:#006ddb}
+.achievement-list article{grid-template-columns:48px 1fr auto}.achievement-list span{font-size:34px}.achievement-list small{display:block;color:var(--muted);margin-top:3px}.achievement-list b{background:#1fcf78;color:white;border-radius:99px;padding:6px 10px;font-size:12px}.achievement-list .disabled{opacity:.45}
+.ranking-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.ranking-list li{display:grid;grid-template-columns:36px 44px 1fr auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:13px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.ranking-list li>span{font-size:32px}.ranking-list small{display:block;color:var(--muted)}.ranking-list em{font-style:normal;font-weight:900;color:#0d64c8}.ranking-list .my{background:linear-gradient(#1195ff,#0070df);color:white}.ranking-list .my small,.ranking-list .my em{color:white}
+.bottom-nav{position:absolute;left:0;right:0;bottom:0;height:74px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 7px calc(7px + env(safe-area-inset-bottom));z-index:20;backdrop-filter:blur(12px)}
+.bottom-nav button{display:grid;place-items:center;gap:2px;border-radius:14px;color:#63758d;font-size:19px}.bottom-nav span{font-size:10px;font-weight:800}.bottom-nav .active{color:#006ddb;background:#e8f5ff}
+@media (max-width:430px){
+  .app-shell{padding:0}
+  .device{width:100vw;height:100vh;border-radius:0;border:0}
+}
+
+
+.modal{display:none;position:absolute;inset:0;z-index:50}
+.modal.is-open{display:block}
+.modal-dim{position:absolute;inset:0;background:rgba(5,24,47,.45);backdrop-filter:blur(3px)}
+.modal-card{position:absolute;left:20px;right:20px;top:50%;transform:translateY(-50%);background:white;border-radius:24px;padding:22px;box-shadow:0 22px 54px rgba(0,40,90,.28)}
+.modal-card h2{font-size:20px;margin:0 0 12px}
+.modal-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.modal-card li,.modal-card button.menu-item{width:100%;display:flex;justify-content:space-between;align-items:center;padding:13px;border-radius:14px;background:#f1f8fd;color:#183856;font-weight:800}
+.modal-close{width:100%;height:48px;margin-top:16px;border-radius:14px;background:linear-gradient(#2aa8ff,#006de0);color:white;font-weight:900}
+.toast{position:absolute;left:20px;right:20px;bottom:88px;z-index:60;min-height:46px;padding:13px 16px;border-radius:16px;background:rgba(13,36,72,.92);color:white;display:none;text-align:center;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.toast.is-show{display:block;animation:toastIn .22s ease-out}
+@keyframes toastIn{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.tabs button{transition:.2s}
+.task-list article.is-done{opacity:.62}
+.task-list article.is-done button{background:#aebdca}
+.shop-list article,.achievement-list article,.fish-grid button,.rod-grid button{transition:.18s transform,.18s box-shadow}
+.shop-list article:active,.achievement-list article:active,.fish-grid button:active,.rod-grid button:active{transform:scale(.98)}
+.rod-grid button.is-equipped{outline:3px solid var(--primary);background:#e9f7ff}
+
+.round-action{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.result-card.is-fail .fish-illust{filter:grayscale(.25) drop-shadow(0 12px 20px rgba(0,0,0,.3))}
+.result-card.is-fail .grade{background:#6d7f99}
+
+.mission-list li.is-complete{color:#0d7452;font-weight:800}
+.mission-list li span.ok{background:#20c96b}
+.task-count{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.task-list article.is-ready button{background:linear-gradient(#20d982,#0bb768)}
+.event-banner{cursor:pointer}
+
+.collection-filter-info{margin:-4px 0 12px;text-align:center;color:var(--muted);font-size:12px;font-weight:800}
+.fish-grid{grid-template-columns:repeat(3,1fr)}
+.fish-grid button[data-grade="전설"]{background:linear-gradient(180deg,#fff9dc,#fff)}
+.fish-grid button[data-grade="영웅"]{background:linear-gradient(180deg,#eef8ff,#fff)}
+.fish-grid button[data-grade="희귀"]{background:linear-gradient(180deg,#f4f0ff,#fff)}
+.fish-grid button[data-grade="일반"]{background:#fff}
+.fish-grid button strong{min-height:31px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.rod-grid button{display:grid;place-items:center;gap:5px;min-height:126px}
+.rod-grid .rod-symbol{font-size:38px}
+.rod-grid strong{display:block;font-size:12px;line-height:1.25;min-height:31px}
+.rod-grid small{display:inline-block;padding:3px 8px;border-radius:999px;background:#edf5fb;color:#54708a;font-size:10px;font-weight:900}
+.badge.normal{background:#7f8fa6}
+.badge.legend{background:#f5a800;color:#fff}
+.badge.myth{background:linear-gradient(135deg,#5228ff,#00c2ff,#ffd43d);color:#fff}
+
+.rod-img.normal{background:linear-gradient(#bde7ff,#42a9e8)}
+.rod-img.rare{background:linear-gradient(#e6dbff,#7d5cff)}
+.rod-img.hero{background:linear-gradient(#bff5ff,#00a7d7)}
+.rod-img.legend{background:linear-gradient(#fff2a8,#f5a800)}
+.rod-img.myth{background:linear-gradient(135deg,#5228ff,#00c2ff,#ffd43d)}
+
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+.mission-tabs button{white-space:nowrap}
+
+.shop-tabs button{min-width:72px}
+.shop-list article{cursor:pointer}
+.shop-list article:hover{box-shadow:0 10px 22px rgba(0,80,150,.12)}
+
+.empty-mission{grid-template-columns:1fr!important;text-align:center;color:var(--muted)}
+
+
+/* 도감 수집률 도넛 정렬 보정 */
+.donut{
+  position:relative;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  line-height:1;
+}
+.donut:before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  background:white;
+  border-radius:50%;
+  z-index:0;
+}
+.donut b,
+.donut span{
+  position:relative;
+  z-index:1;
+  margin:0;
+  grid-row:auto;
+}
+.donut b{
+  font-size:28px;
+  font-weight:900;
+  line-height:1;
+}
+.donut span{
+  font-size:13px;
+  color:#7890aa;
+  line-height:1.1;
+}
+.collection-head{
+  align-items:center;
+}
+.collection-head .donut{
+  flex:0 0 108px;
+}
+
+
+/* 낚싯대 화면: 강화 버튼이 카드 위를 덮지 않도록 보정 */
+.screen[data-screen="rod"]{
+  padding-bottom:120px;
+}
+
+.screen[data-screen="rod"] .bottom-primary{
+  position:static;
+  left:auto;
+  right:auto;
+  bottom:auto;
+  width:100%;
+  margin-top:18px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.screen[data-screen="rod"] .rod-grid{
+  margin-bottom:0;
+}
+
+
+/* 낚시 결과 화면 표시 보정 */
+.result-screen.is-active{
+  display:grid !important;
+  place-items:center;
+}
+#catchBtn{
+  touch-action:manipulation;
+}
+
+/* 안정화 보정 */
+.result-screen.is-active{display:grid!important;place-items:center}
+#catchBtn{touch-action:manipulation}
+.collection-filter-info{margin:-4px 0 12px;text-align:center;color:var(--muted);font-size:12px;font-weight:800}
+.fish-grid button[data-grade="전설"]{background:linear-gradient(180deg,#fff9dc,#fff)}
+.fish-grid button[data-grade="영웅"]{background:linear-gradient(180deg,#f4e9ff,#fff)}
+.fish-grid button[data-grade="희귀"]{background:linear-gradient(180deg,#edf7ff,#fff)}
+.fish-grid button[data-grade="일반"]{background:#fff}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6);color:#fff}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db);color:#fff}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad);color:#fff}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f);color:#6b4e00}
+.rod-grid button.normal.is-equipped{outline:3px solid #95a5a6;box-shadow:0 0 14px rgba(149,165,166,.35)}
+.rod-grid button.rare.is-equipped{outline:3px solid #3498db;box-shadow:0 0 16px rgba(52,152,219,.4)}
+.rod-grid button.hero.is-equipped{outline:3px solid #9b59b6;box-shadow:0 0 18px rgba(155,89,182,.45)}
+.rod-grid button.legend.is-equipped{outline:3px solid #f1c40f;box-shadow:0 0 20px rgba(241,196,15,.55)}
+.rod-grid button.myth.is-equipped{outline:3px solid #6a5cff;box-shadow:0 0 22px rgba(106,92,255,.45),0 0 38px rgba(255,215,0,.25)}
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+
+/* 기능 복구용 보정 */
+.mission-tabs button.active,
+.shop-tabs button.active,
+.collection-tabs [data-filter="전체"].active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6)!important;color:#fff!important}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db)!important;color:#fff!important}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad)!important;color:#fff!important}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f)!important;color:#6b4e00!important}
+.task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+.result-screen.is-active{display:grid!important;place-items:center}
+#fishGrid:empty::before,#missionTaskList:empty::before,#rodGrid:empty::before,#shopList:empty::before{
+  content:"데이터를 불러오는 중입니다.";
+  display:block;
+  padding:20px;
+  color:#6d7f99;
+  text-align:center;
+}
+
+/* 미션 화면 중복 마크업 제거 후 카드 레이아웃 보정 */
+.screen[data-screen="mission"] .task-list{
+  display:grid;
+  gap:10px;
+}
+.screen[data-screen="mission"] .task-list article{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.screen[data-screen="mission"] .task-list article > div{
+  min-width:0;
+}
+.screen[data-screen="mission"] .task-list article strong{
+  display:block;
+  font-size:15px;
+  line-height:1.3;
+}
+.screen[data-screen="mission"] .task-list article progress{
+  display:block;
+  width:100%;
+  height:8px;
+  margin-top:8px;
+}
+.screen[data-screen="mission"] .task-list article b{
+  color:#ff9b00;
+  white-space:nowrap;
+}
+.screen[data-screen="mission"] .task-list article button{
+  min-width:58px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(#279fff,#006ddb);
+  color:#fff;
+  font-weight:900;
+}
+.screen[data-screen="mission"] .task-list article.is-ready{
+  outline:2px solid #20c96b;
+  background:#f0fff8;
+}
+.screen[data-screen="mission"] .task-list article.is-ready button{
+  background:linear-gradient(#20d982,#0bb768);
+}
+.screen[data-screen="mission"] .task-list article.is-done{
+  opacity:.65;
+}
+.screen[data-screen="mission"] .task-list article.is-done button,
+.screen[data-screen="mission"] .task-list article button[disabled]{
+  background:#aebdca;
+}
+
+
+/* 낚싯대 등급별 컬러 통일: 프로필 + 선택 카드 + 배지 */
+:root{
+  --rod-normal-main:#95a5a6;
+  --rod-normal-light:#eef3f5;
+  --rod-normal-soft:#f7fafb;
+
+  --rod-rare-main:#3498db;
+  --rod-rare-light:#dff2ff;
+  --rod-rare-soft:#eef9ff;
+
+  --rod-hero-main:#8e44ad;
+  --rod-hero-light:#f0e4ff;
+  --rod-hero-soft:#f8f1ff;
+
+  --rod-legend-main:#f1c40f;
+  --rod-legend-light:#fff1aa;
+  --rod-legend-soft:#fff9df;
+
+  --rod-myth-main:#6a5cff;
+  --rod-myth-sub:#00c2ff;
+  --rod-myth-gold:#ffd700;
+  --rod-myth-soft:#f0f4ff;
+}
+
+/* 상단 장착 카드 */
+.equipped-card.normal{
+  border-color:rgba(149,165,166,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-normal-soft));
+}
+.equipped-card.rare{
+  border-color:rgba(52,152,219,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-rare-soft));
+}
+.equipped-card.hero{
+  border-color:rgba(142,68,173,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-hero-soft));
+}
+.equipped-card.legend{
+  border-color:rgba(241,196,15,.55);
+  background:linear-gradient(135deg,#fff,var(--rod-legend-soft));
+}
+.equipped-card.myth{
+  border-color:rgba(106,92,255,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-myth-soft));
+}
+
+/* 상단 낚싯대 이미지 배경 */
+.rod-img.normal{
+  background:linear-gradient(135deg,#dfe6e9,var(--rod-normal-main));
+}
+.rod-img.rare{
+  background:linear-gradient(135deg,#bfe9ff,var(--rod-rare-main));
+}
+.rod-img.hero{
+  background:linear-gradient(135deg,#dec6ff,#7c4dff);
+}
+.rod-img.legend{
+  background:linear-gradient(135deg,#fff1a8,#f5a800);
+}
+.rod-img.myth{
+  background:linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold));
+}
+
+/* 장착 배지 */
+.badge.normal{
+  background:var(--rod-normal-main);
+  color:#fff;
+}
+.badge.rare{
+  background:var(--rod-rare-main);
+  color:#fff;
+}
+.badge.hero{
+  background:#7c4dff;
+  color:#fff;
+}
+.badge.legend{
+  background:#f5a800;
+  color:#fff;
+}
+.badge.myth{
+  background:linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold));
+  color:#fff;
+}
+
+/* 선택된 낚싯대 카드: 테두리 + 배경 톤 통일 */
+.rod-grid button.is-equipped{
+  outline:none!important;
+  transform:translateY(-1px);
+}
+
+.rod-grid button.normal.is-equipped{
+  border:3px solid var(--rod-normal-main);
+  background:linear-gradient(180deg,var(--rod-normal-light),#fff);
+  box-shadow:0 0 0 4px rgba(149,165,166,.12),0 12px 28px rgba(149,165,166,.24);
+}
+.rod-grid button.rare.is-equipped{
+  border:3px solid var(--rod-rare-main);
+  background:linear-gradient(180deg,var(--rod-rare-light),#fff);
+  box-shadow:0 0 0 4px rgba(52,152,219,.12),0 12px 28px rgba(52,152,219,.24);
+}
+.rod-grid button.hero.is-equipped{
+  border:0;
+  background:linear-gradient(180deg,var(--rod-hero-light),#fff);
+  box-shadow:0 0 0 4px rgba(142,68,173,.13),0 12px 28px rgba(142,68,173,.28);
+}
+.rod-grid button.legend.is-equipped{
+  border:3px solid var(--rod-legend-main);
+  background:linear-gradient(180deg,var(--rod-legend-light),#fff);
+  box-shadow:0 0 0 4px rgba(241,196,15,.18),0 12px 30px rgba(241,196,15,.34);
+}
+.rod-grid button.myth.is-equipped{
+  border:3px solid transparent;
+  background:
+    linear-gradient(180deg,#f0f7ff,#fff) padding-box,
+    linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold)) border-box;
+  box-shadow:0 0 0 4px rgba(106,92,255,.12),0 12px 30px rgba(106,92,255,.28),0 0 28px rgba(255,215,0,.22);
+}
+
+/* 카드 안 등급 뱃지도 선택 카드와 동일 톤 */
+.rod-grid button.normal small{
+  background:var(--rod-normal-light);
+  color:#607173;
+}
+.rod-grid button.rare small{
+  background:var(--rod-rare-light);
+  color:#2477b1;
+}
+.rod-grid button.hero small{
+  background:var(--rod-hero-light);
+  color:#7b3297;
+}
+.rod-grid button.legend small{
+  background:var(--rod-legend-soft);
+  color:#9b7600;
+}
+.rod-grid button.myth small{
+  background:linear-gradient(135deg,rgba(0,194,255,.16),rgba(106,92,255,.16),rgba(255,215,0,.22));
+  color:#5143d9;
+}
+.rod-grid button.is-equipped small{
+  font-weight:900;
+}
+
+
+/* 물고기 상세: 등급별 별점 가독성 */
+.fish-detail-visual p{
+  font-size:18px;
+  letter-spacing:1px;
+  text-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+
+/* 안정화: 미션/상점/도감 핵심 레이아웃 */
+.screen[data-screen="mission"] .task-list{display:grid;gap:10px}
+.screen[data-screen="mission"] .task-list article{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 6px 16px rgba(0,80,150,.06)}
+.screen[data-screen="mission"] .task-list article progress{display:block;width:100%;height:8px;margin-top:8px}
+.screen[data-screen="mission"] .task-list article b{color:#ff9b00;white-space:nowrap}
+.screen[data-screen="mission"] .task-list article button{min-width:58px;height:40px;border-radius:12px;background:linear-gradient(#279fff,#006ddb);color:#fff;font-weight:900}
+.screen[data-screen="mission"] .task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.screen[data-screen="mission"] .task-list article.is-ready button{background:linear-gradient(#20d982,#0bb768)}
+.screen[data-screen="mission"] .task-list article.is-done{opacity:.65}
+.screen[data-screen="mission"] .task-list article button[disabled]{background:#aebdca}
+.mission-tabs button.active,.shop-tabs button.active,.collection-tabs [data-filter="전체"].active{background:linear-gradient(#279fff,#006ddb)!important;color:#fff!important}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6)!important;color:#fff!important}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db)!important;color:#fff!important}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad)!important;color:#fff!important}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f)!important;color:#6b4e00!important}
+.result-screen.is-active{display:grid!important;place-items:center}
+
+/* 업적 탭/리스트 기능 보정 */
+.achievement-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.achievement-list{
+  display:grid;
+  gap:10px;
+}
+.achievement-list article{
+  display:grid;
+  grid-template-columns:48px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.achievement-list article > span{
+  font-size:34px;
+}
+.achievement-list article strong{
+  display:block;
+  font-size:15px;
+}
+.achievement-list article small{
+  display:block;
+  color:var(--muted);
+  margin:3px 0 7px;
+}
+.achievement-list article progress{
+  display:block;
+  width:100%;
+  height:8px;
+}
+.achievement-list article em{
+  display:block;
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+  font-style:normal;
+}
+.achievement-list article b{
+  background:#eef5fb;
+  color:#54708a;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  white-space:nowrap;
+}
+.achievement-list article.is-complete{
+  outline:2px solid #20c96b;
+  background:#f0fff8;
+}
+.achievement-list article.is-complete b{
+  background:#20c96b;
+  color:white;
+}
+
+/* 세계지도 10개 지역 배치 */
+.world-map .spot.s1{left:24px;bottom:54px}
+.world-map .spot.s2{left:30px;bottom:135px}
+.world-map .spot.s3{right:24px;bottom:120px;background:#0874df}
+.world-map .spot.s4{left:72px;bottom:230px}
+.world-map .spot.s5{right:38px;bottom:250px}
+.world-map .spot.s6{left:45px;top:330px}
+.world-map .spot.s7{right:36px;top:270px}
+.world-map .spot.s8{left:42px;top:190px}
+.world-map .spot.s9{right:26px;top:130px}
+.world-map .spot.s10{left:95px;top:42px}
+
+
+/* 세계지도 UI 재정렬: 10개 지역 카드형 스테이지 맵 */
+.map-screen{
+  background:linear-gradient(180deg,#e9f8ff 0%,#dff5ff 100%)!important;
+}
+
+.stage-map{
+  position:relative;
+  height:auto!important;
+  min-height:0!important;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:16px;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 15% 12%,rgba(255,255,255,.55) 0 34px,transparent 36px),
+    radial-gradient(circle at 85% 28%,rgba(255,255,255,.35) 0 50px,transparent 52px),
+    linear-gradient(180deg,#36c9ff 0%,#0d8fe8 100%);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 14px 34px rgba(0,110,190,.18);
+  overflow:visible;
+}
+
+.stage-map::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:58px;
+  bottom:58px;
+  width:4px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+  z-index:0;
+}
+
+.map-node{
+  position:relative;
+  z-index:1;
+  min-height:104px;
+  border-radius:22px;
+  padding:14px 10px;
+  display:grid;
+  place-items:center;
+  gap:5px;
+  text-align:center;
+  color:#12314f;
+  background:rgba(255,255,255,.92);
+  border:2px solid rgba(255,255,255,.75);
+  box-shadow:0 10px 22px rgba(0,60,120,.14);
+  backdrop-filter:blur(8px);
+}
+
+.map-node:nth-child(odd){
+  transform:translateY(10px);
+}
+
+.map-node i{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:16px;
+  background:#eaf7ff;
+  font-style:normal;
+  font-size:24px;
+}
+
+.map-node strong{
+  display:block;
+  font-size:14px;
+  line-height:1.25;
+  word-break:keep-all;
+}
+
+.map-node small{
+  color:#5d7894;
+  font-size:11px;
+  font-weight:800;
+}
+
+.map-node.current{
+  color:white;
+  background:linear-gradient(135deg,#158cff,#006ddb);
+  border-color:rgba(255,255,255,.9);
+  box-shadow:0 14px 30px rgba(0,100,220,.32);
+}
+
+.map-node.current i{
+  background:rgba(255,255,255,.22);
+}
+
+.map-node.current small{
+  color:rgba(255,255,255,.86);
+}
+
+.map-node.locked{
+  opacity:.72;
+  color:#6d7f99;
+  background:rgba(232,242,249,.9);
+  box-shadow:none;
+}
+
+.map-node.locked i{
+  background:#ddeaf3;
+  filter:grayscale(.25);
+}
+
+.map-node.unlocked:active,
+.map-node.current:active{
+  transform:scale(.98);
+}
+
+@media (max-width:360px){
+  .stage-map{
+    grid-template-columns:1fr;
+  }
+  .stage-map::before{
+    left:28px;
+    transform:none;
+  }
+  .map-node:nth-child(odd){
+    transform:none;
+  }
+}
+
+/* 랭킹 탭/데이터 연동 */
+.ranking-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.ranking-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.ranking-list li{
+  display:grid;
+  grid-template-columns:48px 52px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.ranking-list li > b{
+  font-size:20px;
+  text-align:center;
+}
+.ranking-list li > span{
+  font-size:34px;
+  text-align:center;
+}
+.ranking-list li strong{
+  display:block;
+  font-size:18px;
+}
+.ranking-list li small{
+  display:block;
+  color:var(--muted);
+  margin-top:2px;
+}
+.ranking-list li em{
+  font-style:normal;
+  font-weight:900;
+  color:#006ddb;
+  white-space:nowrap;
+}
+.ranking-list li.my{
+  background:linear-gradient(135deg,#189cff,#006ddb);
+  color:white;
+}
+.ranking-list li.my small,
+.ranking-list li.my em{
+  color:white;
+}
+
+/* 랭킹 탭/데이터 연동 */
+.ranking-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.ranking-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.ranking-list li{
+  display:grid;
+  grid-template-columns:48px 52px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.ranking-list li > b{font-size:20px;text-align:center}
+.ranking-list li > span{font-size:34px;text-align:center}
+.ranking-list li strong{display:block;font-size:18px}
+.ranking-list li small{display:block;color:var(--muted);margin-top:2px}
+.ranking-list li em{font-style:normal;font-weight:900;color:#006ddb;white-space:nowrap}
+.ranking-list li.my{background:linear-gradient(135deg,#189cff,#006ddb);color:white}
+.ranking-list li.my small,.ranking-list li.my em{color:white}
+
+
+/* 포인트 상점 보유 포인트 가독성 개선 */
+.shop-point-badge{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:96px;
+  height:38px;
+  padding:0 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff7d7,#ffe08a);
+  color:#8a5b00!important;
+  font-weight:900;
+  font-size:15px!important;
+  border:1px solid rgba(255,190,0,.45);
+  box-shadow:0 8px 18px rgba(255,174,0,.18);
+  white-space:nowrap;
+}
+.shop-point-badge::before{
+  content:"P";
+  display:inline-grid;
+  place-items:center;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#ffc83d;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.08);
+}
+.screen[data-screen="shop"] .sub-header{
+  gap:10px;
+}
+.screen[data-screen="shop"] .sub-header strong{
+  flex:1;
+  text-align:center;
+  transform:translateX(24px);
+}
+.screen[data-screen="shop"] .sub-header button{
+  flex:0 0 36px;
+}
+.screen[data-screen="shop"] .sub-header .shop-point-badge{
+  flex:0 0 auto;
+}
+
+
+/* 낚시 화면 개선: 지역별 배경 + 캐스팅/찌 애니메이션 */
+.fishing-screen{
+  --sky1:#8ee8ff;
+  --sky2:#dff9ff;
+  --hill1:#7fc996;
+  --hill2:#4eac73;
+  --water1:#19aee5;
+  --water2:#087fbd;
+  --accent:#12c79a;
+  background:linear-gradient(180deg,var(--sky1),var(--sky2) 47%,var(--water1) 48%,var(--water2) 100%)!important;
+  overflow:hidden;
+  padding-bottom:0;
+}
+
+.fishing-screen.region-mist{
+  --sky1:#dff7ff; --sky2:#f4fdff; --hill1:#9ed3c3; --hill2:#6db59d; --water1:#7bd8ed; --water2:#3aa1c2; --accent:#9fd7db;
+}
+.fishing-screen.region-moon{
+  --sky1:#1f3a6d; --sky2:#7aa9e8; --hill1:#5b78a8; --hill2:#354b7a; --water1:#315fa8; --water2:#162e68; --accent:#d6e8ff;
+}
+.fishing-screen.region-emerald{
+  --sky1:#70dcff; --sky2:#d7fbff; --hill1:#7fc996; --hill2:#31a875; --water1:#19aee5; --water2:#087fbd; --accent:#00d6a3;
+}
+.fishing-screen.region-crystal{
+  --sky1:#a9efff; --sky2:#f5fdff; --hill1:#9ad7ff; --hill2:#77b8e8; --water1:#5ed7ff; --water2:#1a98df; --accent:#b9f2ff;
+}
+.fishing-screen.region-rainbow{
+  --sky1:#9ee9ff; --sky2:#fff0cf; --hill1:#ffd166; --hill2:#5ed39b; --water1:#35c7f3; --water2:#1279d8; --accent:#ff6bd6;
+}
+.fishing-screen.region-coral{
+  --sky1:#89e7ff; --sky2:#ffe1d6; --hill1:#ff9f9f; --hill2:#ff6f91; --water1:#23c4d9; --water2:#0b7bb0; --accent:#ff8f70;
+}
+.fishing-screen.region-storm{
+  --sky1:#536976; --sky2:#8ba6b5; --hill1:#435d68; --hill2:#243b4a; --water1:#236b91; --water2:#102d4a; --accent:#ffd166;
+}
+.fishing-screen.region-abyss{
+  --sky1:#10213d; --sky2:#1d4b78; --hill1:#193650; --hill2:#0b2038; --water1:#123d67; --water2:#06162b; --accent:#5ee7ff;
+}
+.fishing-screen.region-glacier{
+  --sky1:#c8f4ff; --sky2:#f7feff; --hill1:#e2fbff; --hill2:#9bdcf0; --water1:#88dfff; --water2:#32a6d8; --accent:#ffffff;
+}
+.fishing-screen.region-atlantis{
+  --sky1:#19b7d2; --sky2:#72f0e4; --hill1:#35d0b0; --hill2:#137f8f; --water1:#009db6; --water2:#075a86; --accent:#ffd76a;
+}
+
+.fishing-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.sun-moon{
+  position:absolute;
+  left:58px;
+  top:66px;
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  background:rgba(255,255,255,.86);
+  box-shadow:0 0 38px rgba(255,255,255,.52);
+}
+
+.cloud{
+  position:absolute;
+  width:120px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(255,255,255,.45);
+  filter:blur(.2px);
+  animation:cloudMove 18s linear infinite;
+}
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+.cloud::before{width:52px;height:52px;left:20px;top:-22px}
+.cloud::after{width:62px;height:62px;right:18px;top:-30px}
+.cloud-a{left:210px;top:96px}
+.cloud-b{left:-50px;top:170px;animation-duration:24s;opacity:.55}
+
+@keyframes cloudMove{
+  from{transform:translateX(-30px)}
+  to{transform:translateX(80px)}
+}
+
+.far-hills,
+.near-hills{
+  position:absolute;
+  left:-8%;
+  right:-8%;
+  bottom:312px;
+  height:150px;
+}
+
+.far-hills{
+  opacity:.45;
+  background:
+    radial-gradient(ellipse at 20% 100%,var(--hill1) 0 130px,transparent 132px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1) 0 160px,transparent 162px),
+    radial-gradient(ellipse at 92% 100%,var(--hill1) 0 120px,transparent 122px);
+}
+
+.near-hills{
+  bottom:285px;
+  opacity:.9;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2) 0 115px,transparent 117px),
+    radial-gradient(ellipse at 72% 100%,var(--hill2) 0 145px,transparent 147px);
+}
+
+.lake-surface{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:330px;
+  background:linear-gradient(180deg,var(--water1),var(--water2));
+}
+
+.water-ripples{
+  position:absolute;
+  left:-15%;
+  right:-15%;
+  bottom:0;
+  height:330px;
+  opacity:.45;
+  background:
+    repeating-radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.38) 0 2px,transparent 3px 42px),
+    repeating-radial-gradient(ellipse at 82% 30%,rgba(255,255,255,.22) 0 2px,transparent 3px 58px);
+  animation:rippleDrift 6s linear infinite;
+}
+
+@keyframes rippleDrift{
+  from{transform:translateX(0)}
+  to{transform:translateX(36px)}
+}
+
+.fishing-stage{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:322px;
+  height:220px;
+  pointer-events:none;
+}
+
+.penguin-fishing{
+  position:absolute;
+  left:110px;
+  bottom:0;
+  z-index:3;
+  font-size:82px;
+  filter:drop-shadow(0 10px 12px rgba(0,35,80,.28));
+  transform-origin:50% 85%;
+}
+
+.rod-stick{
+  position:absolute;
+  left:205px;
+  bottom:74px;
+  width:134px;
+  height:4px;
+  border-radius:999px;
+  background:#5a321f;
+  transform:rotate(-31deg);
+  transform-origin:left center;
+  z-index:4;
+  box-shadow:0 1px 0 rgba(255,255,255,.25);
+}
+
+.fishing-line{
+  position:absolute;
+  left:326px;
+  bottom:142px;
+  width:2px;
+  height:98px;
+  background:rgba(255,255,255,.82);
+  transform:rotate(20deg);
+  transform-origin:top center;
+  z-index:2;
+}
+
+.bobber{
+  position:absolute;
+  left:348px;
+  bottom:42px;
+  width:18px;
+  height:26px;
+  border-radius:999px;
+  background:linear-gradient(#ff3b67 0 45%,#fff 46%);
+  z-index:5;
+  animation:bobberIdle 1.15s ease-in-out infinite;
+  box-shadow:0 4px 10px rgba(0,60,120,.28);
+}
+
+.bobber::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:70%;
+  width:54px;
+  height:18px;
+  border:2px solid rgba(255,255,255,.34);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:bobberRipple 1.4s ease-out infinite;
+}
+
+@keyframes bobberIdle{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(9px)}
+}
+
+@keyframes bobberRipple{
+  0%{opacity:.6;transform:translate(-50%,-50%) scale(.65)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.8)}
+}
+
+.fishing-screen.is-casting .penguin-fishing{
+  animation:penguinCast .9s ease-out;
+}
+.fishing-screen.is-casting .rod-stick{
+  animation:rodCast .9s ease-out;
+}
+.fishing-screen.is-casting .fishing-line{
+  animation:lineCast .95s ease-out;
+}
+.fishing-screen.is-casting .bobber{
+  animation:bobberCast .95s ease-out,bobberIdle 1.15s ease-in-out .95s infinite;
+}
+
+@keyframes penguinCast{
+  0%{transform:rotate(0deg)}
+  30%{transform:rotate(-8deg) translateY(-4px)}
+  65%{transform:rotate(5deg)}
+  100%{transform:rotate(0deg)}
+}
+
+@keyframes rodCast{
+  0%{transform:rotate(-75deg) scaleX(.82)}
+  55%{transform:rotate(-20deg) scaleX(1.08)}
+  100%{transform:rotate(-31deg) scaleX(1)}
+}
+
+@keyframes lineCast{
+  0%{height:16px;transform:rotate(-80deg);opacity:0}
+  60%{height:122px;transform:rotate(35deg);opacity:1}
+  100%{height:98px;transform:rotate(20deg);opacity:1}
+}
+
+@keyframes bobberCast{
+  0%{left:238px;bottom:148px;opacity:0;transform:scale(.5)}
+  60%{left:372px;bottom:72px;opacity:1;transform:scale(1.1)}
+  100%{left:348px;bottom:42px;opacity:1;transform:scale(1)}
+}
+
+/* 기존 깨지는 산/도형 요소 숨김 */
+.fishing-screen .sky,
+.fishing-screen .lake-scene,
+.fishing-screen .mountains,
+.fishing-screen .dock,
+.fishing-screen .water{
+  display:none!important;
+}
+
+.fishing-panel{
+  z-index:10;
+}
+
+@media (max-width:360px){
+  .penguin-fishing{left:86px}
+  .rod-stick{left:178px}
+  .fishing-line{left:292px}
+  .bobber{left:310px}
+}
+
+
+/* 낚시 장면 정합성 개선: 펭귄-낚싯대-줄-찌 연결 */
+.fishing-screen{
+  --shore:#24496f;
+  --shore-hi:#3d6d92;
+}
+
+.fishing-bg .lake-surface{
+  top:auto;
+  bottom:0;
+  height:340px;
+}
+
+.fishing-stage{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:300px;
+  height:250px;
+  pointer-events:none;
+  z-index:4;
+}
+
+/* 펭귄이 서 있는 뭍/바위 */
+.shore-rock{
+  position:absolute;
+  left:-28px;
+  bottom:-6px;
+  width:245px;
+  height:112px;
+  border-radius:44% 56% 18px 0;
+  background:
+    radial-gradient(ellipse at 28% 24%,rgba(255,255,255,.16) 0 34px,transparent 36px),
+    linear-gradient(160deg,var(--shore-hi),var(--shore));
+  box-shadow:0 18px 28px rgba(0,33,70,.28);
+  z-index:1;
+}
+.shore-rock::after{
+  content:"";
+  position:absolute;
+  right:-28px;
+  bottom:-4px;
+  width:118px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(0,50,95,.22);
+}
+
+/* 펭귄은 바위 위에 앉아 낚시대를 들고 있는 위치 */
+.penguin-fishing{
+  left:76px!important;
+  bottom:42px!important;
+  z-index:5;
+  font-size:76px!important;
+  transform-origin:56% 82%;
+}
+
+/* 손잡이: 펭귄 손 근처에 고정 */
+.rod-handle{
+  position:absolute;
+  left:151px;
+  bottom:116px;
+  width:34px;
+  height:11px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#3d2619,#8c5a3a);
+  transform:rotate(-31deg);
+  transform-origin:left center;
+  z-index:7;
+  box-shadow:0 2px 4px rgba(0,0,0,.25);
+}
+
+/* 낚싯대: 손잡이에서 찌 방향으로 이어짐 */
+.rod-stick{
+  left:172px!important;
+  bottom:125px!important;
+  width:215px!important;
+  height:5px!important;
+  border-radius:999px;
+  background:linear-gradient(90deg,#7a4227 0%,#4b2b1b 58%,#24150f 100%)!important;
+  transform:rotate(-28deg)!important;
+  transform-origin:left center!important;
+  z-index:6!important;
+}
+.rod-stick::after{
+  content:"";
+  position:absolute;
+  right:-4px;
+  top:50%;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  transform:translateY(-50%);
+  background:#d8eefc;
+  box-shadow:0 0 0 2px rgba(0,0,0,.18);
+}
+
+/* 낚싯줄: 낚싯대 끝에서 물 위 찌까지 자연스럽게 연결 */
+.fishing-line{
+  left:363px!important;
+  bottom:184px!important;
+  width:112px!important;
+  height:126px!important;
+  background:none!important;
+  border-right:2px solid rgba(255,255,255,.82);
+  border-bottom:2px solid rgba(255,255,255,.55);
+  border-radius:0 0 76px 0;
+  transform:rotate(12deg)!important;
+  transform-origin:top left!important;
+  z-index:3!important;
+  opacity:.92;
+}
+
+/* 찌는 물 영역 중앙 오른쪽에 위치 */
+.bobber{
+  left:430px!important;
+  bottom:32px!important;
+  width:20px!important;
+  height:30px!important;
+  z-index:7!important;
+  animation:bobberWater 1.18s ease-in-out infinite!important;
+}
+.bobber-ripple{
+  position:absolute;
+  left:440px;
+  bottom:43px;
+  width:76px;
+  height:26px;
+  border:2px solid rgba(255,255,255,.38);
+  border-radius:50%;
+  transform:translate(-50%,50%);
+  z-index:4;
+  animation:ripplePulse 1.45s ease-out infinite;
+}
+.bobber-ripple::after{
+  content:"";
+  position:absolute;
+  inset:6px 13px;
+  border:2px solid rgba(255,255,255,.26);
+  border-radius:50%;
+}
+
+@keyframes bobberWater{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(8px) rotate(2deg)}
+}
+@keyframes ripplePulse{
+  0%{opacity:.75;transform:translate(-50%,50%) scale(.72)}
+  100%{opacity:0;transform:translate(-50%,50%) scale(1.8)}
+}
+
+/* 캐스팅 애니메이션: 손-낚싯대-줄-찌가 함께 움직이도록 재정의 */
+.fishing-screen.is-casting .penguin-fishing{
+  animation:penguinCastFixed 1.05s ease-out;
+}
+.fishing-screen.is-casting .rod-handle{
+  animation:rodHandleCastFixed 1.05s ease-out;
+}
+.fishing-screen.is-casting .rod-stick{
+  animation:rodCastFixed 1.05s ease-out;
+}
+.fishing-screen.is-casting .fishing-line{
+  animation:lineCastFixed 1.05s ease-out;
+}
+.fishing-screen.is-casting .bobber{
+  animation:bobberCastFixed 1.05s ease-out,bobberWater 1.18s ease-in-out 1.05s infinite!important;
+}
+.fishing-screen.is-casting .bobber-ripple{
+  animation:rippleAppearFixed 1.05s ease-out,ripplePulse 1.45s ease-out 1.05s infinite;
+}
+
+@keyframes penguinCastFixed{
+  0%{transform:rotate(0) translateY(0)}
+  32%{transform:rotate(-7deg) translateY(-5px)}
+  68%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0) translateY(0)}
+}
+@keyframes rodHandleCastFixed{
+  0%{transform:rotate(-68deg)}
+  55%{transform:rotate(-20deg)}
+  100%{transform:rotate(-31deg)}
+}
+@keyframes rodCastFixed{
+  0%{transform:rotate(-70deg) scaleX(.82)}
+  55%{transform:rotate(-18deg) scaleX(1.06)}
+  100%{transform:rotate(-28deg) scaleX(1)}
+}
+@keyframes lineCastFixed{
+  0%{width:22px;height:18px;opacity:0;transform:rotate(-80deg)}
+  55%{width:130px;height:148px;opacity:.9;transform:rotate(24deg)}
+  100%{width:112px;height:126px;opacity:.92;transform:rotate(12deg)}
+}
+@keyframes bobberCastFixed{
+  0%{left:205px;bottom:140px;opacity:0;transform:scale(.45)}
+  55%{left:454px;bottom:70px;opacity:1;transform:scale(1.1)}
+  100%{left:430px;bottom:32px;opacity:1;transform:scale(1)}
+}
+@keyframes rippleAppearFixed{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.72)}
+}
+
+/* 패널과 하단 GNB가 물 위를 과도하게 가리지 않도록 살짝 낮춤 */
+.fishing-panel{
+  left:20px!important;
+  right:20px!important;
+  bottom:76px!important;
+  border-radius:26px 26px 0 0;
+}
+
+/* 작은 화면 대응 */
+@media (max-width:430px){
+  .penguin-fishing{left:70px!important}
+  .shore-rock{width:225px}
+  .rod-handle{left:144px}
+  .rod-stick{left:164px!important;width:198px!important}
+  .fishing-line{left:336px!important;width:96px!important}
+  .bobber{left:392px!important}
+  .bobber-ripple{left:402px}
+}
+@media (max-width:360px){
+  .penguin-fishing{left:58px!important;font-size:70px!important}
+  .rod-handle{left:126px}
+  .rod-stick{left:145px!important;width:172px!important}
+  .fishing-line{left:290px!important;width:80px!important}
+  .bobber{left:340px!important}
+  .bobber-ripple{left:350px}
+}
+
+
+/* 낚시 결과 화면 데이터 연동 디자인 */
+.result-card{
+  text-align:center;
+}
+.result-fish{
+  width:128px;
+  height:128px;
+  margin:12px auto 8px;
+  display:grid;
+  place-items:center;
+  font-size:86px;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.24));
+}
+.result-judge{
+  display:inline-grid;
+  place-items:center;
+  min-width:84px;
+  height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  background:#2f9ded;
+  color:#fff;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:8px;
+}
+.result-grade{
+  display:inline-grid;
+  place-items:center;
+  height:34px;
+  padding:0 16px;
+  border-radius:999px;
+  color:white;
+  font-weight:900;
+  margin:6px 0 18px;
+}
+.result-card.normal .result-grade{background:#95a5a6}
+.result-card.rare .result-grade{background:#3498db}
+.result-card.hero .result-grade{background:#8e44ad}
+.result-card.legend .result-grade{background:#f5a800}
+.result-card.perfect .result-judge{background:linear-gradient(135deg,#45caff,#1477ff)}
+.result-card.success .result-judge{background:#20c96b}
+.result-card.fail .result-judge{background:#ef3f5a}
+.result-card.fail .result-fish{filter:grayscale(.4);opacity:.85}
+
+
+/* =========================================================
+   낚시 화면 오브젝트 정합성 개선
+   - 펭귄 / 낚싯대 / 낚싯줄 / 찌 연결
+   - 찌가 물 위에 떠 보이도록 위치 보정
+   ========================================================= */
+
+.fishing-screen{
+  --sky1:#83e5ff;
+  --sky2:#fff2c8;
+  --hill1:#8fd5a7;
+  --hill2:#4ca987;
+  --water1:#25c6e8;
+  --water2:#0b8ed3;
+  --shore1:#3d6f91;
+  --shore2:#173a5b;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 47%,var(--water1) 48%,var(--water2) 100%)!important;
+}
+
+/* 지역별 톤 */
+.fishing-screen.region-mist{--sky1:#dff7ff;--sky2:#f8ffff;--hill1:#a7d8ce;--hill2:#6db59d;--water1:#7bd8ed;--water2:#3aa1c2}
+.fishing-screen.region-moon{--sky1:#1f3a6d;--sky2:#7799c8;--hill1:#627da8;--hill2:#30476f;--water1:#315fa8;--water2:#162e68}
+.fishing-screen.region-emerald{--sky1:#70dcff;--sky2:#d7fbff;--hill1:#7fc996;--hill2:#31a875;--water1:#19aee5;--water2:#087fbd}
+.fishing-screen.region-crystal{--sky1:#a9efff;--sky2:#f5fdff;--hill1:#b9efff;--hill2:#77b8e8;--water1:#5ed7ff;--water2:#1a98df}
+.fishing-screen.region-rainbow{--sky1:#9ee9ff;--sky2:#fff0cf;--hill1:#ffd166;--hill2:#5ed39b;--water1:#35c7f3;--water2:#1279d8}
+.fishing-screen.region-coral{--sky1:#89e7ff;--sky2:#ffe1d6;--hill1:#ffb1a3;--hill2:#ff6f91;--water1:#23c4d9;--water2:#0b7bb0}
+.fishing-screen.region-storm{--sky1:#536976;--sky2:#8ba6b5;--hill1:#435d68;--hill2:#243b4a;--water1:#236b91;--water2:#102d4a}
+.fishing-screen.region-abyss{--sky1:#10213d;--sky2:#1d4b78;--hill1:#193650;--hill2:#0b2038;--water1:#123d67;--water2:#06162b}
+.fishing-screen.region-glacier{--sky1:#c8f4ff;--sky2:#f7feff;--hill1:#e2fbff;--hill2:#9bdcf0;--water1:#88dfff;--water2:#32a6d8}
+.fishing-screen.region-atlantis{--sky1:#19b7d2;--sky2:#72f0e4;--hill1:#35d0b0;--hill2:#137f8f;--water1:#009db6;--water2:#075a86}
+
+.fishing-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.sun-moon{
+  position:absolute;
+  left:74px;
+  top:82px;
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  box-shadow:0 0 40px rgba(255,255,255,.5);
+}
+
+.cloud{
+  position:absolute;
+  width:126px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(255,255,255,.42);
+  animation:cloudMove 22s linear infinite alternate;
+}
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+.cloud::before{width:58px;height:58px;left:18px;top:-24px}
+.cloud::after{width:68px;height:68px;right:20px;top:-32px}
+.cloud-a{right:52px;top:130px}
+.cloud-b{left:-54px;top:210px;opacity:.55;animation-duration:28s}
+@keyframes cloudMove{from{transform:translateX(-24px)}to{transform:translateX(52px)}}
+
+.far-hills,
+.near-hills{
+  position:absolute;
+  left:-8%;
+  right:-8%;
+  bottom:318px;
+  height:146px;
+}
+.far-hills{
+  opacity:.36;
+  background:
+    radial-gradient(ellipse at 15% 100%,var(--hill1) 0 110px,transparent 112px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1) 0 150px,transparent 152px),
+    radial-gradient(ellipse at 94% 100%,var(--hill1) 0 112px,transparent 114px);
+}
+.near-hills{
+  bottom:292px;
+  opacity:.72;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2) 0 112px,transparent 114px),
+    radial-gradient(ellipse at 76% 100%,var(--hill2) 0 138px,transparent 140px);
+}
+
+.lake-surface{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:338px;
+  background:linear-gradient(180deg,var(--water1),var(--water2));
+}
+.water-ripples{
+  position:absolute;
+  left:-14%;
+  right:-14%;
+  bottom:0;
+  height:338px;
+  opacity:.38;
+  background:
+    repeating-radial-gradient(ellipse at 18% 24%,rgba(255,255,255,.38) 0 2px,transparent 3px 52px),
+    repeating-radial-gradient(ellipse at 82% 32%,rgba(255,255,255,.22) 0 2px,transparent 3px 64px);
+  animation:rippleDrift 7s linear infinite;
+}
+@keyframes rippleDrift{from{transform:translateX(0)}to{transform:translateX(42px)}}
+
+/* stage 기준 좌표 */
+.fishing-stage{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:286px!important;
+  height:260px!important;
+  z-index:5!important;
+  pointer-events:none;
+}
+
+/* 뭍은 왼쪽 하단, 물은 오른쪽에 충분히 남김 */
+.shore-bank{
+  position:absolute;
+  left:-34px;
+  bottom:-10px;
+  width:250px;
+  height:128px;
+  border-radius:52% 48% 28px 0;
+  background:
+    radial-gradient(ellipse at 32% 28%,rgba(255,255,255,.18) 0 36px,transparent 38px),
+    linear-gradient(155deg,var(--shore1),var(--shore2));
+  box-shadow:0 18px 28px rgba(0,40,80,.28);
+  z-index:1;
+}
+.shore-bank::after{
+  content:"";
+  position:absolute;
+  right:-36px;
+  bottom:10px;
+  width:128px;
+  height:42px;
+  border-radius:50%;
+  background:rgba(0,50,95,.18);
+}
+
+/* 펭귄은 뭍 위에 고정 */
+.penguin-fishing{
+  position:absolute!important;
+  left:78px!important;
+  bottom:54px!important;
+  z-index:6!important;
+  font-size:78px!important;
+  line-height:1!important;
+  transform-origin:56% 86%;
+  filter:drop-shadow(0 10px 12px rgba(0,35,80,.3));
+}
+
+/* 낚싯대 전체 그룹은 펭귄 손 위치에서 시작 */
+.rod-group{
+  position:absolute;
+  left:146px;
+  bottom:126px;
+  width:244px;
+  height:90px;
+  z-index:7;
+  transform-origin:0 80%;
+}
+
+.rod-handle{
+  position:absolute;
+  left:0;
+  top:57px;
+  width:42px;
+  height:14px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#8a5535,#3d2418);
+  transform:rotate(-28deg);
+  box-shadow:0 2px 5px rgba(0,0,0,.25);
+}
+
+.rod-stick{
+  position:absolute!important;
+  left:30px!important;
+  top:47px!important;
+  bottom:auto!important;
+  width:218px!important;
+  height:5px!important;
+  border-radius:999px;
+  background:linear-gradient(90deg,#7b4326 0%,#402418 70%,#21120b 100%)!important;
+  transform:rotate(-28deg)!important;
+  transform-origin:left center!important;
+  z-index:2!important;
+}
+
+.rod-tip{
+  position:absolute;
+  right:-4px;
+  top:-5px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#e5f7ff;
+  border:2px solid rgba(0,40,70,.25);
+  z-index:3;
+}
+
+/* 줄은 낚싯대 끝에서 물 위 찌까지 이어지는 곡선 */
+.fishing-line{
+  position:absolute!important;
+  left:360px!important;
+  bottom:176px!important;
+  width:102px!important;
+  height:150px!important;
+  background:none!important;
+  border-right:2px solid rgba(255,255,255,.86);
+  border-bottom:2px solid rgba(255,255,255,.62);
+  border-radius:0 0 88px 0;
+  transform:rotate(7deg)!important;
+  transform-origin:top left!important;
+  z-index:4!important;
+}
+
+/* 찌는 물 위에 떠 있고, 바닥이 아니라 수면선 안쪽에 둠 */
+.bobber{
+  position:absolute!important;
+  left:442px!important;
+  bottom:38px!important;
+  width:22px!important;
+  height:32px!important;
+  z-index:8!important;
+  border-radius:999px;
+  background:linear-gradient(#ff3d62 0 48%,#fff 49%);
+  box-shadow:0 5px 12px rgba(0,60,120,.28);
+  animation:bobberFloat 1.18s ease-in-out infinite!important;
+}
+
+.bobber::after{
+  display:none!important;
+}
+
+.bobber-ripple{
+  position:absolute;
+  left:453px;
+  bottom:49px;
+  width:92px;
+  height:30px;
+  border:2px solid rgba(255,255,255,.38);
+  border-radius:50%;
+  transform:translate(-50%,50%);
+  z-index:5;
+  animation:ripplePulseFixed 1.45s ease-out infinite;
+}
+.bobber-ripple::after{
+  content:"";
+  position:absolute;
+  inset:6px 14px;
+  border:2px solid rgba(255,255,255,.26);
+  border-radius:50%;
+}
+
+@keyframes bobberFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(8px) rotate(2deg)}
+}
+@keyframes ripplePulseFixed{
+  0%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+  100%{opacity:0;transform:translate(-50%,50%) scale(1.72)}
+}
+
+/* 캐스팅: 손 위치에서 던져져 최종 위치에 도달 */
+.fishing-screen.is-casting .penguin-fishing{animation:penguinCastSource 1.05s ease-out}
+.fishing-screen.is-casting .rod-group{animation:rodGroupCastSource 1.05s ease-out}
+.fishing-screen.is-casting .fishing-line{animation:lineCastSource 1.05s ease-out}
+.fishing-screen.is-casting .bobber{animation:bobberCastSource 1.05s ease-out,bobberFloat 1.18s ease-in-out 1.05s infinite!important}
+.fishing-screen.is-casting .bobber-ripple{animation:rippleAppearSource 1.05s ease-out,ripplePulseFixed 1.45s ease-out 1.05s infinite}
+
+@keyframes penguinCastSource{
+  0%{transform:rotate(0)}
+  30%{transform:rotate(-8deg) translateY(-5px)}
+  68%{transform:rotate(4deg)}
+  100%{transform:rotate(0)}
+}
+@keyframes rodGroupCastSource{
+  0%{transform:rotate(-44deg) scale(.92)}
+  55%{transform:rotate(10deg) scale(1.04)}
+  100%{transform:rotate(0) scale(1)}
+}
+@keyframes lineCastSource{
+  0%{width:18px;height:16px;opacity:0;transform:rotate(-68deg)}
+  60%{width:124px;height:164px;opacity:.9;transform:rotate(16deg)}
+  100%{width:102px;height:150px;opacity:1;transform:rotate(7deg)}
+}
+@keyframes bobberCastSource{
+  0%{left:205px;bottom:138px;opacity:0;transform:scale(.45)}
+  58%{left:466px;bottom:72px;opacity:1;transform:scale(1.08)}
+  100%{left:442px;bottom:38px;opacity:1;transform:scale(1)}
+}
+@keyframes rippleAppearSource{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+}
+
+/* 기존 깨짐 유발 요소 숨김 */
+.fishing-screen .sky,
+.fishing-screen .lake-scene,
+.fishing-screen .mountains,
+.fishing-screen .dock,
+.fishing-screen .water{
+  display:none!important;
+}
+
+/* 패널은 장면을 가리지 않도록 하단 정렬 */
+.fishing-panel{
+  left:20px!important;
+  right:20px!important;
+  bottom:76px!important;
+  z-index:20!important;
+  border-radius:26px 26px 0 0;
+}
+
+/* 반응형 위치 보정 */
+@media (max-width:430px){
+  .penguin-fishing{left:70px!important}
+  .shore-bank{width:228px}
+  .rod-group{left:136px;width:224px}
+  .rod-stick{width:198px!important}
+  .fishing-line{left:326px!important;width:88px!important}
+  .bobber{left:394px!important}
+  .bobber-ripple{left:405px}
+}
+@media (max-width:360px){
+  .penguin-fishing{left:58px!important;font-size:70px!important}
+  .rod-group{left:120px;width:198px}
+  .rod-stick{width:174px!important}
+  .fishing-line{left:286px!important;width:76px!important}
+  .bobber{left:340px!important}
+  .bobber-ripple{left:351px;width:76px}
+}
+
+
+/* 낚시줄/찌 위치만 자연스럽게 보정 */
+.fishing-line{
+  left:386px!important;
+  bottom:138px!important;
+  width:96px!important;
+  height:118px!important;
+  background:none!important;
+  border-right:2px solid rgba(255,255,255,.82);
+  border-bottom:2px solid rgba(255,255,255,.58);
+  border-radius:0 0 82px 0;
+  transform:rotate(4deg)!important;
+  transform-origin:top left!important;
+  z-index:6!important;
+}
+
+/* 찌를 물 위쪽으로 이동시켜 뭍이 아니라 수면에 떠 보이게 조정 */
+.bobber{
+  left:468px!important;
+  bottom:74px!important;
+  width:20px!important;
+  height:30px!important;
+  z-index:8!important;
+  animation:bobberFloatNatural 1.2s ease-in-out infinite!important;
+}
+
+/* 찌 물결도 찌 위치와 일치 */
+.bobber-ripple{
+  left:478px!important;
+  bottom:85px!important;
+  width:78px!important;
+  height:24px!important;
+  z-index:5!important;
+}
+
+/* 기존 bobber 자체 after 물결이 남아 있으면 숨김 */
+.bobber::after{
+  display:none!important;
+}
+
+@keyframes bobberFloatNatural{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(6px) rotate(2deg)}
+}
+
+/* 캐스팅 후 최종 위치도 위 보정값과 동일하게 맞춤 */
+@keyframes bobberCastSource{
+  0%{left:205px;bottom:138px;opacity:0;transform:scale(.45)}
+  58%{left:488px;bottom:106px;opacity:1;transform:scale(1.08)}
+  100%{left:468px;bottom:74px;opacity:1;transform:scale(1)}
+}
+
+@keyframes lineCastSource{
+  0%{width:18px;height:16px;opacity:0;transform:rotate(-68deg)}
+  60%{width:112px;height:134px;opacity:.9;transform:rotate(14deg)}
+  100%{width:96px;height:118px;opacity:1;transform:rotate(4deg)}
+}
+
+@keyframes rippleAppearSource{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+}
+
+/* 작은 화면 대응 */
+@media (max-width:430px){
+  .fishing-line{
+    left:354px!important;
+    bottom:138px!important;
+    width:82px!important;
+    height:116px!important;
+  }
+  .bobber{
+    left:426px!important;
+    bottom:76px!important;
+  }
+  .bobber-ripple{
+    left:436px!important;
+    bottom:87px!important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-line{
+    left:308px!important;
+    bottom:132px!important;
+    width:70px!important;
+    height:106px!important;
+  }
+  .bobber{
+    left:370px!important;
+    bottom:76px!important;
+  }
+  .bobber-ripple{
+    left:380px!important;
+    bottom:87px!important;
+    width:68px!important;
+  }
+}
+
+
+/* 낚시 화면 자연스러운 연결감 보정: 펭귄-낚싯대-줄-찌 */
+.fishing-stage{
+  left:0;
+  right:0;
+  bottom:310px;
+  height:210px;
+  z-index:4;
+}
+
+/* 펭귄을 물가 바로 앞쪽에 배치 */
+.penguin-fishing{
+  left:118px!important;
+  bottom:2px!important;
+  z-index:6!important;
+  font-size:84px!important;
+  transform-origin:58% 84%;
+}
+
+/* 낚싯대 시작점을 펭귄 손 근처로 이동 */
+.rod-stick{
+  left:192px!important;
+  bottom:83px!important;
+  width:190px!important;
+  height:5px!important;
+  border-radius:999px;
+  background:linear-gradient(90deg,#6b3d28,#3f2118)!important;
+  transform:rotate(-29deg)!important;
+  transform-origin:left center!important;
+  z-index:7!important;
+}
+
+/* 줄은 낚싯대 끝에서 찌까지 내려오도록 위치 보정 */
+.fishing-line{
+  left:360px!important;
+  bottom:92px!important;
+  width:2px!important;
+  height:78px!important;
+  background:rgba(255,255,255,.86)!important;
+  transform:rotate(16deg)!important;
+  transform-origin:top center!important;
+  z-index:5!important;
+  box-shadow:0 0 5px rgba(255,255,255,.25);
+}
+
+/* 찌를 수면 위로 이동 */
+.bobber{
+  left:382px!important;
+  bottom:64px!important;
+  z-index:8!important;
+  width:18px!important;
+  height:28px!important;
+  transform-origin:center bottom;
+}
+
+/* 찌 주변 물결을 수면과 맞춤 */
+.bobber::after{
+  left:50%!important;
+  top:86%!important;
+  width:64px!important;
+  height:18px!important;
+  border-color:rgba(255,255,255,.42)!important;
+}
+
+/* 수면 기준을 찌 위치와 맞추기 위해 물결 레이어를 살짝 위로 */
+.lake-surface{
+  height:350px!important;
+}
+.water-ripples{
+  height:350px!important;
+}
+
+/* 캐스팅 애니메이션도 보정된 좌표 기준으로 재정의 */
+.fishing-screen.is-casting .penguin-fishing{
+  animation:penguinCastNatural .9s ease-out;
+}
+.fishing-screen.is-casting .rod-stick{
+  animation:rodCastNatural .9s ease-out;
+}
+.fishing-screen.is-casting .fishing-line{
+  animation:lineCastNatural .95s ease-out;
+}
+.fishing-screen.is-casting .bobber{
+  animation:bobberCastNatural .95s ease-out,bobberIdle 1.15s ease-in-out .95s infinite;
+}
+
+@keyframes penguinCastNatural{
+  0%{transform:rotate(0deg) translateY(0)}
+  25%{transform:rotate(-9deg) translateY(-4px)}
+  58%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0deg) translateY(0)}
+}
+
+@keyframes rodCastNatural{
+  0%{transform:rotate(-66deg) scaleX(.82)}
+  45%{transform:rotate(-18deg) scaleX(1.08)}
+  100%{transform:rotate(-29deg) scaleX(1)}
+}
+
+@keyframes lineCastNatural{
+  0%{left:265px;bottom:140px;height:18px;transform:rotate(-72deg);opacity:0}
+  55%{left:390px;bottom:74px;height:92px;transform:rotate(24deg);opacity:1}
+  100%{left:360px;bottom:92px;height:78px;transform:rotate(16deg);opacity:1}
+}
+
+@keyframes bobberCastNatural{
+  0%{left:260px;bottom:132px;opacity:0;transform:scale(.45)}
+  55%{left:402px;bottom:70px;opacity:1;transform:scale(1.12)}
+  100%{left:382px;bottom:64px;opacity:1;transform:scale(1)}
+}
+
+/* 패널이 찌를 덮지 않도록 조금 낮게 유지 */
+.fishing-panel{
+  left:28px!important;
+  right:28px!important;
+  bottom:18px!important;
+}
+
+/* 작은 화면 대응 */
+@media (max-width:430px){
+  .penguin-fishing{
+    left:96px!important;
+  }
+  .rod-stick{
+    left:170px!important;
+    bottom:82px!important;
+    width:168px!important;
+  }
+  .fishing-line{
+    left:320px!important;
+    bottom:90px!important;
+  }
+  .bobber{
+    left:340px!important;
+    bottom:64px!important;
+  }
+
+  @keyframes lineCastNatural{
+    0%{left:238px;bottom:138px;height:18px;transform:rotate(-72deg);opacity:0}
+    55%{left:352px;bottom:72px;height:92px;transform:rotate(24deg);opacity:1}
+    100%{left:320px;bottom:90px;height:78px;transform:rotate(16deg);opacity:1}
+  }
+
+  @keyframes bobberCastNatural{
+    0%{left:238px;bottom:130px;opacity:0;transform:scale(.45)}
+    55%{left:358px;bottom:70px;opacity:1;transform:scale(1.12)}
+    100%{left:340px;bottom:64px;opacity:1;transform:scale(1)}
+  }
+}
+
+@media (max-width:360px){
+  .penguin-fishing{
+    left:78px!important;
+  }
+  .rod-stick{
+    left:150px!important;
+    width:150px!important;
+  }
+  .fishing-line{
+    left:284px!important;
+  }
+  .bobber{
+    left:300px!important;
+  }
+}
+
+
+/* 세계지도: 섬 형태 월드맵 UI */
+.map-screen{
+  background:linear-gradient(180deg,#e7f8ff,#dff5ff)!important;
+}
+
+.island-map{
+  position:relative;
+  min-height:640px;
+  height:640px!important;
+  padding:0;
+  border-radius:30px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 15%,rgba(255,255,255,.55) 0 28px,transparent 29px),
+    radial-gradient(circle at 80% 18%,rgba(255,255,255,.3) 0 44px,transparent 46px),
+    linear-gradient(180deg,#26c2ff 0%,#0b87d6 58%,#066bb5 100%);
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 16px 36px rgba(0,110,190,.18);
+}
+
+.island-map::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 18% 78%,rgba(255,255,255,.18) 0 80px,transparent 82px),
+    radial-gradient(ellipse at 78% 70%,rgba(255,255,255,.14) 0 120px,transparent 122px),
+    repeating-radial-gradient(ellipse at 50% 80%,rgba(255,255,255,.16) 0 2px,transparent 3px 54px);
+  opacity:.9;
+  pointer-events:none;
+}
+
+.island-node{
+  position:absolute;
+  z-index:2;
+  width:118px;
+  min-height:96px;
+  border:0;
+  background:transparent;
+  color:#12314f;
+  text-align:center;
+  display:grid;
+  place-items:center;
+  padding:0;
+  filter:drop-shadow(0 12px 16px rgba(0,50,100,.18));
+}
+
+.island-node .island-shape{
+  position:absolute;
+  inset:8px 5px 24px;
+  border-radius:46% 54% 50% 50% / 58% 48% 52% 42%;
+  background:linear-gradient(135deg,#dbf7c8,#68c06a 62%,#3e995a);
+  border:2px solid rgba(255,255,255,.65);
+  z-index:-1;
+  transform:rotate(calc((var(--i) - 4) * 6deg));
+}
+
+.island-node i{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  margin-top:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.82);
+  font-style:normal;
+  font-size:20px;
+  box-shadow:0 4px 10px rgba(0,70,120,.16);
+}
+
+.island-node strong{
+  display:block;
+  max-width:104px;
+  margin-top:2px;
+  color:white;
+  text-shadow:0 2px 6px rgba(0,35,80,.45);
+  font-size:13px;
+  line-height:1.18;
+  word-break:keep-all;
+}
+
+.island-node small{
+  display:inline-flex;
+  margin-top:4px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.86);
+  color:#4f6c86;
+  font-size:10px;
+  font-weight:900;
+}
+
+.island-node.selected .island-shape{
+  background:linear-gradient(135deg,#fff6a3,#31d489 54%,#0e9fd9);
+  border:3px solid #fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.24),0 0 24px rgba(255,235,91,.72);
+}
+
+.island-node.selected small{
+  background:#006ddb;
+  color:white;
+}
+
+.island-node.locked{
+  opacity:.74;
+  filter:grayscale(.25) drop-shadow(0 8px 10px rgba(0,30,70,.08));
+}
+
+.island-node.locked .island-shape{
+  background:linear-gradient(135deg,#a9c2d5,#6386a4);
+}
+
+.island-node.locked strong{
+  color:rgba(255,255,255,.82);
+}
+
+.island-node.isle-mist{left:32px;top:430px}
+.island-node.isle-moon{left:122px;top:360px}
+.island-node.isle-emerald{left:230px;top:405px}
+.island-node.isle-crystal{left:66px;top:285px}
+.island-node.isle-rainbow{left:210px;top:270px}
+.island-node.isle-coral{left:112px;top:200px}
+.island-node.isle-storm{left:248px;top:178px}
+.island-node.isle-abyss{left:42px;top:118px}
+.island-node.isle-glacier{left:188px;top:92px}
+.island-node.isle-atlantis{left:118px;top:26px}
+
+.island-node.isle-moon .island-shape{background:linear-gradient(135deg,#dcecff,#6d8cc7 62%,#455e9a)}
+.island-node.isle-emerald .island-shape{background:linear-gradient(135deg,#caffdb,#25c681 62%,#0878c8)}
+.island-node.isle-crystal .island-shape{background:linear-gradient(135deg,#effcff,#99e7ff 55%,#57a5e8)}
+.island-node.isle-rainbow .island-shape{background:linear-gradient(135deg,#fff59b,#ff8bd1 45%,#7bdcff)}
+.island-node.isle-coral .island-shape{background:linear-gradient(135deg,#ffd7c8,#ff8c85 55%,#ff5d8f)}
+.island-node.isle-storm .island-shape{background:linear-gradient(135deg,#95a7b3,#4b6474 60%,#203848)}
+.island-node.isle-abyss .island-shape{background:linear-gradient(135deg,#365b7a,#122a45 65%,#07182d)}
+.island-node.isle-glacier .island-shape{background:linear-gradient(135deg,#ffffff,#b9f2ff 55%,#7fc7e8)}
+.island-node.isle-atlantis .island-shape{background:linear-gradient(135deg,#57f0d0,#0aa1c0 55%,#ffd76a)}
+
+@media (max-width:430px){
+  .island-map{height:620px!important;min-height:620px}
+  .island-node{width:108px}
+  .island-node.isle-mist{left:22px;top:420px}
+  .island-node.isle-moon{left:104px;top:354px}
+  .island-node.isle-emerald{left:210px;top:395px}
+  .island-node.isle-crystal{left:50px;top:282px}
+  .island-node.isle-rainbow{left:195px;top:266px}
+  .island-node.isle-coral{left:98px;top:198px}
+  .island-node.isle-storm{left:226px;top:174px}
+  .island-node.isle-abyss{left:28px;top:116px}
+  .island-node.isle-glacier{left:170px;top:88px}
+  .island-node.isle-atlantis{left:105px;top:24px}
+}
+
+
+/* 지역 상세 데이터/테마 비주얼 */
+.region-visual{
+  position:relative;
+  height:230px;
+  border-radius:28px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#9eeaff,#37bfe8);
+  box-shadow:0 14px 30px rgba(0,120,190,.12);
+}
+
+.region-visual .region-sky,
+.region-visual .region-water,
+.region-visual .region-sun,
+.region-visual .region-land,
+.region-visual .region-effect{
+  position:absolute;
+  pointer-events:none;
+}
+
+.region-visual .region-sky{
+  inset:0;
+  background:linear-gradient(180deg,var(--rv-sky1,#b9f3ff),var(--rv-sky2,#e9fbff));
+}
+
+.region-visual .region-sun{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  left:34px;
+  top:32px;
+  background:var(--rv-sun,#fff);
+  box-shadow:0 0 34px rgba(255,255,255,.45);
+}
+
+.region-visual .region-water{
+  left:0;
+  right:0;
+  bottom:0;
+  height:42%;
+  background:linear-gradient(180deg,var(--rv-water1,#43c8f0),var(--rv-water2,#0784cf));
+}
+
+.region-visual .region-water::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-radial-gradient(ellipse at 30% 30%,rgba(255,255,255,.25) 0 2px,transparent 3px 42px);
+  opacity:.55;
+}
+
+.region-visual .region-land{
+  width:280px;
+  height:130px;
+  border-radius:48% 52% 0 0;
+  background:linear-gradient(135deg,var(--rv-land1,#76d192),var(--rv-land2,#239c77));
+  filter:drop-shadow(0 10px 18px rgba(0,80,120,.16));
+}
+
+.region-visual .land-a{
+  right:-56px;
+  bottom:74px;
+  transform:rotate(-24deg);
+}
+
+.region-visual .land-b{
+  left:-62px;
+  bottom:18px;
+  transform:rotate(18deg);
+  opacity:.85;
+}
+
+.region-visual .region-effect{
+  inset:0;
+  opacity:.9;
+}
+
+/* 지역별 테마 */
+.region-visual-mist{
+  --rv-sky1:#dff7ff;--rv-sky2:#f7fdff;--rv-water1:#91ddeb;--rv-water2:#4ca7bf;--rv-land1:#c4ecd8;--rv-land2:#74bda1;--rv-sun:#ffffff;
+}
+.region-visual-mist .region-effect{
+  background:radial-gradient(circle at 35% 55%,rgba(255,255,255,.65) 0 46px,transparent 48px),radial-gradient(circle at 70% 42%,rgba(255,255,255,.35) 0 58px,transparent 60px);
+}
+
+.region-visual-moon{
+  --rv-sky1:#203c74;--rv-sky2:#7aa9e8;--rv-water1:#315fa8;--rv-water2:#162e68;--rv-land1:#7b92c8;--rv-land2:#40598d;--rv-sun:#f5f8ff;
+}
+.region-visual-moon .region-sun{left:auto;right:48px;background:#f6fbff}
+.region-visual-moon .region-effect{
+  background:radial-gradient(circle at 22% 24%,rgba(255,255,255,.26) 0 24px,transparent 26px),radial-gradient(circle at 58% 28%,rgba(255,255,255,.18) 0 3px,transparent 4px);
+}
+
+.region-visual-emerald{
+  --rv-sky1:#9defff;--rv-sky2:#e6fdff;--rv-water1:#36c8ef;--rv-water2:#078bd0;--rv-land1:#8be0a4;--rv-land2:#19a875;--rv-sun:#ffffff;
+}
+.region-visual-emerald .region-effect{
+  background:radial-gradient(circle at 50% 70%,rgba(0,190,160,.26) 0 78px,transparent 80px);
+}
+
+.region-visual-crystal{
+  --rv-sky1:#d7fbff;--rv-sky2:#ffffff;--rv-water1:#76e2ff;--rv-water2:#28a6e5;--rv-land1:#dffbff;--rv-land2:#83cdf4;--rv-sun:#ffffff;
+}
+.region-visual-crystal .region-effect{
+  background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.55) 36% 39%,transparent 40%),linear-gradient(70deg,transparent 55%,rgba(180,245,255,.65) 56% 59%,transparent 60%);
+}
+
+.region-visual-rainbow{
+  --rv-sky1:#baf2ff;--rv-sky2:#fff1cf;--rv-water1:#34c6f2;--rv-water2:#167ed8;--rv-land1:#ffe787;--rv-land2:#56ca93;--rv-sun:#fff7a6;
+}
+.region-visual-rainbow .region-effect{
+  background:linear-gradient(130deg,transparent 25%,rgba(255,91,91,.42) 26% 30%,rgba(255,221,70,.42) 31% 35%,rgba(90,220,120,.42) 36% 40%,rgba(80,170,255,.42) 41% 45%,transparent 46%);
+}
+
+.region-visual-coral{
+  --rv-sky1:#8eeaff;--rv-sky2:#ffe1d7;--rv-water1:#27c2dc;--rv-water2:#087db4;--rv-land1:#ffb3a8;--rv-land2:#ff638f;--rv-sun:#ffe8d9;
+}
+.region-visual-coral .region-effect{
+  background:radial-gradient(circle at 28% 74%,rgba(255,110,145,.4) 0 26px,transparent 28px),radial-gradient(circle at 72% 70%,rgba(255,180,120,.4) 0 34px,transparent 36px);
+}
+
+.region-visual-storm{
+  --rv-sky1:#536976;--rv-sky2:#8ba6b5;--rv-water1:#236b91;--rv-water2:#102d4a;--rv-land1:#6d7d85;--rv-land2:#2f4654;--rv-sun:#d7e0e6;
+}
+.region-visual-storm .region-effect{
+  background:linear-gradient(120deg,transparent 60%,rgba(255,230,85,.72) 61% 63%,transparent 64%),radial-gradient(circle at 65% 30%,rgba(0,0,0,.18) 0 82px,transparent 84px);
+}
+
+.region-visual-abyss{
+  --rv-sky1:#10213d;--rv-sky2:#1d4b78;--rv-water1:#123d67;--rv-water2:#06162b;--rv-land1:#365b7a;--rv-land2:#0b2038;--rv-sun:#8adfff;
+}
+.region-visual-abyss .region-effect{
+  background:radial-gradient(circle at 50% 68%,rgba(0,0,0,.35) 0 76px,transparent 78px),radial-gradient(circle at 28% 30%,rgba(94,231,255,.2) 0 30px,transparent 32px);
+}
+
+.region-visual-glacier{
+  --rv-sky1:#d8f8ff;--rv-sky2:#ffffff;--rv-water1:#98e4ff;--rv-water2:#32a6d8;--rv-land1:#ffffff;--rv-land2:#9bdcf0;--rv-sun:#ffffff;
+}
+.region-visual-glacier .region-effect{
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.75) 31% 39%,transparent 40%),radial-gradient(circle at 76% 30%,rgba(255,255,255,.72) 0 42px,transparent 44px);
+}
+
+.region-visual-atlantis{
+  --rv-sky1:#15c4d4;--rv-sky2:#75f0e3;--rv-water1:#009db6;--rv-water2:#075a86;--rv-land1:#57f0d0;--rv-land2:#0aa1c0;--rv-sun:#ffd76a;
+}
+.region-visual-atlantis .region-effect{
+  background:radial-gradient(circle at 50% 52%,rgba(255,215,106,.38) 0 58px,transparent 60px),linear-gradient(135deg,transparent 42%,rgba(255,255,255,.36) 43% 46%,transparent 47%);
+}
+
+#regionEnterBtn.is-locked{
+  background:#aebdca!important;
+  color:white!important;
+}
+
+
+/* 낚시 화면 깨짐 복구: 낚시 전용 레이아웃 강제 고정 */
+.screen.fishing-screen[data-screen="fishing"]{
+  position:relative!important;
+  min-height:100%!important;
+  height:100%!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,var(--sky1,#70dcff),var(--sky2,#d7fbff) 47%,var(--water1,#19aee5) 48%,var(--water2,#087fbd) 100%)!important;
+}
+
+.screen.fishing-screen[data-screen="fishing"]:not(.is-active){
+  display:none!important;
+}
+
+.screen.fishing-screen[data-screen="fishing"].is-active{
+  display:block!important;
+}
+
+.fishing-screen .sub-header.floating{
+  position:absolute!important;
+  top:22px!important;
+  left:22px!important;
+  right:22px!important;
+  z-index:30!important;
+  background:transparent!important;
+}
+
+.fishing-screen .sub-header.floating strong{
+  color:white!important;
+  text-shadow:0 2px 8px rgba(0,30,80,.25);
+}
+
+.fishing-screen .sub-header.floating span{
+  color:#17406a!important;
+}
+
+.fishing-screen .fishing-bg{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  display:block!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .sun-moon{
+  position:absolute!important;
+  left:58px!important;
+  top:86px!important;
+  width:74px!important;
+  height:74px!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.86)!important;
+  box-shadow:0 0 38px rgba(255,255,255,.52)!important;
+}
+
+.fishing-screen .cloud{
+  position:absolute!important;
+  width:120px!important;
+  height:42px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.45)!important;
+}
+
+.fishing-screen .cloud-a{
+  left:210px!important;
+  top:120px!important;
+}
+
+.fishing-screen .cloud-b{
+  left:-50px!important;
+  top:180px!important;
+  opacity:.55!important;
+}
+
+.fishing-screen .far-hills,
+.fishing-screen .near-hills{
+  position:absolute!important;
+  left:-8%!important;
+  right:-8%!important;
+  height:150px!important;
+  display:block!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .far-hills{
+  bottom:312px!important;
+  opacity:.45!important;
+  background:
+    radial-gradient(ellipse at 20% 100%,var(--hill1,#7fc996) 0 130px,transparent 132px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1,#7fc996) 0 160px,transparent 162px),
+    radial-gradient(ellipse at 92% 100%,var(--hill1,#7fc996) 0 120px,transparent 122px)!important;
+}
+
+.fishing-screen .near-hills{
+  bottom:285px!important;
+  opacity:.9!important;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2,#31a875) 0 115px,transparent 117px),
+    radial-gradient(ellipse at 72% 100%,var(--hill2,#31a875) 0 145px,transparent 147px)!important;
+}
+
+.fishing-screen .lake-surface{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  height:350px!important;
+  display:block!important;
+  background:linear-gradient(180deg,var(--water1,#19aee5),var(--water2,#087fbd))!important;
+}
+
+.fishing-screen .water-ripples{
+  position:absolute!important;
+  left:-15%!important;
+  right:-15%!important;
+  bottom:0!important;
+  height:350px!important;
+  display:block!important;
+  opacity:.45!important;
+  background:
+    repeating-radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.38) 0 2px,transparent 3px 42px),
+    repeating-radial-gradient(ellipse at 82% 30%,rgba(255,255,255,.22) 0 2px,transparent 3px 58px)!important;
+}
+
+.fishing-screen .fishing-stage{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:310px!important;
+  height:210px!important;
+  z-index:6!important;
+  display:block!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .penguin-fishing{
+  position:absolute!important;
+  left:96px!important;
+  bottom:2px!important;
+  z-index:9!important;
+  font-size:84px!important;
+  filter:drop-shadow(0 10px 12px rgba(0,35,80,.28))!important;
+}
+
+.fishing-screen .rod-stick{
+  position:absolute!important;
+  left:170px!important;
+  bottom:82px!important;
+  width:168px!important;
+  height:5px!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,#6b3d28,#3f2118)!important;
+  transform:rotate(-29deg)!important;
+  transform-origin:left center!important;
+  z-index:10!important;
+}
+
+.fishing-screen .fishing-line{
+  position:absolute!important;
+  left:320px!important;
+  bottom:90px!important;
+  width:2px!important;
+  height:78px!important;
+  background:rgba(255,255,255,.86)!important;
+  transform:rotate(16deg)!important;
+  transform-origin:top center!important;
+  z-index:8!important;
+}
+
+.fishing-screen .bobber{
+  position:absolute!important;
+  left:340px!important;
+  bottom:64px!important;
+  z-index:11!important;
+  width:18px!important;
+  height:28px!important;
+  border-radius:999px!important;
+  background:linear-gradient(#ff3b67 0 45%,#fff 46%)!important;
+  box-shadow:0 4px 10px rgba(0,60,120,.28)!important;
+}
+
+.fishing-screen .bobber::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:86%!important;
+  width:64px!important;
+  height:18px!important;
+  border:2px solid rgba(255,255,255,.42)!important;
+  border-radius:50%!important;
+  transform:translate(-50%,-50%)!important;
+}
+
+.fishing-screen .fishing-panel{
+  position:absolute!important;
+  left:28px!important;
+  right:28px!important;
+  bottom:18px!important;
+  z-index:20!important;
+  display:block!important;
+  background:#06335e!important;
+  border-radius:28px 28px 0 0!important;
+  padding:28px 24px 72px!important;
+  box-shadow:0 -10px 24px rgba(0,40,90,.22)!important;
+}
+
+.fishing-screen .fishing-panel p{
+  color:white!important;
+  text-align:center!important;
+  margin:0 0 16px!important;
+  font-weight:900!important;
+  font-size:18px!important;
+}
+
+.fishing-screen .gauge{
+  position:relative!important;
+  display:flex!important;
+  height:24px!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+}
+
+.fishing-screen .round-action{
+  position:absolute!important;
+  left:50%!important;
+  bottom:-58px!important;
+  transform:translateX(-50%)!important;
+  z-index:21!important;
+}
+
+/* 낚시 화면 안에서 지역 상세용 요소가 생기더라도 숨김 */
+.fishing-screen .region-sky,
+.fishing-screen .region-water,
+.fishing-screen .region-sun,
+.fishing-screen .region-land,
+.fishing-screen .region-effect{
+  display:none!important;
+}
+
+
+/* 탐험 조건 ↔ 전설 물고기 간격 개선 */
+.region-condition{
+  margin-bottom:24px !important;
+}
+
+.legend-fish{
+  margin-top:24px !important;
+  margin-bottom:28px !important;
+}
+
+
+/* 전체메뉴 팝업 간격 개선 */
+.menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:14px !important;
+}
+
+.menu-item{
+  
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-radius:24px;
+}
+
+.menu-item .arrow,
+.menu-item i:last-child{
+  margin-left:auto;
+  opacity:.6;
+}
+
+
+/* 낚시 화면: 캐릭터 몸통 노출 + 입질 버튼 위치 보정 */
+.fishing-screen .fishing-stage{
+  bottom:330px !important;
+  height:240px !important;
+  z-index:12 !important;
+  overflow:visible !important;
+}
+
+.fishing-screen .penguin-fishing{
+  left:92px !important;
+  bottom:34px !important;
+  z-index:30 !important;
+  font-size:96px !important;
+  line-height:1 !important;
+  transform:rotate(0deg) !important;
+  filter:drop-shadow(0 12px 14px rgba(0,35,80,.3)) !important;
+}
+
+/* 캐릭터 뒤쪽 섬/수면이 몸통을 덮지 않도록 레이어 정리 */
+.fishing-screen .near-hills{
+  z-index:3 !important;
+  opacity:.68 !important;
+}
+
+.fishing-screen .far-hills{
+  z-index:2 !important;
+}
+
+.fishing-screen .lake-surface,
+.fishing-screen .water-ripples{
+  z-index:1 !important;
+}
+
+.fishing-screen .rod-stick{
+  left:188px !important;
+  bottom:122px !important;
+  width:180px !important;
+  z-index:31 !important;
+}
+
+.fishing-screen .fishing-line{
+  left:350px !important;
+  bottom:126px !important;
+  height:92px !important;
+  z-index:29 !important;
+}
+
+.fishing-screen .bobber{
+  left:372px !important;
+  bottom:92px !important;
+  z-index:32 !important;
+}
+
+/* 하단 GNB에 가려지지 않도록 패널을 위로 올리고 버튼을 패널 내부로 배치 */
+.fishing-screen .fishing-panel{
+  left:28px !important;
+  right:28px !important;
+  bottom:96px !important;
+  z-index:40 !important;
+  padding:24px 24px 92px !important;
+  border-radius:28px !important;
+}
+
+.fishing-screen .round-action{
+  position:absolute !important;
+  left:50% !important;
+  bottom:18px !important;
+  transform:translateX(-50%) !important;
+  z-index:50 !important;
+  width:126px !important;
+  height:126px !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:28px !important;
+  line-height:1 !important;
+}
+
+/* 캐스팅 애니메이션 좌표도 새 위치 기준으로 재정의 */
+.fishing-screen.is-casting .penguin-fishing{
+  animation:penguinCastFull .9s ease-out !important;
+}
+.fishing-screen.is-casting .rod-stick{
+  animation:rodCastFull .9s ease-out !important;
+}
+.fishing-screen.is-casting .fishing-line{
+  animation:lineCastFull .95s ease-out !important;
+}
+.fishing-screen.is-casting .bobber{
+  animation:bobberCastFull .95s ease-out,bobberIdle 1.15s ease-in-out .95s infinite !important;
+}
+
+@keyframes penguinCastFull{
+  0%{transform:rotate(0deg) translateY(0)}
+  25%{transform:rotate(-7deg) translateY(-5px)}
+  58%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0deg) translateY(0)}
+}
+
+@keyframes rodCastFull{
+  0%{transform:rotate(-62deg) scaleX(.84)}
+  48%{transform:rotate(-18deg) scaleX(1.08)}
+  100%{transform:rotate(-29deg) scaleX(1)}
+}
+
+@keyframes lineCastFull{
+  0%{left:268px;bottom:170px;height:20px;transform:rotate(-70deg);opacity:0}
+  55%{left:386px;bottom:108px;height:108px;transform:rotate(24deg);opacity:1}
+  100%{left:350px;bottom:126px;height:92px;transform:rotate(16deg);opacity:1}
+}
+
+@keyframes bobberCastFull{
+  0%{left:266px;bottom:164px;opacity:0;transform:scale(.45)}
+  55%{left:394px;bottom:100px;opacity:1;transform:scale(1.12)}
+  100%{left:372px;bottom:92px;opacity:1;transform:scale(1)}
+}
+
+/* 작은 화면 대응 */
+@media (max-width:430px){
+  .fishing-screen .penguin-fishing{
+    left:76px !important;
+    bottom:36px !important;
+    font-size:92px !important;
+  }
+  .fishing-screen .rod-stick{
+    left:166px !important;
+    bottom:118px !important;
+    width:162px !important;
+  }
+  .fishing-screen .fishing-line{
+    left:310px !important;
+    bottom:122px !important;
+  }
+  .fishing-screen .bobber{
+    left:330px !important;
+    bottom:92px !important;
+  }
+  .fishing-screen .fishing-panel{
+    left:22px !important;
+    right:22px !important;
+    bottom:92px !important;
+    padding-bottom:88px !important;
+  }
+  .fishing-screen .round-action{
+    width:116px !important;
+    height:116px !important;
+    font-size:26px !important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-screen .penguin-fishing{
+    left:58px !important;
+    font-size:86px !important;
+  }
+  .fishing-screen .rod-stick{
+    left:140px !important;
+    width:150px !important;
+  }
+  .fishing-screen .fishing-line{
+    left:274px !important;
+  }
+  .fishing-screen .bobber{
+    left:292px !important;
+  }
+}
+
+
+/* 낚시 화면: fishing-panel 재노출 및 입질 버튼 위치 재조정 */
+.fishing-screen .fishing-panel{
+  position:absolute !important;
+  left:28px !important;
+  right:28px !important;
+  bottom:118px !important;
+  z-index:80 !important;
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  min-height:230px !important;
+  padding:26px 24px 96px !important;
+  border-radius:28px !important;
+  background:#06335e !important;
+  box-shadow:0 -10px 26px rgba(0,40,90,.28) !important;
+  transform:none !important;
+}
+
+.fishing-screen .fishing-panel p{
+  display:block !important;
+  color:#fff !important;
+  font-size:20px !important;
+  font-weight:900 !important;
+  text-align:center !important;
+  margin:0 0 18px !important;
+}
+
+.fishing-screen .fishing-panel .gauge{
+  display:flex !important;
+  position:relative !important;
+  width:100% !important;
+  height:26px !important;
+  border-radius:999px !important;
+  overflow:hidden !important;
+  margin:0 auto !important;
+}
+
+.fishing-screen .round-action{
+  position:absolute !important;
+  left:50% !important;
+  bottom:18px !important;
+  transform:translateX(-50%) !important;
+  z-index:90 !important;
+  width:112px !important;
+  height:112px !important;
+  display:grid !important;
+  place-items:center !important;
+  border-radius:50% !important;
+  font-size:26px !important;
+  line-height:1.05 !important;
+  box-shadow:0 0 0 8px rgba(255,255,255,.35),0 10px 22px rgba(0,60,150,.28) !important;
+}
+
+/* 패널과 캐릭터가 겹쳐도 패널이 항상 앞으로 보이도록 정리 */
+.fishing-screen .fishing-stage{
+  z-index:30 !important;
+}
+
+.fishing-screen .fishing-bg{
+  z-index:1 !important;
+}
+
+/* 하단 메뉴와 겹치지 않는 안전 여백 */
+.fishing-screen{
+  padding-bottom:96px !important;
+}
+
+@media (max-width:430px){
+  .fishing-screen .fishing-panel{
+    left:22px !important;
+    right:22px !important;
+    bottom:112px !important;
+    min-height:220px !important;
+    padding:24px 20px 90px !important;
+  }
+
+  .fishing-screen .round-action{
+    width:104px !important;
+    height:104px !important;
+    font-size:24px !important;
+    bottom:16px !important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-screen .fishing-panel{
+    bottom:106px !important;
+    min-height:210px !important;
+    padding-bottom:84px !important;
+  }
+
+  .fishing-screen .round-action{
+    width:96px !important;
+    height:96px !important;
+    font-size:22px !important;
+  }
+}
+
+
+/* 낚시 버튼/게이지 밸런스 조정 */
+.fishing-screen .round-action{
+  width:90px !important;
+  height:90px !important;
+  font-size:22px !important;
+  bottom:20px !important;
+  box-shadow:0 0 0 7px rgba(255,255,255,.32),0 8px 18px rgba(0,60,150,.24) !important;
+}
+
+/* 버튼 축소에 맞춰 패널 하단 여백 축소 */
+.fishing-screen .fishing-panel{
+  min-height:205px !important;
+  padding-bottom:84px !important;
+}
+
+/* 게이지 판정 영역 재조정: bad는 조금 줄이고 good/best 영역을 명확하게 */
+.fishing-screen .gauge .bad{
+  flex:1.15 !important;
+}
+.fishing-screen .gauge .good{
+  flex:1.55 !important;
+}
+.fishing-screen .gauge .best{
+  flex:1.25 !important;
+}
+
+/* 게이지 포인터 속도 소폭 증가 */
+.fishing-screen #gaugePointer{
+  animation-duration:1.25s !important;
+}
+
+/* 작은 화면에서도 90px 기준 유지 */
+@media (max-width:430px){
+  .fishing-screen .round-action{
+    width:90px !important;
+    height:90px !important;
+    font-size:22px !important;
+  }
+  .fishing-screen .fishing-panel{
+    min-height:200px !important;
+    padding-bottom:82px !important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-screen .round-action{
+    width:86px !important;
+    height:86px !important;
+    font-size:21px !important;
+  }
+}
+
+
+/* 낚시 게이지/버튼/시계 최종 조정 */
+.fishing-screen .fishing-panel .gauge{
+  height:20px !important;
+}
+
+.fishing-screen #gaugePointer{
+  animation-duration:.95s !important;
+}
+
+.fishing-screen .round-action{
+  width:80px !important;
+  height:80px !important;
+  font-size:20px !important;
+  bottom:18px !important;
+  box-shadow:0 0 0 6px rgba(255,255,255,.32),0 8px 16px rgba(0,60,150,.24) !important;
+}
+
+.fishing-screen .fishing-panel{
+  min-height:188px !important;
+  padding-bottom:72px !important;
+}
+
+.fishing-screen .gauge .best{
+  flex:.5 !important;
+}
+
+.fishing-screen .gauge .good{
+  flex:1.65 !important;
+}
+
+.fishing-screen .gauge .bad{
+  flex:1.2 !important;
+}
+
+/* 낚시 화면 현재 시간 가독성 개선 */
+.fishing-screen .sub-header.floating{
+  align-items:center !important;
+}
+
+.fishing-time{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  min-width:102px;
+  height:34px;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  color:#12314f !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  letter-spacing:-.2px;
+  text-shadow:none !important;
+  box-shadow:0 6px 16px rgba(0,55,110,.12);
+  backdrop-filter:blur(8px);
+  white-space:nowrap;
+}
+
+.fishing-screen .sub-header.floating strong{
+  color:#fff !important;
+  text-shadow:0 2px 10px rgba(0,35,80,.35);
+}
+
+@media (max-width:430px){
+  .fishing-screen .round-action{
+    width:80px !important;
+    height:80px !important;
+    font-size:20px !important;
+  }
+
+  .fishing-screen .fishing-panel{
+    min-height:184px !important;
+    padding-bottom:70px !important;
+  }
+
+  .fishing-time{
+    min-width:92px;
+    height:32px;
+    padding:0 10px;
+    font-size:13px !important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-screen .round-action{
+    width:76px !important;
+    height:76px !important;
+    font-size:19px !important;
+  }
+
+  .fishing-time{
+    min-width:86px;
+    font-size:12px !important;
+  }
+}
+
+
+/* 장착중 낚싯대 선택 효과 - 레이아웃 흔들림 방지 */
+.rod-grid button.hero.is-equipped{
+  border:0 !important;
+  box-shadow:
+    inset 0 0 0 3px #ffd54a,
+    0 8px 20px rgba(255,213,74,.25) !important;
+  transform:none;
+  box-sizing:border-box;
+}
+
+
+/* 등급별 장착 카드 컬러 통일 */
+.rod-grid button.common.is-equipped{
+  border:0 !important;
+  background:#EAF4FF !important;
+  box-shadow:inset 0 0 0 3px #1E88E5,0 8px 20px rgba(30,136,229,.18) !important;
+}
+
+.rod-grid button.rare.is-equipped{
+  border:0 !important;
+  background:#EEF1FF !important;
+  box-shadow:inset 0 0 0 3px #5B7CFF,0 8px 20px rgba(91,124,255,.18) !important;
+}
+
+.rod-grid button.hero.is-equipped{
+  border:0 !important;
+  background:#F5EEFF !important;
+  box-shadow:inset 0 0 0 3px #8E44EC,0 8px 20px rgba(142,68,236,.20) !important;
+}
+
+.rod-grid button.legend.is-equipped{
+  border:0 !important;
+  background:#FFF9E8 !important;
+  box-shadow:inset 0 0 0 3px #F4C542,0 8px 20px rgba(244,197,66,.20) !important;
+}
+
+.rod-grid button.mythic.is-equipped{
+  border:0 !important;
+  background:#FFF1EA !important;
+  box-shadow:inset 0 0 0 3px #FF6B35,0 8px 20px rgba(255,107,53,.20) !important;
+}
+
+
+/* 낚싯대 선택 효과 안정화: ::after 링 방식으로 덜컹거림 제거 */
+.rod-grid button{
+  position:relative !important;
+  box-sizing:border-box !important;
+  border:1px solid var(--line) !important;
+  transform:none !important;
+  overflow:hidden;
+}
+
+.rod-grid button,
+.rod-grid button.is-equipped{
+  transform:none !important;
+}
+
+.rod-grid button.is-equipped{
+  border:1px solid var(--line) !important;
+  box-shadow:none !important;
+}
+
+/* 선택 링은 실제 카드 크기에 영향을 주지 않는 가상요소로 처리 */
+.rod-grid button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  box-shadow:inset 0 0 0 3px transparent;
+  transition:opacity .18s ease, box-shadow .18s ease;
+}
+
+/* 등급별 선택 배경 */
+.rod-grid button.normal.is-equipped{
+  background:#EAF4FF !important;
+}
+.rod-grid button.rare.is-equipped{
+  background:#EEF1FF !important;
+}
+.rod-grid button.hero.is-equipped{
+  background:#F5EEFF !important;
+}
+.rod-grid button.legend.is-equipped{
+  background:#FFF9E8 !important;
+}
+.rod-grid button.myth.is-equipped,
+.rod-grid button.mythic.is-equipped{
+  background:#FFF1EA !important;
+}
+
+/* 등급별 선택 링 */
+.rod-grid button.normal.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #1E88E5;
+}
+.rod-grid button.rare.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #5B7CFF;
+}
+.rod-grid button.hero.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #8E44EC;
+}
+.rod-grid button.legend.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #F4C542;
+}
+.rod-grid button.myth.is-equipped::after,
+.rod-grid button.mythic.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #FF6B35;
+}
+
+/* 기존 active/hover/장착 효과에서 위치가 움직이지 않도록 방지 */
+.rod-grid button:active,
+.rod-grid button:hover,
+.rod-grid button.is-equipped:hover{
+  transform:none !important;
+}
+
+
+/* 메뉴 간격 개선 */
+.modal-card li,
+.modal-card button.menu-item{
+  margin-top:15px !important;
+}
+
+
+/* 지역 상세: 탐험 조건 제목/본문 간격 */
+.region-condition h2,
+.card.region-condition h2{
+  margin-bottom:10px !important;
+}
+
+.region-condition p,
+.card.region-condition p{
+  margin-top:0 !important;
+}
+
+/* 지역 상세: 전설 물고기 영역과 입장 버튼 겹침 방지 */
+.screen[data-screen="region"]{
+  padding-bottom:170px !important;
+}
+
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:120px !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn,
+.screen[data-screen="region"] .bottom-primary{
+  position:sticky !important;
+  bottom:88px !important;
+  z-index:30 !important;
+  margin-top:28px !important;
+}
+
+/* 작은 화면에서 버튼과 하단 GNB 간격 보정 */
+@media (max-width:430px){
+  .screen[data-screen="region"]{
+    padding-bottom:180px !important;
+  }
+
+  .screen[data-screen="region"] .legend-fish{
+    margin-bottom:128px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn,
+  .screen[data-screen="region"] .bottom-primary{
+    bottom:92px !important;
+  }
+}
+
+
+/* 지역 상세: 입장하기 버튼 원래 크기 복구 + 과한 하단 여백 제거 */
+.screen[data-screen="region"]{
+  padding-bottom:96px !important;
+}
+
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:24px !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn,
+.screen[data-screen="region"] .bottom-primary{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:10 !important;
+
+  width:100% !important;
+  height:72px !important;
+  min-height:72px !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+
+  border-radius:28px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:22px !important;
+  font-weight:900 !important;
+}
+
+/* 이전에 추가된 sticky 설정 무력화 */
+.screen[data-screen="region"] #regionEnterBtn.is-locked{
+  position:relative !important;
+}
+
+/* 작은 화면에서도 동일한 버튼 크기 유지 */
+@media (max-width:430px){
+  .screen[data-screen="region"]{
+    padding-bottom:104px !important;
+  }
+
+  .screen[data-screen="region"] .legend-fish{
+    margin-bottom:24px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn,
+  .screen[data-screen="region"] .bottom-primary{
+    height:72px !important;
+    min-height:72px !important;
+    margin-top:24px !important;
+    margin-bottom:24px !important;
+  }
+}
+
+
+/* 지역 상세 입장하기 버튼: 공통 .bottom-primary 스타일 유지 */
+.screen[data-screen="region"] #regionEnterBtn{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:10 !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+}
+
+/* 기존 강제 크기/폰트/라운드 덮어쓰기 제거 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary,
+.screen[data-screen="region"] .bottom-primary#regionEnterBtn{
+  height:auto !important;
+  min-height:unset !important;
+  width:100% !important;
+  border-radius:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 전설 물고기와 버튼 간격만 유지 */
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:24px !important;
+}
+
+
+/* 입장하기 버튼 = 낚싯대 탭 강화하기 버튼과 동일 사이즈 */
+.screen[data-screen="region"] #regionEnterBtn{
+  min-height:56px !important;
+  height:56px !important;
+  padding:0 20px !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+}
+
+
+/* 지역 상세 입장하기 버튼: 낚싯대 탭 강화하기 버튼 스타일과 동일화 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary{
+  width:100% !important;
+  height:88px !important;
+  min-height:88px !important;
+  padding:0 24px !important;
+  margin:24px 0 24px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+
+  border:0 !important;
+  border-radius:28px !important;
+  background:linear-gradient(#27a8ff,#0076e8) !important;
+  color:#fff !important;
+  font-size:28px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary small{
+  color:#fff !important;
+  font-size:24px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+}
+
+@media (max-width:430px){
+  .screen[data-screen="region"] #regionEnterBtn.bottom-primary{
+    height:86px !important;
+    min-height:86px !important;
+    font-size:27px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn.bottom-primary small{
+    font-size:23px !important;
+  }
+}
+
+
+/* 낚시 게이지와 입질 버튼 간격 개선 */
+.fishing-panel .gauge{
+  margin-bottom:32px !important;
+}
+
+.fishing-panel{
+  gap:0 !important;
+}
