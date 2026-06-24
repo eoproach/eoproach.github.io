@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-<defs><filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#16466f" flood-opacity=".22"/></filter></defs>
-<g filter="url(#s)" stroke="#6b4b86" stroke-width="4" stroke-linejoin="round"><path d="M20 81c8-35 27-55 44-55s36 20 44 55c-20 15-68 15-88 0z" fill="#ffd7ef"/><path d="M64 26v66M45 33c5 20 7 37 4 59M83 33c-5 20-7 37-4 59M30 55c11 9 19 19 25 35M98 55c-11 9-19 19-25 35" fill="none"/><circle cx="64" cy="86" r="8" fill="#fff7c8"/></g>
-</svg>
