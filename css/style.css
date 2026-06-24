@@ -1,0 +1,4579 @@
+:root{
+  --primary:#008ff6;
+  --primary-2:#00aeef;
+  --sky:#8fe2ff;
+  --bg:#f3fbff;
+  --card:#ffffff;
+  --ink:#10223f;
+  --muted:#6d7f99;
+  --line:#d9edf9;
+  --gold:#ffc83d;
+  --rare:#7d5cff;
+  --hero:#00b894;
+  --danger:#ff5c68;
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --shadow:0 14px 34px rgba(0,85,160,.16);
+  --inner:inset 0 0 0 1px rgba(255,255,255,.55);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Segoe UI",sans-serif;background:linear-gradient(180deg,#e6f8ff,#fff);color:var(--ink)}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+.app-shell{min-height:100vh;display:grid;place-items:center;padding:24px}
+.device{position:relative;width:min(390px,100vw);height:min(844px,100vh);background:var(--bg);border:1px solid #bde8fb;border-radius:34px;box-shadow:var(--shadow);overflow:hidden}
+.screen{display:none;position:absolute;inset:0;padding:10px 10px 80px;overflow:auto;}
+.screen.is-active{display:block}
+/* 홈 화면 맵 배경: .screen의 absolute/scroll 구조를 유지해야 스크롤이 정상 동작합니다. */
+.screen[data-screen="home"]{
+  position:absolute;
+  inset:0;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  background-color:#eaf6fa;
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:100% auto;
+  background-attachment:local;
+}
+.screen[data-screen="home"]::before{content:none!important;}
+.screen[data-screen="home"] > *{position:relative;z-index:1;}
+.screen[data-screen="home"] .map-mist{background-image:url("../images/map/img_map_mist.webp");} /* 안개의 섬 */
+.screen[data-screen="home"] .map-moonlight{background-image:url("../images/map/img_map_moonlight.webp");} /* 월광의 섬 */
+.screen[data-screen="home"] .map-starlight{background-image:url("../images/map/img_map_starlight.webp");} /* 별빛 계곡 */
+.screen[data-screen="home"] .map-emerald{background-image:url("../images/map/img_map_emerald.webp");} /* 에메랄드 호수 */
+.screen[data-screen="home"] .map-coral{background-image:url("../images/map/img_map_coral.webp");} /* 산호 낙원 */
+.screen[data-screen="home"] .map-twilight{background-image:url("../images/map/img_map_twilight.webp");} /* 황혼의 바다 */
+.screen[data-screen="home"] .map-storm{background-image:url("../images/map/img_map_storm.webp");} /* 폭풍의 해역 */
+.screen[data-screen="home"] .map-glacier{background-image:url("../images/map/img_map_glacier.webp");} /* 영원의 빙하 */
+.screen[data-screen="home"] .map-abyss{background-image:url("../images/map/img_map_abyss.webp");} /* 심연의 해구 */
+.screen[data-screen="home"] .map-primordial{background-image:url("../images/map/img_map_primordial.webp");} /* 태초의 심해 */
+h1,h2,p{margin:0}
+.card{ width: calc(100% - 20px); margin: 0 10px; background: #F9EFE0; border-radius: 20px; padding:10px; box-shadow:0 8px 22px rgba(40,110,170,.08)}
+.home-hero{position:relative;display:flex;justify-content:space-between;gap:10px;background:#F9EFE0;box-shadow: 0px 3px 10px rgba(43, 56, 76, 0.10);border-radius:20px; padding:10px;color:white;}
+.profile{display:flex;width:100%;gap:12px;align-items:center}
+.penguin{width:74px;height:74px;border-radius:24px;background:radial-gradient(circle at 40% 30%,#fff,#dff7ff 55%,#1f3555 56%);display:grid;place-items:center;font-size:48px;box-shadow:var(--inner)}
+.profile-info{display:block;width:100%;}
+.profile-info strong{display:block;font-size:18px;color:#000;}.profile-info span,.profile-info small{display:block;font-size:13px;opacity:.9;color:#000;font-weight: 700;}
+.progress{height:12px;margin-top:5px;border-radius:99px;background:#D9E2E5;overflow:hidden}
+.progress i{display:block;height:100%;border-radius:inherit;background:#2076CC;}
+.header-actions{display:flex;}.header-actions button{width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.18)}
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px; background:#F9EFE0;border-radius:20px;margin-top:10px;box-shadow: 0px 3px 10px rgba(43, 56, 76, 0.10);}
+.wallet-grid article{position: relative;display: flex; align-items: center; padding: 5px;}
+.wallet-grid article:after { content:''; display: block; position: absolute;top: 50%; left: 0; width: 1px; height: 40px; margin-top: -20px; background: #E7DCCF; }
+.wallet-grid article:first-child:after { display: none; }
+.wallet-grid span{font-size:28px}.coin{display:grid;place-items:center;width:32px;height:32px;background:var(--gold);color:white;border-radius:50%;font-weight:900}
+.wallet-grid strong{display:block}.wallet-grid small{color:var(--muted);font-size:11px;display:block;}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.section-title h2{font-size:16px}.section-title button{font-size:12px;color:var(--muted)}
+.mission-list{display: flex; flex-wrap: wrap; margin:0;padding:0;gap:8px}
+.mission-list li{display: flex; flex-wrap: wrap; justify-content: center; flex: 1; align-items:center;font-size:13px;padding:7px 0;border:1px solid #E5D5BD; border-radius: 20px; }
+.mission-list li:last-child{border-bottom:0}.mission-list span{ font-size:11px}.mission-list em{display: block; font-style: normal;padding:3px 10px;font-size:11px;color:#496178}
+.mission-list span.text { display: block; width: 100%; background: none; color: #000; text-align: center; }
+.fish-cta{ width: calc(100% - 60px); margin: 0 30px; min-height: 70px; background: url(../images/icon_fishing_button.webp) center / contain no-repeat; background-size: 100% auto; border-radius: 99px; overflow: hidden; }
+.fish-cta span{font-size:32px}.fish-cta strong{font-size:22px}.fish-cta small{opacity:.85}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.quick-grid button{padding:16px;border-radius:18px;background:white;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,80,150,.06);font-weight:800}
+.event-banner{ background: url(../images/icon_fishing_banner.webp) no-repeat center; background-size: 100% auto; border-radius: 15px; min-height: 65px; overflow: hidden; width: calc(100% - 20px); margin: 10px 10px 0;}.event-banner strong,.event-banner span{display:block}.event-banner b{position:absolute;right:18px;bottom:3px;font-size:48px}
+.sub-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;height:38px}.sub-header button{width:36px;height:36px;border-radius:50%;background:white;box-shadow:0 4px 12px rgba(0,80,150,.1);font-size:24px}.sub-header strong{font-size:18px}.sub-header span{font-size: 12px;color: #000;font-weight: 600;background: #F9EFE0;box-shadow: 0px 3px 10px rgba(43, 56, 76, 0.10);border-radius: 20px;padding: 7px 14px;}.floating{position:relative;z-index:5;color:white}.floating button{font-size: 16px;color:#123;background:rgba(255,255,255,.85)}
+.fishing-screen{background:linear-gradient(#36bfff 0%,#c8f5ff 42%,#0782bd 43%,#015f9e 100%);overflow:hidden}
+.sky{position:absolute;left:0;right:0;top:0;height:44%;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.9) 0 30px,transparent 31px),linear-gradient(#30b8ff,#b8edff)}
+.lake-scene{position:absolute;inset:70px 0 170px;overflow:hidden}.mountains{position:absolute;left:-30px;right:-30px;bottom:180px;height:180px;background:linear-gradient(135deg,transparent 35%,#72b27c 36% 52%,transparent 53%),linear-gradient(45deg,transparent 35%,#9cd9f5 36% 54%,transparent 55%);opacity:.85}.dock{position:absolute;left:0;bottom:120px;width:170px;height:38px;background:#9a6a32;border-radius:0 14px 14px 0}.penguin-fishing{position:absolute;left:70px;bottom:135px;font-size:86px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}.rod-line{position:absolute;left:155px;bottom:218px;width:145px;height:2px;background:#4b2d19;transform:rotate(-32deg);transform-origin:left center}.bobber{position:absolute;left:270px;bottom:118px;width:18px;height:26px;border-radius:99px;background:linear-gradient(#ff3858 0 45%,#fff 46%);animation:float 1.2s infinite ease-in-out}.water{position:absolute;left:-20px;right:-20px;bottom:0;height:170px;background:repeating-radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.18) 0 2px,transparent 3px 42px),linear-gradient(#16a5d9,#00649f)}
+@keyframes float{50%{transform:translateY(10px)}}
+.fishing-panel{position:absolute;left:18px;right:18px;bottom:22px;background:rgba(5,34,71,.82);color:white;border-radius:26px;padding:16px;text-align:center;backdrop-filter:blur(8px)}.fishing-panel p{font-weight:800;margin-bottom:12px}
+.gauge{position:relative;height:22px;border-radius:99px;overflow:hidden;display:flex;background:white;margin:0 12px 18px}.gauge i{flex:1}.gauge .bad{background:#ef4353}.gauge .good{background:#ffd34e}.gauge .best{background:#36db8d}.gauge b{position:absolute;top:-8px;left:50%;width:6px;height:38px;background:white;border-radius:6px;box-shadow:0 0 0 2px #134b83;animation:gaugeMove 1.35s linear infinite alternate}
+@keyframes gaugeMove{from{left:5%}to{left:93%}}
+.round-action{width:104px;height:104px;border-radius:50%;background:linear-gradient(#37a8ff,#086bda);border:6px solid rgba(255,255,255,.45);color:white;font-size:24px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.result-screen{display:none;background:radial-gradient(circle at 50% 20%,#1977df,#03245d 70%);color:white}.result-screen.is-active{display:grid;place-items:center}
+.result-card{width:100%;text-align:center}.result-card h1{background:linear-gradient(#39a9ff,#006fe4);display:inline-block;padding:12px 34px;border-radius:12px;font-size:22px}.fish-illust{font-size:72px;line-height:1.4;white-space:nowrap;overflow:hidden;text-align:center;margin:28px auto 6px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))}.badge{display:inline-grid;place-items:center;border-radius:99px;color:white;font-weight:900;font-size:12px;padding:5px 10px}.rare{background:var(--rare)}.hero{background:var(--hero)}.grade{display:inline-block;background:var(--rare);padding:4px 12px;border-radius:99px}.reward-list{list-style:none;margin:22px 0;padding:16px;background:white;color:var(--ink);border-radius:22px;text-align:left}.reward-list li{display:flex;justify-content:space-between;padding:13px 8px;border-bottom:1px solid #edf2f7}.reward-list li:last-child{border:0}.reward-list span{color:var(--muted)}
+.button-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.button-row button,.bottom-primary{height:56px;border-radius:16px;color:white;font-weight:900}.primary,.bottom-primary{background:linear-gradient(#2aa8ff,#006de0)}.secondary{background:linear-gradient(#ffc93d,#ff9300)}
+.map-screen{background:linear-gradient(#0789e8,#20bff2 55%,#0b8ad5)}.world-map{position:relative;height:720px;}
+.spot{position:absolute;min-width:130px;padding:10px 12px;border-radius:99px;background:rgba(7,55,95,.75);color:white;font-size:18px;box-shadow:0 8px 18px rgba(0,0,0,.22)}.spot span{display:block;font-size:12px;font-weight:900}.locked{filter:saturate(.6);opacity:.9}.s1{left:105px;top:40px}.s2{left:45px;top:150px}.s3{right:20px;top:130px}.s4{right:35px;top:260px}.s5{left:60px;top:330px}.s6{right:42px;top:420px}.s7{right:20px;bottom:115px;background:#0874df}.s8{left:28px;bottom:60px}
+.region-visual{height:210px;border-radius:24px;margin-bottom:12px;}
+.region-summary{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:15px;margin-bottom:12px}.region-summary small{display:block;color:var(--muted);margin:7px 0 3px}.region-summary strong{font-size:20px}
+.donut{width:108px;height:108px;border-radius:50%;background:conic-gradient(var(--primary) calc(var(--value)*1%),#e7f2f9 0);display:grid;place-items:center;position:relative}.donut:before{content:"";position:absolute;inset:14px;background:white;border-radius:50%}.donut b,.donut span{position:relative}.donut b{font-size:27px}.donut span{font-size:11px;color:var(--muted);grid-row:1;margin-top:42px}.legend-fish div{display:flex;gap:12px;align-items:center}.legend-fish span{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#eef5fa;font-size:28px}.legend-fish small{display:block;color:var(--muted)}
+.bottom-primary{position:absolute;left:14px;right:14px;bottom:84px;width:auto}.bottom-primary small{margin-left:8px}
+.tabs{display:flex;gap:7px;margin:10px 0 14px}.tabs.wrap{flex-wrap:wrap}.tabs button{flex:1;min-width:64px;height:36px;border-radius:10px;background:#e9f2f8;color:#38536c;font-size:12px;font-weight:800}.tabs .active{background:linear-gradient(#279fff,#006ddb);color:white}
+.task-list,.shop-list,.achievement-list{display:grid;gap:10px}.task-list article,.shop-list article,.achievement-list article{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.task-list progress{display:block;width:140px;height:8px;margin-top:8px}.task-list b{color:#ff9b00}.task-list button{background:linear-gradient(#38c976,#12a95b);color:white;border-radius:10px;padding:8px 12px;font-weight:800}
+.collection-head{display:flex;align-items:center;justify-content:center;gap:24px;padding:8px 0 12px}.collection-head strong{font-size:18px}.fish-grid,.rod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.fish-grid button,.rod-grid button{min-height:112px;background:white;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.fish-grid span{font-size:38px}.fish-grid strong,.fish-grid small,.rod-grid span{display:block}.fish-grid small{color:var(--muted);font-size:11px}.unknown{filter:grayscale(1);opacity:.65}
+.fish-detail-visual{border-radius:24px;min-height:280px;background:radial-gradient(circle at 50% 35%,#66e4ff,#007fc1 70%);display:grid;place-items:center;color:white;margin-bottom:12px;padding:18px}.fish-detail-visual div{font-size:112px}.fish-detail-visual h1{font-size:28px}.detail-table dl{display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid #edf2f7;padding:12px 0;margin:0}.detail-table dl:last-child{border-bottom:0}.detail-table dt{color:var(--primary);font-weight:900}.detail-table dd{margin:0;color:#2f4054}
+.equipped-card{display:grid;grid-template-columns:135px 1fr;gap:14px;background:white;border:1px solid var(--line);border-radius:24px;padding:14px;margin-bottom:16px}.rod-img{height:170px;border-radius:18px;background:linear-gradient(#55d5ff,#0e83d8);display:grid;place-items:center;font-size:74px}.equipped-card h2{font-size:17px;margin:10px 0}.equipped-card p{font-size:13px;color:#1166a8;margin:5px 0}.list-title{font-size:17px;margin:0 0 10px}
+.rod-grid button{font-size:46px}.rod-grid span{font-size:11px;color:#37516d;font-weight:800}
+.shop-list article{grid-template-columns:46px 1fr auto}.shop-list span{font-size:34px}.shop-list small{display:block;color:var(--muted);margin-top:3px}.shop-list b{color:#006ddb}
+.achievement-list article{grid-template-columns:48px 1fr auto}.achievement-list span{font-size:34px}.achievement-list small{display:block;color:var(--muted);margin-top:3px}.achievement-list b{background:#1fcf78;color:white;border-radius:99px;padding:6px 10px;font-size:12px}.achievement-list .disabled{opacity:.45}
+.ranking-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.ranking-list li{display:grid;grid-template-columns:36px 44px 1fr auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:13px;box-shadow:0 6px 16px rgba(0,80,150,.06)}.ranking-list li>span{font-size:32px}.ranking-list small{display:block;color:var(--muted)}.ranking-list em{font-style:normal;font-weight:900;color:#0d64c8}.ranking-list .my{background:linear-gradient(#1195ff,#0070df);color:white}.ranking-list .my small,.ranking-list .my em{color:white}
+.bottom-nav{position:absolute;left:0;right:0;bottom:0;background: #F9EFE0;box-shadow: 0px 3px 10px rgba(43, 56, 76, 0.10);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:5px 5px calc(5px + env(safe-area-inset-bottom));z-index:20; }
+.bottom-nav button{position: relative;display:grid;place-items:center;}.bottom-nav span{font-size:12px;font-weight:600}.bottom-nav .active{color:#006ddb;}
+@media (max-width:430px){
+  .app-shell{padding:0}
+  .device{width:100vw;height:100vh;border-radius:0;border:0}
+}
+.bottom-nav button:after { content: ''; display: block; position: absolute; top: 50%; left: 0; width: 1px; height: 20px; margin-top: -10px; background: #E7DCCF;}
+.bottom-nav button:first-child:after { display: none; }
+.bottom-nav .img { width: 40px; }
+
+
+.modal{display:none;position:absolute;inset:0;z-index:50}
+.modal.is-open{display:block}
+.modal-dim{position:absolute;inset:0;background:rgba(5,24,47,.45);backdrop-filter:blur(3px)}
+.modal-card{position:absolute;left:20px;right:20px;top:50%;min-height:563px;transform:translateY(-50%);background:url(../images/img-modal.webp) no-repeat;background-size: 100% auto;box-shadow:0 22px 54px rgba(0,40,90,.28)}
+.modal-card h2{font-size:20px;margin:0 0 12px}
+.modal-card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.modal-card li,.modal-card button.menu-item{width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px;border-top:1px solid #f1f8fd;color:#183856;font-weight:800}
+.modal-card li:last-child,.modal-card button.menu-item:last-child { border-bottom:1px solid #f1f8fd; }
+.modal-close{width:100%;height:48px;margin-top:16px;border-radius:14px;background:linear-gradient(#2aa8ff,#006de0);color:white;font-weight:900}
+.toast{position:absolute;left:20px;right:20px;bottom:88px;z-index:60;min-height:46px;padding:13px 16px;border-radius:16px;background:rgba(13,36,72,.92);color:white;display:none;text-align:center;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+.toast.is-show{display:block;animation:toastIn .22s ease-out}
+@keyframes toastIn{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.tabs button{transition:.2s}
+.task-list article.is-done{opacity:.62}
+.task-list article.is-done button{background:#aebdca}
+.shop-list article,.achievement-list article,.fish-grid button,.rod-grid button{transition:.18s transform,.18s box-shadow}
+.shop-list article:active,.achievement-list article:active,.fish-grid button:active,.rod-grid button:active{transform:scale(.98)}
+.rod-grid button.is-equipped{outline:3px solid var(--primary);background:#e9f7ff}
+
+.round-action{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.result-card.is-fail .fish-illust{filter:grayscale(.25) drop-shadow(0 12px 20px rgba(0,0,0,.3))}
+.result-card.is-fail .grade{background:#6d7f99}
+
+.mission-list li.is-complete{color:#0d7452;font-weight:800}
+.mission-list li span.icon { width: 25px;height: 25px;}
+.mission-list li.attendance span.icon{background: url(../images/icon-attendance.webp) no-repeat center; background-size: 100% auto;}
+.mission-list li.fish3 span.icon{background: url(../images/icon-fishing.webp) no-repeat center; background-size: 100% auto;}
+.mission-list li.quiz span.icon{background: url(../images/icon-quiz.webp) no-repeat center; background-size: 100% auto;}
+.mission-list li.product span.icon{background: url(../images/icon-product.webp) no-repeat center; background-size: 100% auto;}
+.task-count{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.task-list article.is-ready button{background:linear-gradient(#20d982,#0bb768)}
+.event-banner{cursor:pointer}
+
+.collection-filter-info{margin:-4px 0 12px;text-align:center;color:var(--muted);font-size:12px;font-weight:800}
+.fish-grid{grid-template-columns:repeat(3,1fr)}
+.fish-grid button[data-grade="전설"]{background:linear-gradient(180deg,#fff9dc,#fff)}
+.fish-grid button[data-grade="영웅"]{background:linear-gradient(180deg,#eef8ff,#fff)}
+.fish-grid button[data-grade="희귀"]{background:linear-gradient(180deg,#f4f0ff,#fff)}
+.fish-grid button[data-grade="일반"]{background:#fff}
+.fish-grid button strong{min-height:31px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.rod-grid button{display:grid;place-items:center;gap:5px;min-height:126px}
+.rod-grid .rod-symbol{font-size:38px}
+.rod-grid strong{display:block;font-size:12px;line-height:1.25;min-height:31px}
+.rod-grid small{display:inline-block;padding:3px 8px;border-radius:999px;background:#edf5fb;color:#54708a;font-size:10px;font-weight:900}
+.badge.normal{background:#7f8fa6}
+.badge.legend{background:#f5a800;color:#fff}
+.badge.myth{background:linear-gradient(135deg,#5228ff,#00c2ff,#ffd43d);color:#fff}
+
+.rod-img.normal{background:linear-gradient(#bde7ff,#42a9e8)}
+.rod-img.rare{background:linear-gradient(#e6dbff,#7d5cff)}
+.rod-img.hero{background:linear-gradient(#bff5ff,#00a7d7)}
+.rod-img.legend{background:linear-gradient(#fff2a8,#f5a800)}
+.rod-img.myth{background:linear-gradient(135deg,#5228ff,#00c2ff,#ffd43d)}
+
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+.mission-tabs button{white-space:nowrap}
+
+.shop-tabs button{min-width:72px}
+.shop-list article{cursor:pointer}
+.shop-list article:hover{box-shadow:0 10px 22px rgba(0,80,150,.12)}
+
+.empty-mission{grid-template-columns:1fr!important;text-align:center;color:var(--muted)}
+
+
+/* 도감 수집률 도넛 정렬 보정 */
+.donut{
+  position:relative;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  line-height:1;
+}
+.donut:before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  background:white;
+  border-radius:50%;
+  z-index:0;
+}
+.donut b,
+.donut span{
+  position:relative;
+  z-index:1;
+  margin:0;
+  grid-row:auto;
+}
+.donut b{
+  font-size:28px;
+  font-weight:900;
+  line-height:1;
+}
+.donut span{
+  font-size:13px;
+  color:#7890aa;
+  line-height:1.1;
+}
+.collection-head{
+  align-items:center;
+}
+.collection-head .donut{
+  flex:0 0 108px;
+}
+
+
+/* 낚싯대 화면: 강화 버튼이 카드 위를 덮지 않도록 보정 */
+.screen[data-screen="rod"]{
+  padding-bottom:120px;
+}
+
+.screen[data-screen="rod"] .bottom-primary{
+  position:static;
+  left:auto;
+  right:auto;
+  bottom:auto;
+  width:100%;
+  margin-top:18px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.screen[data-screen="rod"] .rod-grid{
+  margin-bottom:0;
+}
+
+
+/* 낚시 결과 화면 표시 보정 */
+.result-screen.is-active{
+  display:grid !important;
+  place-items:center;
+}
+#catchBtn{
+  touch-action:manipulation;
+}
+
+/* 안정화 보정 */
+.result-screen.is-active{display:grid!important;place-items:center}
+#catchBtn{touch-action:manipulation}
+.collection-filter-info{margin:-4px 0 12px;text-align:center;color:var(--muted);font-size:12px;font-weight:800}
+.fish-grid button[data-grade="전설"]{background:linear-gradient(180deg,#fff9dc,#fff)}
+.fish-grid button[data-grade="영웅"]{background:linear-gradient(180deg,#f4e9ff,#fff)}
+.fish-grid button[data-grade="희귀"]{background:linear-gradient(180deg,#edf7ff,#fff)}
+.fish-grid button[data-grade="일반"]{background:#fff}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6);color:#fff}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db);color:#fff}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad);color:#fff}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f);color:#6b4e00}
+.rod-grid button.normal.is-equipped{outline:3px solid #95a5a6;box-shadow:0 0 14px rgba(149,165,166,.35)}
+.rod-grid button.rare.is-equipped{outline:3px solid #3498db;box-shadow:0 0 16px rgba(52,152,219,.4)}
+.rod-grid button.hero.is-equipped{outline:3px solid #9b59b6;box-shadow:0 0 18px rgba(155,89,182,.45)}
+.rod-grid button.legend.is-equipped{outline:3px solid #f1c40f;box-shadow:0 0 20px rgba(241,196,15,.55)}
+.rod-grid button.myth.is-equipped{outline:3px solid #6a5cff;box-shadow:0 0 22px rgba(106,92,255,.45),0 0 38px rgba(255,215,0,.25)}
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+
+/* 기능 복구용 보정 */
+.mission-tabs button.active,
+.shop-tabs button.active,
+.collection-tabs [data-filter="전체"].active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6)!important;color:#fff!important}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db)!important;color:#fff!important}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad)!important;color:#fff!important}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f)!important;color:#6b4e00!important}
+.task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.task-list button[disabled]{background:#aebdca;color:#fff;cursor:default}
+.result-screen.is-active{display:grid!important;place-items:center}
+#fishGrid:empty::before,#missionTaskList:empty::before,#rodGrid:empty::before,#shopList:empty::before{
+  content:"데이터를 불러오는 중입니다.";
+  display:block;
+  padding:20px;
+  color:#6d7f99;
+  text-align:center;
+}
+
+/* 미션 화면 중복 마크업 제거 후 카드 레이아웃 보정 */
+.screen[data-screen="mission"] .task-list{
+  display:grid;
+  gap:10px;
+}
+.screen[data-screen="mission"] .task-list article{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.screen[data-screen="mission"] .task-list article > div{
+  min-width:0;
+}
+.screen[data-screen="mission"] .task-list article strong{
+  display:block;
+  font-size:15px;
+  line-height:1.3;
+}
+.screen[data-screen="mission"] .task-list article progress{
+  display:block;
+  width:100%;
+  height:8px;
+  margin-top:8px;
+}
+.screen[data-screen="mission"] .task-list article b{
+  color:#ff9b00;
+  white-space:nowrap;
+}
+.screen[data-screen="mission"] .task-list article button{
+  min-width:58px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(#279fff,#006ddb);
+  color:#fff;
+  font-weight:900;
+}
+.screen[data-screen="mission"] .task-list article.is-ready{
+  outline:2px solid #20c96b;
+  background:#f0fff8;
+}
+.screen[data-screen="mission"] .task-list article.is-ready button{
+  background:linear-gradient(#20d982,#0bb768);
+}
+.screen[data-screen="mission"] .task-list article.is-done{
+  opacity:.65;
+}
+.screen[data-screen="mission"] .task-list article.is-done button,
+.screen[data-screen="mission"] .task-list article button[disabled]{
+  background:#aebdca;
+}
+
+
+/* 낚싯대 등급별 컬러 통일: 프로필 + 선택 카드 + 배지 */
+:root{
+  --rod-normal-main:#95a5a6;
+  --rod-normal-light:#eef3f5;
+  --rod-normal-soft:#f7fafb;
+
+  --rod-rare-main:#3498db;
+  --rod-rare-light:#dff2ff;
+  --rod-rare-soft:#eef9ff;
+
+  --rod-hero-main:#8e44ad;
+  --rod-hero-light:#f0e4ff;
+  --rod-hero-soft:#f8f1ff;
+
+  --rod-legend-main:#f1c40f;
+  --rod-legend-light:#fff1aa;
+  --rod-legend-soft:#fff9df;
+
+  --rod-myth-main:#6a5cff;
+  --rod-myth-sub:#00c2ff;
+  --rod-myth-gold:#ffd700;
+  --rod-myth-soft:#f0f4ff;
+}
+
+/* 상단 장착 카드 */
+.equipped-card.normal{
+  border-color:rgba(149,165,166,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-normal-soft));
+}
+.equipped-card.rare{
+  border-color:rgba(52,152,219,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-rare-soft));
+}
+.equipped-card.hero{
+  border-color:rgba(142,68,173,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-hero-soft));
+}
+.equipped-card.legend{
+  border-color:rgba(241,196,15,.55);
+  background:linear-gradient(135deg,#fff,var(--rod-legend-soft));
+}
+.equipped-card.myth{
+  border-color:rgba(106,92,255,.45);
+  background:linear-gradient(135deg,#fff,var(--rod-myth-soft));
+}
+
+/* 상단 낚싯대 이미지 배경 */
+.rod-img.normal{
+  background:linear-gradient(135deg,#dfe6e9,var(--rod-normal-main));
+}
+.rod-img.rare{
+  background:linear-gradient(135deg,#bfe9ff,var(--rod-rare-main));
+}
+.rod-img.hero{
+  background:linear-gradient(135deg,#dec6ff,#7c4dff);
+}
+.rod-img.legend{
+  background:linear-gradient(135deg,#fff1a8,#f5a800);
+}
+.rod-img.myth{
+  background:linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold));
+}
+
+/* 장착 배지 */
+.badge.normal{
+  background:var(--rod-normal-main);
+  color:#fff;
+}
+.badge.rare{
+  background:var(--rod-rare-main);
+  color:#fff;
+}
+.badge.hero{
+  background:#7c4dff;
+  color:#fff;
+}
+.badge.legend{
+  background:#f5a800;
+  color:#fff;
+}
+.badge.myth{
+  background:linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold));
+  color:#fff;
+}
+
+/* 선택된 낚싯대 카드: 테두리 + 배경 톤 통일 */
+.rod-grid button.is-equipped{
+  outline:none!important;
+  transform:translateY(-1px);
+}
+
+.rod-grid button.normal.is-equipped{
+  border:3px solid var(--rod-normal-main);
+  background:linear-gradient(180deg,var(--rod-normal-light),#fff);
+  box-shadow:0 0 0 4px rgba(149,165,166,.12),0 12px 28px rgba(149,165,166,.24);
+}
+.rod-grid button.rare.is-equipped{
+  border:3px solid var(--rod-rare-main);
+  background:linear-gradient(180deg,var(--rod-rare-light),#fff);
+  box-shadow:0 0 0 4px rgba(52,152,219,.12),0 12px 28px rgba(52,152,219,.24);
+}
+.rod-grid button.hero.is-equipped{
+  border:0;
+  background:linear-gradient(180deg,var(--rod-hero-light),#fff);
+  box-shadow:0 0 0 4px rgba(142,68,173,.13),0 12px 28px rgba(142,68,173,.28);
+}
+.rod-grid button.legend.is-equipped{
+  border:3px solid var(--rod-legend-main);
+  background:linear-gradient(180deg,var(--rod-legend-light),#fff);
+  box-shadow:0 0 0 4px rgba(241,196,15,.18),0 12px 30px rgba(241,196,15,.34);
+}
+.rod-grid button.myth.is-equipped{
+  border:3px solid transparent;
+  background:
+    linear-gradient(180deg,#f0f7ff,#fff) padding-box,
+    linear-gradient(135deg,var(--rod-myth-sub),var(--rod-myth-main),var(--rod-myth-gold)) border-box;
+  box-shadow:0 0 0 4px rgba(106,92,255,.12),0 12px 30px rgba(106,92,255,.28),0 0 28px rgba(255,215,0,.22);
+}
+
+/* 카드 안 등급 뱃지도 선택 카드와 동일 톤 */
+.rod-grid button.normal small{
+  background:var(--rod-normal-light);
+  color:#607173;
+}
+.rod-grid button.rare small{
+  background:var(--rod-rare-light);
+  color:#2477b1;
+}
+.rod-grid button.hero small{
+  background:var(--rod-hero-light);
+  color:#7b3297;
+}
+.rod-grid button.legend small{
+  background:var(--rod-legend-soft);
+  color:#9b7600;
+}
+.rod-grid button.myth small{
+  background:linear-gradient(135deg,rgba(0,194,255,.16),rgba(106,92,255,.16),rgba(255,215,0,.22));
+  color:#5143d9;
+}
+.rod-grid button.is-equipped small{
+  font-weight:900;
+}
+
+
+/* 물고기 상세: 등급별 별점 가독성 */
+.fish-detail-visual p{
+  font-size:18px;
+  letter-spacing:1px;
+  text-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+
+/* 안정화: 미션/상점/도감 핵심 레이아웃 */
+.screen[data-screen="mission"] .task-list{display:grid;gap:10px}
+.screen[data-screen="mission"] .task-list article{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 6px 16px rgba(0,80,150,.06)}
+.screen[data-screen="mission"] .task-list article progress{display:block;width:100%;height:8px;margin-top:8px}
+.screen[data-screen="mission"] .task-list article b{color:#ff9b00;white-space:nowrap}
+.screen[data-screen="mission"] .task-list article button{min-width:58px;height:40px;border-radius:12px;background:linear-gradient(#279fff,#006ddb);color:#fff;font-weight:900}
+.screen[data-screen="mission"] .task-list article.is-ready{outline:2px solid #20c96b;background:#f0fff8}
+.screen[data-screen="mission"] .task-list article.is-ready button{background:linear-gradient(#20d982,#0bb768)}
+.screen[data-screen="mission"] .task-list article.is-done{opacity:.65}
+.screen[data-screen="mission"] .task-list article button[disabled]{background:#aebdca}
+.mission-tabs button.active,.shop-tabs button.active,.collection-tabs [data-filter="전체"].active{background:linear-gradient(#279fff,#006ddb)!important;color:#fff!important}
+.collection-tabs [data-filter="일반"].active{background:linear-gradient(#bdc3c7,#95a5a6)!important;color:#fff!important}
+.collection-tabs [data-filter="희귀"].active{background:linear-gradient(#5dade2,#3498db)!important;color:#fff!important}
+.collection-tabs [data-filter="영웅"].active{background:linear-gradient(#bb8fce,#8e44ad)!important;color:#fff!important}
+.collection-tabs [data-filter="전설"].active{background:linear-gradient(#f7dc6f,#f1c40f)!important;color:#6b4e00!important}
+.result-screen.is-active{display:grid!important;place-items:center}
+
+/* 업적 탭/리스트 기능 보정 */
+.achievement-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.achievement-list{
+  display:grid;
+  gap:10px;
+}
+.achievement-list article{
+  display:grid;
+  grid-template-columns:48px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.achievement-list article > span{
+  font-size:34px;
+}
+.achievement-list article strong{
+  display:block;
+  font-size:15px;
+}
+.achievement-list article small{
+  display:block;
+  color:var(--muted);
+  margin:3px 0 7px;
+}
+.achievement-list article progress{
+  display:block;
+  width:100%;
+  height:8px;
+}
+.achievement-list article em{
+  display:block;
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+  font-style:normal;
+}
+.achievement-list article b{
+  background:#eef5fb;
+  color:#54708a;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  white-space:nowrap;
+}
+.achievement-list article.is-complete{
+  outline:2px solid #20c96b;
+  background:#f0fff8;
+}
+.achievement-list article.is-complete b{
+  background:#20c96b;
+  color:white;
+}
+
+/* 세계지도 10개 지역 배치 */
+.world-map .spot.s1{left:24px;bottom:54px}
+.world-map .spot.s2{left:30px;bottom:135px}
+.world-map .spot.s3{right:24px;bottom:120px;background:#0874df}
+.world-map .spot.s4{left:72px;bottom:230px}
+.world-map .spot.s5{right:38px;bottom:250px}
+.world-map .spot.s6{left:45px;top:330px}
+.world-map .spot.s7{right:36px;top:270px}
+.world-map .spot.s8{left:42px;top:190px}
+.world-map .spot.s9{right:26px;top:130px}
+.world-map .spot.s10{left:95px;top:42px}
+
+
+/* 세계지도 UI 재정렬: 10개 지역 카드형 스테이지 맵 */
+.map-screen{
+  background:linear-gradient(180deg,#e9f8ff 0%,#dff5ff 100%)!important;
+}
+
+.stage-map{
+  position:relative;
+  height:auto!important;
+  min-height:0!important;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:16px;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 15% 12%,rgba(255,255,255,.55) 0 34px,transparent 36px),
+    radial-gradient(circle at 85% 28%,rgba(255,255,255,.35) 0 50px,transparent 52px),
+    linear-gradient(180deg,#36c9ff 0%,#0d8fe8 100%);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 14px 34px rgba(0,110,190,.18);
+  overflow:visible;
+}
+
+.stage-map::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:58px;
+  bottom:58px;
+  width:4px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+  z-index:0;
+}
+
+.map-node{
+  position:relative;
+  z-index:1;
+  min-height:104px;
+  border-radius:22px;
+  padding:14px 10px;
+  display:grid;
+  place-items:center;
+  gap:5px;
+  text-align:center;
+  color:#12314f;
+  background:rgba(255,255,255,.92);
+  border:2px solid rgba(255,255,255,.75);
+  box-shadow:0 10px 22px rgba(0,60,120,.14);
+  backdrop-filter:blur(8px);
+}
+
+.map-node:nth-child(odd){
+  transform:translateY(10px);
+}
+
+.map-node i{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:16px;
+  background:#eaf7ff;
+  font-style:normal;
+  font-size:24px;
+}
+
+.map-node strong{
+  display:block;
+  font-size:14px;
+  line-height:1.25;
+  word-break:keep-all;
+}
+
+.map-node small{
+  color:#5d7894;
+  font-size:11px;
+  font-weight:800;
+}
+
+.map-node.current{
+  color:white;
+  background:linear-gradient(135deg,#158cff,#006ddb);
+  border-color:rgba(255,255,255,.9);
+  box-shadow:0 14px 30px rgba(0,100,220,.32);
+}
+
+.map-node.current i{
+  background:rgba(255,255,255,.22);
+}
+
+.map-node.current small{
+  color:rgba(255,255,255,.86);
+}
+
+.map-node.locked{
+  opacity:.72;
+  color:#6d7f99;
+  background:rgba(232,242,249,.9);
+  box-shadow:none;
+}
+
+.map-node.locked i{
+  background:#ddeaf3;
+  filter:grayscale(.25);
+}
+
+.map-node.unlocked:active,
+.map-node.current:active{
+  transform:scale(.98);
+}
+
+@media (max-width:360px){
+  .stage-map{
+    grid-template-columns:1fr;
+  }
+  .stage-map::before{
+    left:28px;
+    transform:none;
+  }
+  .map-node:nth-child(odd){
+    transform:none;
+  }
+}
+
+/* 랭킹 탭/데이터 연동 */
+.ranking-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.ranking-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.ranking-list li{
+  display:grid;
+  grid-template-columns:48px 52px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.ranking-list li > b{
+  font-size:20px;
+  text-align:center;
+}
+.ranking-list li > span{
+  font-size:34px;
+  text-align:center;
+}
+.ranking-list li strong{
+  display:block;
+  font-size:18px;
+}
+.ranking-list li small{
+  display:block;
+  color:var(--muted);
+  margin-top:2px;
+}
+.ranking-list li em{
+  font-style:normal;
+  font-weight:900;
+  color:#006ddb;
+  white-space:nowrap;
+}
+.ranking-list li.my{
+  background:linear-gradient(135deg,#189cff,#006ddb);
+  color:white;
+}
+.ranking-list li.my small,
+.ranking-list li.my em{
+  color:white;
+}
+
+/* 랭킹 탭/데이터 연동 */
+.ranking-tabs button.active{
+  background:linear-gradient(#279fff,#006ddb)!important;
+  color:#fff!important;
+}
+.ranking-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+.ranking-list li{
+  display:grid;
+  grid-template-columns:48px 52px 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 16px rgba(0,80,150,.06);
+}
+.ranking-list li > b{font-size:20px;text-align:center}
+.ranking-list li > span{font-size:34px;text-align:center}
+.ranking-list li strong{display:block;font-size:18px}
+.ranking-list li small{display:block;color:var(--muted);margin-top:2px}
+.ranking-list li em{font-style:normal;font-weight:900;color:#006ddb;white-space:nowrap}
+.ranking-list li.my{background:linear-gradient(135deg,#189cff,#006ddb);color:white}
+.ranking-list li.my small,.ranking-list li.my em{color:white}
+
+
+/* 포인트 상점 보유 포인트 가독성 개선 */
+.shop-point-badge{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:96px;
+  height:38px;
+  padding:0 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff7d7,#ffe08a);
+  color:#8a5b00!important;
+  font-weight:900;
+  font-size:15px!important;
+  border:1px solid rgba(255,190,0,.45);
+  box-shadow:0 8px 18px rgba(255,174,0,.18);
+  white-space:nowrap;
+}
+.shop-point-badge::before{
+  content:"P";
+  display:inline-grid;
+  place-items:center;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#ffc83d;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.08);
+}
+.screen[data-screen="shop"] .sub-header{
+  gap:10px;
+}
+.screen[data-screen="shop"] .sub-header strong{
+  flex:1;
+  text-align:center;
+  transform:translateX(24px);
+}
+.screen[data-screen="shop"] .sub-header button{
+  flex:0 0 36px;
+}
+.screen[data-screen="shop"] .sub-header .shop-point-badge{
+  flex:0 0 auto;
+}
+
+
+/* 낚시 화면 개선: 지역별 배경 + 캐스팅/찌 애니메이션 */
+.fishing-screen{
+  --sky1:#8ee8ff;
+  --sky2:#dff9ff;
+  --hill1:#7fc996;
+  --hill2:#4eac73;
+  --water1:#19aee5;
+  --water2:#087fbd;
+  --accent:#12c79a;
+  background:linear-gradient(180deg,var(--sky1),var(--sky2) 47%,var(--water1) 48%,var(--water2) 100%)!important;
+  overflow:hidden;
+  padding-bottom:0;
+}
+
+.fishing-screen.region-mist{
+  --sky1:#dff7ff; --sky2:#f4fdff; --hill1:#9ed3c3; --hill2:#6db59d; --water1:#7bd8ed; --water2:#3aa1c2; --accent:#9fd7db;
+}
+.fishing-screen.region-moon{
+  --sky1:#1f3a6d; --sky2:#7aa9e8; --hill1:#5b78a8; --hill2:#354b7a; --water1:#315fa8; --water2:#162e68; --accent:#d6e8ff;
+}
+.fishing-screen.region-emerald{
+  --sky1:#70dcff; --sky2:#d7fbff; --hill1:#7fc996; --hill2:#31a875; --water1:#19aee5; --water2:#087fbd; --accent:#00d6a3;
+}
+.fishing-screen.region-crystal{
+  --sky1:#a9efff; --sky2:#f5fdff; --hill1:#9ad7ff; --hill2:#77b8e8; --water1:#5ed7ff; --water2:#1a98df; --accent:#b9f2ff;
+}
+.fishing-screen.region-rainbow{
+  --sky1:#9ee9ff; --sky2:#fff0cf; --hill1:#ffd166; --hill2:#5ed39b; --water1:#35c7f3; --water2:#1279d8; --accent:#ff6bd6;
+}
+.fishing-screen.region-coral{
+  --sky1:#89e7ff; --sky2:#ffe1d6; --hill1:#ff9f9f; --hill2:#ff6f91; --water1:#23c4d9; --water2:#0b7bb0; --accent:#ff8f70;
+}
+.fishing-screen.region-storm{
+  --sky1:#536976; --sky2:#8ba6b5; --hill1:#435d68; --hill2:#243b4a; --water1:#236b91; --water2:#102d4a; --accent:#ffd166;
+}
+.fishing-screen.region-abyss{
+  --sky1:#10213d; --sky2:#1d4b78; --hill1:#193650; --hill2:#0b2038; --water1:#123d67; --water2:#06162b; --accent:#5ee7ff;
+}
+.fishing-screen.region-glacier{
+  --sky1:#c8f4ff; --sky2:#f7feff; --hill1:#e2fbff; --hill2:#9bdcf0; --water1:#88dfff; --water2:#32a6d8; --accent:#ffffff;
+}
+.fishing-screen.region-atlantis{
+  --sky1:#19b7d2; --sky2:#72f0e4; --hill1:#35d0b0; --hill2:#137f8f; --water1:#009db6; --water2:#075a86; --accent:#ffd76a;
+}
+
+.fishing-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.sun-moon{
+  position:absolute;
+  left:58px;
+  top:66px;
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  background:rgba(255,255,255,.86);
+  box-shadow:0 0 38px rgba(255,255,255,.52);
+}
+
+.cloud{
+  position:absolute;
+  width:120px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(255,255,255,.45);
+  filter:blur(.2px);
+  animation:cloudMove 18s linear infinite;
+}
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+.cloud::before{width:52px;height:52px;left:20px;top:-22px}
+.cloud::after{width:62px;height:62px;right:18px;top:-30px}
+.cloud-a{left:210px;top:96px}
+.cloud-b{left:-50px;top:170px;animation-duration:24s;opacity:.55}
+
+@keyframes cloudMove{
+  from{transform:translateX(-30px)}
+  to{transform:translateX(80px)}
+}
+
+.far-hills,
+.near-hills{
+  position:absolute;
+  left:-8%;
+  right:-8%;
+  bottom:312px;
+  height:150px;
+}
+
+.far-hills{
+  opacity:.45;
+  background:
+    radial-gradient(ellipse at 20% 100%,var(--hill1) 0 130px,transparent 132px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1) 0 160px,transparent 162px),
+    radial-gradient(ellipse at 92% 100%,var(--hill1) 0 120px,transparent 122px);
+}
+
+.near-hills{
+  bottom:285px;
+  opacity:.9;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2) 0 115px,transparent 117px),
+    radial-gradient(ellipse at 72% 100%,var(--hill2) 0 145px,transparent 147px);
+}
+
+.lake-surface{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:330px;
+  background:linear-gradient(180deg,var(--water1),var(--water2));
+}
+
+.water-ripples{
+  position:absolute;
+  left:-15%;
+  right:-15%;
+  bottom:0;
+  height:330px;
+  opacity:.45;
+  background:
+    repeating-radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.38) 0 2px,transparent 3px 42px),
+    repeating-radial-gradient(ellipse at 82% 30%,rgba(255,255,255,.22) 0 2px,transparent 3px 58px);
+  animation:rippleDrift 6s linear infinite;
+}
+
+@keyframes rippleDrift{
+  from{transform:translateX(0)}
+  to{transform:translateX(36px)}
+}
+
+.fishing-stage{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:322px;
+  height:220px;
+  pointer-events:none;
+}
+
+.penguin-fishing{
+  position:absolute;
+  left:0;
+  bottom:0;
+  z-index:3;
+  transform-origin:50% 85%;
+  background:url("../images/img-pengguin2.webp"); background-size: 100% auto;
+  width: 150px;
+  height: 150px;
+}
+
+.rod-stick{
+  position:absolute;
+  left:50px;
+  bottom:35px;
+  width:250px;
+  height:4px;
+  border-radius:999px;
+  background:#5a321f;
+  transform:rotate(-39deg);
+  transform-origin:left center;
+  z-index:4;
+  box-shadow:0 1px 0 rgba(255,255,255,.25);
+}
+
+.fishing-line{
+  position:absolute;
+  left:242px;
+  bottom:95px;
+  width:2px;
+  height:98px;
+  background:rgba(255,255,255,.82);
+  transform:rotate(-50deg);
+  transform-origin:top center;
+  z-index:2;
+}
+
+.bobber{
+  position:absolute;
+  left:312px;
+  bottom:114px;
+  width:18px;
+  height:26px;
+  border-radius:999px;
+  background:linear-gradient(#ff3b67 0 45%,#fff 46%);
+  z-index:5;
+  animation:bobberIdle 1.15s ease-in-out infinite;
+  box-shadow:0 4px 10px rgba(0,60,120,.28);
+}
+
+.bobber::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:70%;
+  width:54px;
+  height:18px;
+  border:2px solid rgba(255,255,255,.34);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation:bobberRipple 1.4s ease-out infinite;
+}
+
+@keyframes bobberIdle{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(9px)}
+}
+
+@keyframes bobberRipple{
+  0%{opacity:.6;transform:translate(-50%,-50%) scale(.65)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.8)}
+}
+
+.fishing-screen.is-casting .penguin-fishing{
+  animation:penguinCast .9s ease-out;
+}
+.fishing-screen.is-casting .rod-stick{
+  animation:rodCast .9s ease-out;
+}
+.fishing-screen.is-casting .fishing-line{
+  animation:lineCast .95s ease-out;
+}
+.fishing-screen.is-casting .bobber{
+  animation:bobberCast .95s ease-out,bobberIdle 1.15s ease-in-out .95s infinite;
+}
+
+@keyframes penguinCast{
+  0%{transform:rotate(0deg)}
+  30%{transform:rotate(-8deg) translateY(-4px)}
+  65%{transform:rotate(5deg)}
+  100%{transform:rotate(0deg)}
+}
+
+@keyframes rodCast{
+  0%{transform:rotate(-75deg) scaleX(.82)}
+  55%{transform:rotate(-20deg) scaleX(1.08)}
+  100%{transform:rotate(-39deg) scaleX(1)}
+}
+
+@keyframes lineCast{
+  0%{left:140px;bottom:85px;height:98px;transform:rotate(-50deg);opacity:0}
+  60%{left:310px;bottom:50px;height:160px;transform:rotate(-50deg);opacity:1}
+  100%{left:242px;bottom:95px;height:98px;transform:rotate(-50deg);opacity:1}
+}
+
+@keyframes bobberCast{
+  0%{left:238px;bottom:148px;opacity:0;transform:scale(.5)}
+  60%{left:372px;bottom:72px;opacity:1;transform:scale(1.1)}
+  100%{left:312px;bottom:114px;opacity:1;transform:scale(1)}
+}
+
+/* 기존 깨지는 산/도형 요소 숨김 */
+.fishing-screen .sky,
+.fishing-screen .lake-scene,
+.fishing-screen .mountains,
+.fishing-screen .dock,
+.fishing-screen .water{
+  display:none!important;
+}
+
+.fishing-panel{
+  z-index:10;
+}
+
+@media (max-width:360px){
+  .penguin-fishing{left:86px}
+  .rod-stick{left:178px}
+  .fishing-line{left:292px}
+  .bobber{left:310px}
+}
+
+
+/* 낚시 장면 정합성 개선: 펭귄-낚싯대-줄-찌 연결 */
+.fishing-screen{
+  --shore:#24496f;
+  --shore-hi:#3d6d92;
+}
+
+.fishing-bg .lake-surface{
+  top:auto;
+  bottom:0;
+  height:340px;
+}
+
+.fishing-stage{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:300px;
+  height:250px;
+  pointer-events:none;
+  z-index:4;
+}
+
+/* 펭귄이 서 있는 뭍/바위 */
+.shore-rock{
+  position:absolute;
+  left:-28px;
+  bottom:-6px;
+  width:245px;
+  height:112px;
+  border-radius:44% 56% 18px 0;
+  background:
+    radial-gradient(ellipse at 28% 24%,rgba(255,255,255,.16) 0 34px,transparent 36px),
+    linear-gradient(160deg,var(--shore-hi),var(--shore));
+  box-shadow:0 18px 28px rgba(0,33,70,.28);
+  z-index:1;
+}
+.shore-rock::after{
+  content:"";
+  position:absolute;
+  right:-28px;
+  bottom:-4px;
+  width:118px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(0,50,95,.22);
+}
+
+/* 손잡이: 펭귄 손 근처에 고정 */
+.rod-handle{
+  position:absolute;
+  left:151px;
+  bottom:116px;
+  width:34px;
+  height:11px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#3d2619,#8c5a3a);
+  transform:rotate(-31deg);
+  transform-origin:left center;
+  z-index:7;
+  box-shadow:0 2px 4px rgba(0,0,0,.25);
+}
+
+.bobber-ripple{
+  position:absolute;
+  left:440px;
+  bottom:43px;
+  width:76px;
+  height:26px;
+  border:2px solid rgba(255,255,255,.38);
+  border-radius:50%;
+  transform:translate(-50%,50%);
+  z-index:4;
+  animation:ripplePulse 1.45s ease-out infinite;
+}
+.bobber-ripple::after{
+  content:"";
+  position:absolute;
+  inset:6px 13px;
+  border:2px solid rgba(255,255,255,.26);
+  border-radius:50%;
+}
+
+@keyframes bobberWater{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(8px) rotate(2deg)}
+}
+@keyframes ripplePulse{
+  0%{opacity:.75;transform:translate(-50%,50%) scale(.72)}
+  100%{opacity:0;transform:translate(-50%,50%) scale(1.8)}
+}
+
+@keyframes penguinCastFixed{
+  0%{transform:rotate(0) translateY(0)}
+  32%{transform:rotate(-7deg) translateY(-5px)}
+  68%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0) translateY(0)}
+}
+@keyframes rodHandleCastFixed{
+  0%{transform:rotate(-68deg)}
+  55%{transform:rotate(-20deg)}
+  100%{transform:rotate(-31deg)}
+}
+@keyframes rodCastFixed{
+  0%{transform:rotate(-70deg) scaleX(.82)}
+  55%{transform:rotate(-18deg) scaleX(1.06)}
+  100%{transform:rotate(-28deg) scaleX(1)}
+}
+@keyframes lineCastFixed{
+  0%{width:22px;height:18px;opacity:0;transform:rotate(-80deg)}
+  55%{width:130px;height:148px;opacity:.9;transform:rotate(24deg)}
+  100%{width:112px;height:126px;opacity:.92;transform:rotate(12deg)}
+}
+@keyframes bobberCastFixed{
+  0%{left:205px;bottom:140px;opacity:0;transform:scale(.45)}
+  55%{left:454px;bottom:70px;opacity:1;transform:scale(1.1)}
+  100%{left:430px;bottom:32px;opacity:1;transform:scale(1)}
+}
+@keyframes rippleAppearFixed{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.72)}
+}
+
+/* 낚시 결과 화면 데이터 연동 디자인 */
+.result-card{
+  text-align:center;
+}
+.result-fish{
+  width:128px;
+  height:128px;
+  margin:12px auto 8px;
+  display:grid;
+  place-items:center;
+  font-size:86px;
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.24));
+}
+.result-judge{
+  display:inline-grid;
+  place-items:center;
+  min-width:84px;
+  height:34px;
+  padding:0 14px;
+  border-radius:999px;
+  background:#2f9ded;
+  color:#fff;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:8px;
+}
+.result-grade{
+  display:inline-grid;
+  place-items:center;
+  height:34px;
+  padding:0 16px;
+  border-radius:999px;
+  color:white;
+  font-weight:900;
+  margin:6px 0 18px;
+}
+.result-card.normal .result-grade{background:#95a5a6}
+.result-card.rare .result-grade{background:#3498db}
+.result-card.hero .result-grade{background:#8e44ad}
+.result-card.legend .result-grade{background:#f5a800}
+.result-card.perfect .result-judge{background:linear-gradient(135deg,#45caff,#1477ff)}
+.result-card.success .result-judge{background:#20c96b}
+.result-card.fail .result-judge{background:#ef3f5a}
+.result-card.fail .result-fish{filter:grayscale(.4);opacity:.85}
+
+
+/* =========================================================
+   낚시 화면 오브젝트 정합성 개선
+   - 펭귄 / 낚싯대 / 낚싯줄 / 찌 연결
+   - 찌가 물 위에 떠 보이도록 위치 보정
+   ========================================================= */
+
+.fishing-screen{
+  --sky1:#83e5ff;
+  --sky2:#fff2c8;
+  --hill1:#8fd5a7;
+  --hill2:#4ca987;
+  --water1:#25c6e8;
+  --water2:#0b8ed3;
+  --shore1:#3d6f91;
+  --shore2:#173a5b;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 47%,var(--water1) 48%,var(--water2) 100%)!important;
+}
+
+/* 지역별 톤 */
+.fishing-screen.region-mist{--sky1:#dff7ff;--sky2:#f8ffff;--hill1:#a7d8ce;--hill2:#6db59d;--water1:#7bd8ed;--water2:#3aa1c2}
+.fishing-screen.region-moon{--sky1:#1f3a6d;--sky2:#7799c8;--hill1:#627da8;--hill2:#30476f;--water1:#315fa8;--water2:#162e68}
+.fishing-screen.region-emerald{--sky1:#70dcff;--sky2:#d7fbff;--hill1:#7fc996;--hill2:#31a875;--water1:#19aee5;--water2:#087fbd}
+.fishing-screen.region-crystal{--sky1:#a9efff;--sky2:#f5fdff;--hill1:#b9efff;--hill2:#77b8e8;--water1:#5ed7ff;--water2:#1a98df}
+.fishing-screen.region-rainbow{--sky1:#9ee9ff;--sky2:#fff0cf;--hill1:#ffd166;--hill2:#5ed39b;--water1:#35c7f3;--water2:#1279d8}
+.fishing-screen.region-coral{--sky1:#89e7ff;--sky2:#ffe1d6;--hill1:#ffb1a3;--hill2:#ff6f91;--water1:#23c4d9;--water2:#0b7bb0}
+.fishing-screen.region-storm{--sky1:#536976;--sky2:#8ba6b5;--hill1:#435d68;--hill2:#243b4a;--water1:#236b91;--water2:#102d4a}
+.fishing-screen.region-abyss{--sky1:#10213d;--sky2:#1d4b78;--hill1:#193650;--hill2:#0b2038;--water1:#123d67;--water2:#06162b}
+.fishing-screen.region-glacier{--sky1:#c8f4ff;--sky2:#f7feff;--hill1:#e2fbff;--hill2:#9bdcf0;--water1:#88dfff;--water2:#32a6d8}
+.fishing-screen.region-atlantis{--sky1:#19b7d2;--sky2:#72f0e4;--hill1:#35d0b0;--hill2:#137f8f;--water1:#009db6;--water2:#075a86}
+
+.fishing-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.sun-moon{
+  position:absolute;
+  left:74px;
+  top:82px;
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  box-shadow:0 0 40px rgba(255,255,255,.5);
+}
+
+.cloud{
+  position:absolute;
+  width:126px;
+  height:42px;
+  border-radius:999px;
+  background:rgba(255,255,255,.42);
+  animation:cloudMove 22s linear infinite alternate;
+}
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:inherit;
+}
+.cloud::before{width:58px;height:58px;left:18px;top:-24px}
+.cloud::after{width:68px;height:68px;right:20px;top:-32px}
+.cloud-a{right:52px;top:130px}
+.cloud-b{left:-54px;top:210px;opacity:.55;animation-duration:28s}
+@keyframes cloudMove{from{transform:translateX(-24px)}to{transform:translateX(52px)}}
+
+.far-hills,
+.near-hills{
+  position:absolute;
+  left:-8%;
+  right:-8%;
+  bottom:318px;
+  height:146px;
+}
+.far-hills{
+  opacity:.36;
+  background:
+    radial-gradient(ellipse at 15% 100%,var(--hill1) 0 110px,transparent 112px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1) 0 150px,transparent 152px),
+    radial-gradient(ellipse at 94% 100%,var(--hill1) 0 112px,transparent 114px);
+}
+.near-hills{
+  bottom:292px;
+  opacity:.72;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2) 0 112px,transparent 114px),
+    radial-gradient(ellipse at 76% 100%,var(--hill2) 0 138px,transparent 140px);
+}
+
+.lake-surface{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:338px;
+  background:linear-gradient(180deg,var(--water1),var(--water2));
+}
+.water-ripples{
+  position:absolute;
+  left:-14%;
+  right:-14%;
+  bottom:0;
+  height:338px;
+  opacity:.38;
+  background:
+    repeating-radial-gradient(ellipse at 18% 24%,rgba(255,255,255,.38) 0 2px,transparent 3px 52px),
+    repeating-radial-gradient(ellipse at 82% 32%,rgba(255,255,255,.22) 0 2px,transparent 3px 64px);
+  animation:rippleDrift 7s linear infinite;
+}
+@keyframes rippleDrift{from{transform:translateX(0)}to{transform:translateX(42px)}}
+
+/* 뭍은 왼쪽 하단, 물은 오른쪽에 충분히 남김 */
+.shore-bank{
+  position:absolute;
+  left:-34px;
+  bottom:-10px;
+  width:250px;
+  height:128px;
+  border-radius:52% 48% 28px 0;
+  background:
+    radial-gradient(ellipse at 32% 28%,rgba(255,255,255,.18) 0 36px,transparent 38px),
+    linear-gradient(155deg,var(--shore1),var(--shore2));
+  box-shadow:0 18px 28px rgba(0,40,80,.28);
+  z-index:1;
+}
+.shore-bank::after{
+  content:"";
+  position:absolute;
+  right:-36px;
+  bottom:10px;
+  width:128px;
+  height:42px;
+  border-radius:50%;
+  background:rgba(0,50,95,.18);
+}
+/* 낚싯대 전체 그룹은 펭귄 손 위치에서 시작 */
+.rod-group{
+  position:absolute;
+  left:146px;
+  bottom:126px;
+  width:244px;
+  height:90px;
+  z-index:7;
+  transform-origin:0 80%;
+}
+
+.rod-handle{
+  position:absolute;
+  left:0;
+  top:57px;
+  width:42px;
+  height:14px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#8a5535,#3d2418);
+  transform:rotate(-28deg);
+  box-shadow:0 2px 5px rgba(0,0,0,.25);
+}
+
+.rod-tip{
+  position:absolute;
+  right:-4px;
+  top:-5px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#e5f7ff;
+  border:2px solid rgba(0,40,70,.25);
+  z-index:3;
+}
+
+.bobber::after{
+  display:none!important;
+}
+
+.bobber-ripple{
+  position:absolute;
+  left:453px;
+  bottom:49px;
+  width:92px;
+  height:30px;
+  border:2px solid rgba(255,255,255,.38);
+  border-radius:50%;
+  transform:translate(-50%,50%);
+  z-index:5;
+  animation:ripplePulseFixed 1.45s ease-out infinite;
+}
+.bobber-ripple::after{
+  content:"";
+  position:absolute;
+  inset:6px 14px;
+  border:2px solid rgba(255,255,255,.26);
+  border-radius:50%;
+}
+
+@keyframes bobberFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(8px) rotate(2deg)}
+}
+@keyframes ripplePulseFixed{
+  0%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+  100%{opacity:0;transform:translate(-50%,50%) scale(1.72)}
+}
+
+@keyframes penguinCastSource{
+  0%{transform:rotate(0)}
+  30%{transform:rotate(-8deg) translateY(-5px)}
+  68%{transform:rotate(4deg)}
+  100%{transform:rotate(0)}
+}
+@keyframes rodGroupCastSource{
+  0%{transform:rotate(-44deg) scale(.92)}
+  55%{transform:rotate(10deg) scale(1.04)}
+  100%{transform:rotate(0) scale(1)}
+}
+@keyframes lineCastSource{
+  0%{width:18px;height:16px;opacity:0;transform:rotate(-68deg)}
+  60%{width:124px;height:164px;opacity:.9;transform:rotate(16deg)}
+  100%{width:102px;height:150px;opacity:1;transform:rotate(7deg)}
+}
+@keyframes bobberCastSource{
+  0%{left:205px;bottom:138px;opacity:0;transform:scale(.45)}
+  58%{left:466px;bottom:72px;opacity:1;transform:scale(1.08)}
+  100%{left:442px;bottom:38px;opacity:1;transform:scale(1)}
+}
+@keyframes rippleAppearSource{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+}
+
+/* 기존 깨짐 유발 요소 숨김 */
+.fishing-screen .sky,
+.fishing-screen .lake-scene,
+.fishing-screen .mountains,
+.fishing-screen .dock,
+.fishing-screen .water{
+  display:none!important;
+}
+
+/* 기존 bobber 자체 after 물결이 남아 있으면 숨김 */
+.bobber::after{
+  display:none!important;
+}
+
+@keyframes bobberFloatNatural{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(6px) rotate(2deg)}
+}
+
+/* 캐스팅 후 최종 위치도 위 보정값과 동일하게 맞춤 */
+@keyframes bobberCastSource{
+  0%{left:205px;bottom:138px;opacity:0;transform:scale(.45)}
+  58%{left:488px;bottom:106px;opacity:1;transform:scale(1.08)}
+  100%{left:468px;bottom:74px;opacity:1;transform:scale(1)}
+}
+
+@keyframes lineCastSource{
+  0%{width:18px;height:16px;opacity:0;transform:rotate(-68deg)}
+  60%{width:112px;height:134px;opacity:.9;transform:rotate(14deg)}
+  100%{width:96px;height:118px;opacity:1;transform:rotate(4deg)}
+}
+
+@keyframes rippleAppearSource{
+  0%,70%{opacity:0;transform:translate(-50%,50%) scale(.2)}
+  100%{opacity:.75;transform:translate(-50%,50%) scale(.68)}
+}
+
+/* 낚시 화면 자연스러운 연결감 보정: 펭귄-낚싯대-줄-찌 */
+.fishing-stage{
+  left:0;
+  right:0;
+  bottom:310px;
+  height:210px;
+  z-index:4;
+}
+
+@keyframes penguinCastNatural{
+  0%{transform:rotate(0deg) translateY(0)}
+  25%{transform:rotate(-9deg) translateY(-4px)}
+  58%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0deg) translateY(0)}
+}
+
+@keyframes rodCastNatural{
+  0%{transform:rotate(-66deg) scaleX(.82)}
+  45%{transform:rotate(-18deg) scaleX(1.08)}
+  100%{transform:rotate(-29deg) scaleX(1)}
+}
+
+@keyframes lineCastNatural{
+  0%{left:265px;bottom:140px;height:18px;transform:rotate(-72deg);opacity:0}
+  55%{left:390px;bottom:74px;height:92px;transform:rotate(24deg);opacity:1}
+  100%{left:360px;bottom:92px;height:78px;transform:rotate(16deg);opacity:1}
+}
+
+@keyframes bobberCastNatural{
+  0%{left:260px;bottom:132px;opacity:0;transform:scale(.45)}
+  55%{left:402px;bottom:70px;opacity:1;transform:scale(1.12)}
+  100%{left:382px;bottom:64px;opacity:1;transform:scale(1)}
+}
+
+/* 세계지도: 섬 형태 월드맵 UI */
+.map-screen{
+  background:linear-gradient(180deg,#e7f8ff,#dff5ff)!important;
+}
+
+.island-map{}
+
+.island-node{
+  position:absolute;
+  z-index:2;
+  min-width: 180px;
+  min-height:160px;
+  border:0;
+  background:transparent;
+  color:#12314f;
+  text-align:center;
+  display:grid;
+  place-items:center;
+  padding:0;
+  filter:drop-shadow(0 12px 16px rgba(0,50,100,.18));
+}
+
+.island-node strong{
+  display:block;
+  max-width:104px;
+  margin-top:2px;
+  color:white;
+  text-shadow:0 2px 6px rgba(0,35,80,.45);
+  font-size:13px;
+  line-height:1.18;
+  word-break:keep-all;
+}
+
+.island-node small{
+  position: absolute;
+  bottom: 14px; 
+  display:inline-flex;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.86);
+  color:#4f6c86;
+  font-size:10px;
+  font-weight:900;
+}
+
+.island-node.selected .island-shape{
+  background:linear-gradient(135deg,#fff6a3,#31d489 54%,#0e9fd9);
+  border:3px solid #fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.24),0 0 24px rgba(255,235,91,.72);
+}
+
+.island-node.selected small{
+  background:#006ddb;
+  color:white;
+}
+
+.island-node.locked{
+  filter:grayscale(.25) drop-shadow(0 8px 10px rgba(0,30,70,.08));
+}
+
+.island-node.locked .island-shape{
+  background:linear-gradient(135deg,#a9c2d5,#6386a4);
+}
+
+/* 지역 상세 데이터/테마 비주얼 */
+.region-visual{
+  position:relative;
+  height:230px;
+  border-radius:28px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#9eeaff,#37bfe8);
+  box-shadow:0 14px 30px rgba(0,120,190,.12);
+}
+
+.region-visual .region-sky,
+.region-visual .region-water,
+.region-visual .region-sun,
+.region-visual .region-land,
+.region-visual .region-effect{
+  position:absolute;
+  pointer-events:none;
+}
+
+.region-visual .region-sky{
+  inset:0;
+  background:linear-gradient(180deg,var(--rv-sky1,#b9f3ff),var(--rv-sky2,#e9fbff));
+}
+
+.region-visual .region-sun{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  left:34px;
+  top:32px;
+  background:var(--rv-sun,#fff);
+  box-shadow:0 0 34px rgba(255,255,255,.45);
+}
+
+.region-visual .region-water{
+  left:0;
+  right:0;
+  bottom:0;
+  height:42%;
+  background:linear-gradient(180deg,var(--rv-water1,#43c8f0),var(--rv-water2,#0784cf));
+}
+
+.region-visual .region-water::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-radial-gradient(ellipse at 30% 30%,rgba(255,255,255,.25) 0 2px,transparent 3px 42px);
+  opacity:.55;
+}
+
+.region-visual .region-land{
+  width:280px;
+  height:130px;
+  border-radius:48% 52% 0 0;
+  background:linear-gradient(135deg,var(--rv-land1,#76d192),var(--rv-land2,#239c77));
+  filter:drop-shadow(0 10px 18px rgba(0,80,120,.16));
+}
+
+.region-visual .land-a{
+  right:-56px;
+  bottom:74px;
+  transform:rotate(-24deg);
+}
+
+.region-visual .land-b{
+  left:-62px;
+  bottom:18px;
+  transform:rotate(18deg);
+  opacity:.85;
+}
+
+.region-visual .region-effect{
+  inset:0;
+  opacity:.9;
+}
+
+/* 지역별 테마 */
+.region-visual-mist{
+  --rv-sky1:#dff7ff;--rv-sky2:#f7fdff;--rv-water1:#91ddeb;--rv-water2:#4ca7bf;--rv-land1:#c4ecd8;--rv-land2:#74bda1;--rv-sun:#ffffff;
+}
+.region-visual-mist .region-effect{
+  background:radial-gradient(circle at 35% 55%,rgba(255,255,255,.65) 0 46px,transparent 48px),radial-gradient(circle at 70% 42%,rgba(255,255,255,.35) 0 58px,transparent 60px);
+}
+
+.region-visual-moon{
+  --rv-sky1:#203c74;--rv-sky2:#7aa9e8;--rv-water1:#315fa8;--rv-water2:#162e68;--rv-land1:#7b92c8;--rv-land2:#40598d;--rv-sun:#f5f8ff;
+}
+.region-visual-moon .region-sun{left:auto;right:48px;background:#f6fbff}
+.region-visual-moon .region-effect{
+  background:radial-gradient(circle at 22% 24%,rgba(255,255,255,.26) 0 24px,transparent 26px),radial-gradient(circle at 58% 28%,rgba(255,255,255,.18) 0 3px,transparent 4px);
+}
+
+.region-visual-emerald{
+  --rv-sky1:#9defff;--rv-sky2:#e6fdff;--rv-water1:#36c8ef;--rv-water2:#078bd0;--rv-land1:#8be0a4;--rv-land2:#19a875;--rv-sun:#ffffff;
+}
+.region-visual-emerald .region-effect{
+  background:radial-gradient(circle at 50% 70%,rgba(0,190,160,.26) 0 78px,transparent 80px);
+}
+
+.region-visual-crystal{
+  --rv-sky1:#d7fbff;--rv-sky2:#ffffff;--rv-water1:#76e2ff;--rv-water2:#28a6e5;--rv-land1:#dffbff;--rv-land2:#83cdf4;--rv-sun:#ffffff;
+}
+.region-visual-crystal .region-effect{
+  background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.55) 36% 39%,transparent 40%),linear-gradient(70deg,transparent 55%,rgba(180,245,255,.65) 56% 59%,transparent 60%);
+}
+
+.region-visual-rainbow{
+  --rv-sky1:#baf2ff;--rv-sky2:#fff1cf;--rv-water1:#34c6f2;--rv-water2:#167ed8;--rv-land1:#ffe787;--rv-land2:#56ca93;--rv-sun:#fff7a6;
+}
+.region-visual-rainbow .region-effect{
+  background:linear-gradient(130deg,transparent 25%,rgba(255,91,91,.42) 26% 30%,rgba(255,221,70,.42) 31% 35%,rgba(90,220,120,.42) 36% 40%,rgba(80,170,255,.42) 41% 45%,transparent 46%);
+}
+
+.region-visual-coral{
+  --rv-sky1:#8eeaff;--rv-sky2:#ffe1d7;--rv-water1:#27c2dc;--rv-water2:#087db4;--rv-land1:#ffb3a8;--rv-land2:#ff638f;--rv-sun:#ffe8d9;
+}
+.region-visual-coral .region-effect{
+  background:radial-gradient(circle at 28% 74%,rgba(255,110,145,.4) 0 26px,transparent 28px),radial-gradient(circle at 72% 70%,rgba(255,180,120,.4) 0 34px,transparent 36px);
+}
+
+.region-visual-storm{
+  --rv-sky1:#536976;--rv-sky2:#8ba6b5;--rv-water1:#236b91;--rv-water2:#102d4a;--rv-land1:#6d7d85;--rv-land2:#2f4654;--rv-sun:#d7e0e6;
+}
+.region-visual-storm .region-effect{
+  background:linear-gradient(120deg,transparent 60%,rgba(255,230,85,.72) 61% 63%,transparent 64%),radial-gradient(circle at 65% 30%,rgba(0,0,0,.18) 0 82px,transparent 84px);
+}
+
+.region-visual-abyss{
+  --rv-sky1:#10213d;--rv-sky2:#1d4b78;--rv-water1:#123d67;--rv-water2:#06162b;--rv-land1:#365b7a;--rv-land2:#0b2038;--rv-sun:#8adfff;
+}
+.region-visual-abyss .region-effect{
+  background:radial-gradient(circle at 50% 68%,rgba(0,0,0,.35) 0 76px,transparent 78px),radial-gradient(circle at 28% 30%,rgba(94,231,255,.2) 0 30px,transparent 32px);
+}
+
+.region-visual-glacier{
+  --rv-sky1:#d8f8ff;--rv-sky2:#ffffff;--rv-water1:#98e4ff;--rv-water2:#32a6d8;--rv-land1:#ffffff;--rv-land2:#9bdcf0;--rv-sun:#ffffff;
+}
+.region-visual-glacier .region-effect{
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.75) 31% 39%,transparent 40%),radial-gradient(circle at 76% 30%,rgba(255,255,255,.72) 0 42px,transparent 44px);
+}
+
+.region-visual-atlantis{
+  --rv-sky1:#15c4d4;--rv-sky2:#75f0e3;--rv-water1:#009db6;--rv-water2:#075a86;--rv-land1:#57f0d0;--rv-land2:#0aa1c0;--rv-sun:#ffd76a;
+}
+.region-visual-atlantis .region-effect{
+  background:radial-gradient(circle at 50% 52%,rgba(255,215,106,.38) 0 58px,transparent 60px),linear-gradient(135deg,transparent 42%,rgba(255,255,255,.36) 43% 46%,transparent 47%);
+}
+
+#regionEnterBtn.is-locked{
+  background:#aebdca!important;
+  color:white!important;
+}
+
+
+/* 낚시 화면 깨짐 복구: 낚시 전용 레이아웃 강제 고정 */
+.screen.fishing-screen[data-screen="fishing"]{
+  position:relative!important;
+  min-height:100%!important;
+  height:100%!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,var(--sky1,#70dcff),var(--sky2,#d7fbff) 47%,var(--water1,#19aee5) 48%,var(--water2,#087fbd) 100%)!important;
+}
+
+.screen.fishing-screen[data-screen="fishing"]:not(.is-active){
+  display:none!important;
+}
+
+.screen.fishing-screen[data-screen="fishing"].is-active{
+  display:block!important;
+}
+
+.fishing-screen .sub-header.floating{
+  position:absolute!important;
+  top:22px!important;
+  left:22px!important;
+  right:22px!important;
+  z-index:30!important;
+  background:transparent!important;
+}
+
+.fishing-screen .sub-header.floating strong{
+  color:white!important;
+  text-shadow:0 2px 8px rgba(0,30,80,.25);
+}
+
+.fishing-screen .sub-header.floating span{
+  color:#17406a!important;
+}
+
+.fishing-screen .fishing-bg{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  display:block!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .sun-moon{
+  position:absolute!important;
+  left:58px!important;
+  top:86px!important;
+  width:74px!important;
+  height:74px!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.86)!important;
+  box-shadow:0 0 38px rgba(255,255,255,.52)!important;
+}
+
+.fishing-screen .cloud{
+  position:absolute!important;
+  width:120px!important;
+  height:42px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.45)!important;
+}
+
+.fishing-screen .cloud-a{
+  left:210px!important;
+  top:120px!important;
+}
+
+.fishing-screen .cloud-b{
+  left:-50px!important;
+  top:180px!important;
+  opacity:.55!important;
+}
+
+.fishing-screen .far-hills,
+.fishing-screen .near-hills{
+  position:absolute!important;
+  left:-8%!important;
+  right:-8%!important;
+  height:150px!important;
+  display:block!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .far-hills{
+  bottom:312px!important;
+  opacity:.45!important;
+  background:
+    radial-gradient(ellipse at 20% 100%,var(--hill1,#7fc996) 0 130px,transparent 132px),
+    radial-gradient(ellipse at 62% 100%,var(--hill1,#7fc996) 0 160px,transparent 162px),
+    radial-gradient(ellipse at 92% 100%,var(--hill1,#7fc996) 0 120px,transparent 122px)!important;
+}
+
+.fishing-screen .near-hills{
+  bottom:285px!important;
+  opacity:.9!important;
+  background:
+    radial-gradient(ellipse at 18% 100%,var(--hill2,#31a875) 0 115px,transparent 117px),
+    radial-gradient(ellipse at 72% 100%,var(--hill2,#31a875) 0 145px,transparent 147px)!important;
+}
+
+.fishing-screen .lake-surface{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  height:350px!important;
+  display:block!important;
+  background:linear-gradient(180deg,var(--water1,#19aee5),var(--water2,#087fbd))!important;
+}
+
+.fishing-screen .water-ripples{
+  position:absolute!important;
+  left:-15%!important;
+  right:-15%!important;
+  bottom:0!important;
+  height:350px!important;
+  display:block!important;
+  opacity:.45!important;
+  background:
+    repeating-radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.38) 0 2px,transparent 3px 42px),
+    repeating-radial-gradient(ellipse at 82% 30%,rgba(255,255,255,.22) 0 2px,transparent 3px 58px)!important;
+}
+
+.fishing-screen .fishing-stage{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:310px!important;
+  height:210px!important;
+  z-index:6!important;
+  display:block!important;
+  pointer-events:none!important;
+}
+
+.fishing-screen .fishing-panel{
+  position:absolute!important;
+  left:28px!important;
+  right:28px!important;
+  bottom:18px!important;
+  z-index:20!important;
+  display:block!important;
+  background:#06335e!important;
+  border-radius:28px 28px 0 0!important;
+  padding:28px 24px 72px!important;
+  box-shadow:0 -10px 24px rgba(0,40,90,.22)!important;
+}
+
+.fishing-screen .fishing-panel p{
+  color:white!important;
+  text-align:center!important;
+  margin:0 0 16px!important;
+  font-weight:900!important;
+  font-size:18px!important;
+}
+
+.fishing-screen .gauge{
+  position:relative!important;
+  display:flex!important;
+  height:24px!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+}
+
+.fishing-screen .round-action{
+  position:absolute!important;
+  left:50%!important;
+  bottom:-58px!important;
+  transform:translateX(-50%)!important;
+  z-index:21!important;
+}
+
+/* 낚시 화면 안에서 지역 상세용 요소가 생기더라도 숨김 */
+.fishing-screen .region-sky,
+.fishing-screen .region-water,
+.fishing-screen .region-sun,
+.fishing-screen .region-land,
+.fishing-screen .region-effect{
+  display:none!important;
+}
+
+
+/* 탐험 조건 ↔ 전설 물고기 간격 개선 */
+.region-condition{
+  margin-bottom:24px !important;
+}
+
+.legend-fish{
+  margin-top:24px !important;
+  margin-bottom:28px !important;
+}
+
+
+/* 전체메뉴 팝업 간격 개선 */
+.menu-list{
+  display:flex;
+  flex-direction:column;
+  gap:14px !important;
+}
+
+.menu-item{
+  
+  padding:0 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-radius:24px;
+}
+
+.menu-item .arrow,
+.menu-item i:last-child{
+  margin-left:auto;
+  opacity:.6;
+}
+
+/* 캐릭터 뒤쪽 섬/수면이 몸통을 덮지 않도록 레이어 정리 */
+.fishing-screen .near-hills{
+  z-index:3 !important;
+  opacity:.68 !important;
+}
+
+.fishing-screen .far-hills{
+  z-index:2 !important;
+}
+
+.fishing-screen .lake-surface,
+.fishing-screen .water-ripples{
+  z-index:1 !important;
+}
+
+/* 하단 GNB에 가려지지 않도록 패널을 위로 올리고 버튼을 패널 내부로 배치 */
+.fishing-screen .fishing-panel{
+  left:28px !important;
+  right:28px !important;
+  bottom:96px !important;
+  z-index:40 !important;
+  padding:24px 24px 92px !important;
+  border-radius:28px !important;
+}
+
+.fishing-screen .round-action{
+  position:absolute !important;
+  left:50% !important;
+  bottom:18px !important;
+  transform:translateX(-50%) !important;
+  z-index:50 !important;
+  width:126px !important;
+  height:126px !important;
+  display:grid !important;
+  place-items:center !important;
+  font-size:28px !important;
+  line-height:1 !important;
+}
+
+@keyframes penguinCastFull{
+  0%{transform:rotate(0deg) translateY(0)}
+  25%{transform:rotate(-7deg) translateY(-5px)}
+  58%{transform:rotate(4deg) translateY(1px)}
+  100%{transform:rotate(0deg) translateY(0)}
+}
+
+@keyframes rodCastFull{
+  0%{transform:rotate(-62deg) scaleX(.84)}
+  48%{transform:rotate(-18deg) scaleX(1.08)}
+  100%{transform:rotate(-29deg) scaleX(1)}
+}
+
+@keyframes lineCastFull{
+  0%{left:268px;bottom:170px;height:20px;transform:rotate(-70deg);opacity:0}
+  55%{left:386px;bottom:108px;height:108px;transform:rotate(24deg);opacity:1}
+  100%{left:350px;bottom:126px;height:92px;transform:rotate(16deg);opacity:1}
+}
+
+@keyframes bobberCastFull{
+  0%{left:266px;bottom:164px;opacity:0;transform:scale(.45)}
+  55%{left:394px;bottom:100px;opacity:1;transform:scale(1.12)}
+  100%{left:372px;bottom:92px;opacity:1;transform:scale(1)}
+}
+
+/* 낚시 게이지/버튼/시계 최종 조정 */
+.fishing-screen .fishing-panel .gauge{
+  height:20px !important;
+}
+
+.fishing-screen #gaugePointer{
+  animation-duration:.8s !important;
+}
+
+.fishing-screen .round-action{
+  width:80px !important;
+  height:80px !important;
+  font-size:20px !important;
+  bottom:18px !important;
+  box-shadow:0 0 0 6px rgba(255,255,255,.32),0 8px 16px rgba(0,60,150,.24) !important;
+}
+
+.fishing-screen .fishing-panel{
+  min-height:188px !important;
+  padding-bottom:72px !important;
+}
+
+.fishing-screen .gauge .best{
+  flex:.18 !important;
+}
+
+.fishing-screen .gauge .good{
+  flex:.32 !important;
+}
+
+.fishing-screen .gauge .bad{
+  flex:1.2 !important;
+}
+
+/* 낚시 화면 현재 시간 가독성 개선 */
+.fishing-screen .sub-header.floating{
+  align-items:center !important;
+}
+
+.fishing-time{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  min-width:102px;
+  height:34px;
+  padding:0 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  color:#12314f !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  letter-spacing:-.2px;
+  text-shadow:none !important;
+  box-shadow:0 6px 16px rgba(0,55,110,.12);
+  backdrop-filter:blur(8px);
+  white-space:nowrap;
+}
+
+.fishing-screen .sub-header.floating strong{
+  color:#fff !important;
+  text-shadow:0 2px 10px rgba(0,35,80,.35);
+}
+
+@media (max-width:430px){
+  .fishing-screen .round-action{
+    width:80px !important;
+    height:80px !important;
+    font-size:20px !important;
+  }
+
+  .fishing-screen .fishing-panel{
+    min-height:184px !important;
+    padding-bottom:70px !important;
+  }
+
+  .fishing-time{
+    min-width:92px;
+    height:32px;
+    padding:0 10px;
+    font-size:13px !important;
+  }
+}
+
+@media (max-width:360px){
+  .fishing-screen .round-action{
+    width:76px !important;
+    height:76px !important;
+    font-size:19px !important;
+  }
+
+  .fishing-time{
+    min-width:86px;
+    font-size:12px !important;
+  }
+}
+
+
+/* 장착중 낚싯대 선택 효과 - 레이아웃 흔들림 방지 */
+.rod-grid button.hero.is-equipped{
+  border:0 !important;
+  box-shadow:
+    inset 0 0 0 3px #ffd54a,
+    0 8px 20px rgba(255,213,74,.25) !important;
+  transform:none;
+  box-sizing:border-box;
+}
+
+
+/* 등급별 장착 카드 컬러 통일 */
+.rod-grid button.common.is-equipped{
+  border:0 !important;
+  background:#EAF4FF !important;
+  box-shadow:inset 0 0 0 3px #1E88E5,0 8px 20px rgba(30,136,229,.18) !important;
+}
+
+.rod-grid button.rare.is-equipped{
+  border:0 !important;
+  background:#EEF1FF !important;
+  box-shadow:inset 0 0 0 3px #5B7CFF,0 8px 20px rgba(91,124,255,.18) !important;
+}
+
+.rod-grid button.hero.is-equipped{
+  border:0 !important;
+  background:#F5EEFF !important;
+  box-shadow:inset 0 0 0 3px #8E44EC,0 8px 20px rgba(142,68,236,.20) !important;
+}
+
+.rod-grid button.legend.is-equipped{
+  border:0 !important;
+  background:#FFF9E8 !important;
+  box-shadow:inset 0 0 0 3px #F4C542,0 8px 20px rgba(244,197,66,.20) !important;
+}
+
+.rod-grid button.mythic.is-equipped{
+  border:0 !important;
+  background:#FFF1EA !important;
+  box-shadow:inset 0 0 0 3px #FF6B35,0 8px 20px rgba(255,107,53,.20) !important;
+}
+
+
+/* 낚싯대 선택 효과 안정화: ::after 링 방식으로 덜컹거림 제거 */
+.rod-grid button{
+  position:relative !important;
+  box-sizing:border-box !important;
+  border:1px solid var(--line) !important;
+  transform:none !important;
+  overflow:hidden;
+}
+
+.rod-grid button,
+.rod-grid button.is-equipped{
+  transform:none !important;
+}
+
+.rod-grid button.is-equipped{
+  border:1px solid var(--line) !important;
+  box-shadow:none !important;
+}
+
+/* 선택 링은 실제 카드 크기에 영향을 주지 않는 가상요소로 처리 */
+.rod-grid button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  box-shadow:inset 0 0 0 3px transparent;
+  transition:opacity .18s ease, box-shadow .18s ease;
+}
+
+/* 등급별 선택 배경 */
+.rod-grid button.normal.is-equipped{
+  background:#EAF4FF !important;
+}
+.rod-grid button.rare.is-equipped{
+  background:#EEF1FF !important;
+}
+.rod-grid button.hero.is-equipped{
+  background:#F5EEFF !important;
+}
+.rod-grid button.legend.is-equipped{
+  background:#FFF9E8 !important;
+}
+.rod-grid button.myth.is-equipped,
+.rod-grid button.mythic.is-equipped{
+  background:#FFF1EA !important;
+}
+
+/* 등급별 선택 링 */
+.rod-grid button.normal.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #1E88E5;
+}
+.rod-grid button.rare.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #5B7CFF;
+}
+.rod-grid button.hero.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #8E44EC;
+}
+.rod-grid button.legend.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #F4C542;
+}
+.rod-grid button.myth.is-equipped::after,
+.rod-grid button.mythic.is-equipped::after{
+  opacity:1;
+  box-shadow:inset 0 0 0 3px #FF6B35;
+}
+
+/* 기존 active/hover/장착 효과에서 위치가 움직이지 않도록 방지 */
+.rod-grid button:active,
+.rod-grid button:hover,
+.rod-grid button.is-equipped:hover{
+  transform:none !important;
+}
+
+/* 지역 상세: 탐험 조건 제목/본문 간격 */
+.region-condition h2,
+.card.region-condition h2{
+  margin-bottom:10px !important;
+}
+
+.region-condition p,
+.card.region-condition p{
+  margin-top:0 !important;
+}
+
+/* 지역 상세: 전설 물고기 영역과 입장 버튼 겹침 방지 */
+.screen[data-screen="region"]{
+  padding-bottom:170px !important;
+}
+
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:120px !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn,
+.screen[data-screen="region"] .bottom-primary{
+  position:sticky !important;
+  bottom:88px !important;
+  z-index:30 !important;
+  margin-top:28px !important;
+}
+
+/* 작은 화면에서 버튼과 하단 GNB 간격 보정 */
+@media (max-width:430px){
+  .screen[data-screen="region"]{
+    padding-bottom:180px !important;
+  }
+
+  .screen[data-screen="region"] .legend-fish{
+    margin-bottom:128px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn,
+  .screen[data-screen="region"] .bottom-primary{
+    bottom:92px !important;
+  }
+}
+
+
+/* 지역 상세: 입장하기 버튼 원래 크기 복구 + 과한 하단 여백 제거 */
+.screen[data-screen="region"]{
+  padding-bottom:96px !important;
+}
+
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:24px !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn,
+.screen[data-screen="region"] .bottom-primary{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:10 !important;
+
+  width:100% !important;
+  height:72px !important;
+  min-height:72px !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+
+  border-radius:28px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:22px !important;
+  font-weight:900 !important;
+}
+
+/* 이전에 추가된 sticky 설정 무력화 */
+.screen[data-screen="region"] #regionEnterBtn.is-locked{
+  position:relative !important;
+}
+
+/* 작은 화면에서도 동일한 버튼 크기 유지 */
+@media (max-width:430px){
+  .screen[data-screen="region"]{
+    padding-bottom:104px !important;
+  }
+
+  .screen[data-screen="region"] .legend-fish{
+    margin-bottom:24px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn,
+  .screen[data-screen="region"] .bottom-primary{
+    height:72px !important;
+    min-height:72px !important;
+    margin-top:24px !important;
+    margin-bottom:24px !important;
+  }
+}
+
+
+/* 지역 상세 입장하기 버튼: 공통 .bottom-primary 스타일 유지 */
+.screen[data-screen="region"] #regionEnterBtn{
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:10 !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+}
+
+/* 기존 강제 크기/폰트/라운드 덮어쓰기 제거 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary,
+.screen[data-screen="region"] .bottom-primary#regionEnterBtn{
+  height:auto !important;
+  min-height:unset !important;
+  width:100% !important;
+  border-radius:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 전설 물고기와 버튼 간격만 유지 */
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:24px !important;
+}
+
+
+/* 입장하기 버튼 = 낚싯대 탭 강화하기 버튼과 동일 사이즈 */
+.screen[data-screen="region"] #regionEnterBtn{
+  min-height:56px !important;
+  height:56px !important;
+  padding:0 20px !important;
+  margin-top:24px !important;
+  margin-bottom:24px !important;
+}
+
+
+/* 지역 상세 입장하기 버튼: 낚싯대 탭 강화하기 버튼 스타일과 동일화 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary{
+  width:100% !important;
+  height:88px !important;
+  min-height:88px !important;
+  padding:0 24px !important;
+  margin:24px 0 24px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+
+  border:0 !important;
+  border-radius:28px !important;
+  background:linear-gradient(#27a8ff,#0076e8) !important;
+  color:#fff !important;
+  font-size:28px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+}
+
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary small{
+  color:#fff !important;
+  font-size:24px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+}
+
+@media (max-width:430px){
+  .screen[data-screen="region"] #regionEnterBtn.bottom-primary{
+    height:86px !important;
+    min-height:86px !important;
+    font-size:27px !important;
+  }
+
+  .screen[data-screen="region"] #regionEnterBtn.bottom-primary small{
+    font-size:23px !important;
+  }
+}
+
+
+/* 낚시 게이지와 입질 버튼 간격 개선 */
+.fishing-panel .gauge{
+  margin-bottom:32px !important;
+}
+
+.fishing-panel{
+  gap:0 !important;
+}
+
+
+/* 세계지도 섬 크기/간격 반응형 보정
+   - 위치 좌표는 파일 하단의 "세계지도 섬 노드 중앙 기준 정렬 보정" 블록에서만 관리 */
+
+.island-node .island-shape{
+  inset:8px 5px 22px !important;
+}
+
+.island-node i{
+  width:clamp(30px, 9vw, 38px) !important;
+  height:clamp(30px, 9vw, 38px) !important;
+  font-size:clamp(18px, 5.2vw, 22px) !important;
+}
+
+.island-node small{
+  font-size:clamp(9px, 2.8vw, 11px) !important;
+  padding:3px 7px !important;
+}
+
+.island-node.selected{
+  z-index:5 !important;
+}
+
+.island-node.locked{
+  z-index:3 !important;
+}
+
+@media (max-width:380px){
+  .island-map{
+    height:650px !important;
+    min-height:650px !important;
+  }
+
+  .island-node{
+    width:86px !important;
+  }
+}
+
+
+/* =========================================================
+   지역 상세 입장하기 버튼
+   - 낚싯대 화면의 강화하기 버튼(.bottom-primary)과 동일 스타일
+   - CSS만 수정
+   ========================================================= */
+
+/* 지역 화면에서는 absolute 고정값을 해제하고 일반 흐름에 배치 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary{
+  position:static !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+
+  width:100% !important;
+  height:56px !important;
+  min-height:56px !important;
+  margin:24px 0 24px !important;
+  padding:0 20px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+
+  border:0 !important;
+  border-radius:16px !important;
+  background:linear-gradient(#2aa8ff,#006de0) !important;
+  color:#fff !important;
+  font-size:inherit !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+}
+
+/* 입장권 -1 텍스트도 강화하기 버튼 내부 요소처럼 자연스럽게 정렬 */
+.screen[data-screen="region"] #regionEnterBtn.bottom-primary small{
+  margin-left:8px !important;
+  color:#fff !important;
+  font-size:inherit !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+}
+
+/* 전설 물고기 카드와 버튼 사이 공통 간격만 유지 */
+.screen[data-screen="region"] .legend-fish{
+  margin-bottom:0 !important;
+}
+
+/* 하단 GNB와 겹치지 않도록 지역 화면 하단 여백만 확보 */
+.screen[data-screen="region"]{
+  padding-bottom:110px !important;
+}
+
+
+/* region-condition 제거 */
+.screen[data-screen="region"] .region-condition{
+  display:none !important;
+}
+
+/* legend-fish 상단 여백 */
+.screen[data-screen="region"] .legend-fish{
+  margin-top:12px !important;
+}
+
+
+/* 도감 물고기 아이콘 가독성 개선 */
+.fish-grid span{
+  min-height:44px;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:1px;
+  font-size:34px !important;
+  line-height:1;
+  letter-spacing:-6px;
+}
+
+.fish-grid button strong{
+  margin-top:8px;
+}
+
+/* 물고기 상세 아이콘이 2글자 조합이어도 자연스럽게 보이도록 보정 */
+.fish-detail-visual div{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  letter-spacing:-10px;
+}
+
+/* 200종 WEBP 물고기 에셋 반영 */
+.fish-grid .fish-asset{width:58px;height:58px;object-fit:contain;display:block;margin:0 auto 6px;filter:drop-shadow(0 5px 8px rgba(0,80,150,.14))}
+.fish-grid button[data-grade="희귀"] .fish-asset{filter:drop-shadow(0 6px 10px rgba(52,152,219,.24))}
+.fish-grid button[data-grade="영웅"] .fish-asset{filter:drop-shadow(0 6px 12px rgba(142,68,173,.28))}
+.fish-grid button[data-grade="전설"] .fish-asset{filter:drop-shadow(0 8px 14px rgba(245,168,0,.35))}
+.fish-detail-visual div{width:168px;height:168px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:0;letter-spacing:0}
+.fish-detail-asset{width:168px;height:168px;object-fit:contain;display:block;filter:drop-shadow(0 14px 20px rgba(0,40,90,.28))}
+
+/* 태초의 심해 테마 */
+.fishing-screen.region-origin{--sky1:#081120;--sky2:#1c2f66;--hill1:#1b2457;--hill2:#101936;--water1:#182b74;--water2:#050916;--accent:#7a5cff}
+.region-visual-origin{position:relative;overflow:hidden;background:radial-gradient(circle at 20% 22%,rgba(255,255,255,.92) 0 2px,transparent 3px),radial-gradient(circle at 74% 18%,rgba(122,92,255,.5) 0 42px,transparent 44px),radial-gradient(circle at 50% 72%,#1d4fff 0 86px,transparent 88px),linear-gradient(145deg,#081120,#19245a 45%,#050916 100%)!important}
+.island-node.isle-origin .island-shape{background:linear-gradient(135deg,#1d4fff,#7a5cff 55%,#050916)!important}
+.island-node.isle-origin.selected .island-shape{background:linear-gradient(135deg,#f7c948,#7a5cff 45%,#1d4fff 80%,#050916)!important}
+
+/* =========================================================
+   Galaxy Fold / 초소형 디바이스 대응 보정
+   - 접은 폴드처럼 CSS viewport 폭이 280~320px인 환경에서
+     카드, 탭, 도감, 낚싯대, 하단 GNB가 잘리지 않도록 처리
+   ========================================================= */
+@media (max-width: 340px){
+  html,
+  body{
+    width:100%;
+    min-width:0;
+    overflow-x:hidden;
+  }
+
+  .app-shell{
+    padding:0 !important;
+  }
+
+  .device{
+    width:100vw !important;
+    max-width:none !important;
+    height:100dvh !important;
+    min-height:100dvh !important;
+    border-radius:0 !important;
+    border:0 !important;
+  }
+
+  .screen{
+    padding:14px 10px 94px !important;
+    overflow-x:hidden !important;
+  }
+
+  .card{
+    padding:13px !important;
+    border-radius:18px !important;
+  }
+
+  /* 홈 상단 프로필 */
+  .home-hero{
+    margin:-14px -10px 12px !important;
+    padding:18px 12px 16px !important;
+    gap:8px !important;
+    border-radius:0 0 22px 22px !important;
+  }
+
+  .profile{
+    min-width:0 !important;
+    gap:8px !important;
+  }
+
+  .penguin{
+    flex:0 0 56px !important;
+    width:56px !important;
+    height:56px !important;
+    border-radius:18px !important;
+    font-size:34px !important;
+  }
+
+  .profile-info{
+    min-width:0 !important;
+    width:auto !important;
+    flex:1 1 auto !important;
+    gap:4px !important;
+  }
+
+  .profile-info strong{
+    max-width:140px !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    font-size:14px !important;
+  }
+
+  .profile-info span,
+  .profile-info small{
+    font-size:10px !important;
+  }
+
+  .progress{
+    height:9px !important;
+  }
+
+  .header-actions{
+    flex:0 0 auto !important;
+    flex-direction:column !important;
+    gap:5px !important;
+  }
+
+  .header-actions button{
+    width:30px !important;
+    height:30px !important;
+    border-radius:10px !important;
+    font-size:14px !important;
+  }
+
+  /* 2열 고정 영역을 1열로 전환 */
+  .wallet-grid,
+  .quick-grid,
+  .button-row{
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+  }
+
+  .wallet-grid article{
+    padding:11px 12px !important;
+    border-radius:16px !important;
+  }
+
+  .wallet-grid span{
+    font-size:23px !important;
+  }
+
+  .fish-cta{
+    min-height:82px !important;
+    margin:10px 0 !important;
+    border-radius:20px !important;
+  }
+
+  .fish-cta span{
+    font-size:28px !important;
+  }
+
+  .fish-cta strong{
+    font-size:19px !important;
+  }
+
+  .quick-grid button{
+    padding:13px !important;
+    border-radius:16px !important;
+  }
+
+  .event-banner{
+    min-height:68px !important;
+    padding:13px !important;
+    border-radius:18px !important;
+  }
+
+  .event-banner b{
+    right:12px !important;
+    font-size:38px !important;
+  }
+
+  /* 미션/상점/업적 리스트 */
+  .mission-list li{
+    grid-template-columns:22px minmax(0,1fr) auto !important;
+    gap:5px !important;
+    font-size:12px !important;
+  }
+
+  .mission-list em{
+    padding:3px 7px !important;
+    font-size:10px !important;
+    white-space:nowrap !important;
+  }
+
+  .task-list article,
+  .shop-list article,
+  .achievement-list article,
+  .screen[data-screen="mission"] .task-list article{
+    grid-template-columns:1fr !important;
+    align-items:stretch !important;
+    gap:8px !important;
+    padding:12px !important;
+  }
+
+  .task-list article button,
+  .shop-list article button,
+  .achievement-list article button,
+  .screen[data-screen="mission"] .task-list article button{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .task-list progress,
+  .screen[data-screen="mission"] .task-list article progress{
+    width:100% !important;
+  }
+
+  /* 탭은 줄바꿈 대신 가로 스크롤 */
+  .tabs,
+  .tabs.wrap,
+  .mission-tabs,
+  .shop-tabs,
+  .collection-tabs,
+  .achievement-tabs,
+  .ranking-tabs{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    gap:6px !important;
+    padding-bottom:2px !important;
+    scrollbar-width:none !important;
+    -webkit-overflow-scrolling:touch !important;
+  }
+
+  .tabs::-webkit-scrollbar,
+  .mission-tabs::-webkit-scrollbar,
+  .shop-tabs::-webkit-scrollbar,
+  .collection-tabs::-webkit-scrollbar,
+  .achievement-tabs::-webkit-scrollbar,
+  .ranking-tabs::-webkit-scrollbar{
+    display:none !important;
+  }
+
+  .tabs button,
+  .mission-tabs button,
+  .shop-tabs button,
+  .collection-tabs button,
+  .achievement-tabs button,
+  .ranking-tabs button{
+    flex:0 0 auto !important;
+    min-width:64px !important;
+    height:34px !important;
+    padding:0 10px !important;
+    font-size:11px !important;
+    white-space:nowrap !important;
+  }
+
+  /* 도감 */
+  .collection-head{
+    flex-direction:column !important;
+    gap:10px !important;
+    text-align:center !important;
+  }
+
+  .collection-head .donut{
+    flex:0 0 96px !important;
+    width:96px !important;
+    height:96px !important;
+  }
+
+  .donut b{
+    font-size:24px !important;
+  }
+
+  .donut span{
+    font-size:11px !important;
+  }
+
+  .fish-grid,
+  .rod-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+
+  .fish-grid button,
+  .rod-grid button{
+    min-width:0 !important;
+    min-height:104px !important;
+    padding:8px !important;
+    border-radius:16px !important;
+  }
+
+  .fish-grid span{
+    min-height:38px !important;
+    font-size:28px !important;
+    letter-spacing:-5px !important;
+  }
+
+  .fish-grid .fish-asset{
+    width:48px !important;
+    height:48px !important;
+  }
+
+  .fish-grid strong,
+  .rod-grid strong{
+    font-size:11px !important;
+    line-height:1.25 !important;
+    min-height:auto !important;
+  }
+
+  .fish-grid small,
+  .rod-grid small{
+    font-size:10px !important;
+  }
+
+  /* 물고기 상세 */
+  .fish-detail-visual{
+    min-height:220px !important;
+    padding:14px !important;
+  }
+
+  .fish-detail-visual div,
+  .fish-detail-asset{
+    width:128px !important;
+    height:128px !important;
+  }
+
+  .detail-table dl{
+    grid-template-columns:72px 1fr !important;
+    gap:8px !important;
+    font-size:12px !important;
+  }
+
+  /* 지역/낚싯대 상세 */
+  .region-summary,
+  .equipped-card{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+    text-align:center !important;
+  }
+
+  .region-visual{
+    height:168px !important;
+    border-radius:20px !important;
+  }
+
+  .rod-img{
+    height:116px !important;
+    border-radius:16px !important;
+    font-size:54px !important;
+  }
+
+  .screen[data-screen="rod"]{
+    padding-bottom:116px !important;
+  }
+
+  /* 랭킹 */
+  .ranking-list li{
+    grid-template-columns:28px 34px minmax(0,1fr) auto !important;
+    gap:7px !important;
+    padding:10px !important;
+  }
+
+  .ranking-list li > span{
+    font-size:25px !important;
+  }
+
+  .ranking-list strong,
+  .ranking-list small,
+  .ranking-list em{
+    font-size:11px !important;
+  }
+
+  /* 낚시 화면 */
+  .lake-scene{
+    inset:62px 0 160px !important;
+  }
+
+  .penguin-fishing{
+    left:46px !important;
+    bottom:132px !important;
+    font-size:72px !important;
+  }
+
+  .rod-line{
+    left:122px !important;
+    bottom:202px !important;
+    width:120px !important;
+  }
+
+  .bobber{
+    left:228px !important;
+    bottom:112px !important;
+  }
+
+  .fishing-panel{
+    left:10px !important;
+    right:10px !important;
+    bottom:14px !important;
+    padding:13px !important;
+    border-radius:20px !important;
+  }
+
+  .gauge{
+    margin:0 4px 14px !important;
+  }
+
+  .round-action{
+    width:90px !important;
+    height:90px !important;
+    font-size:21px !important;
+  }
+
+  /* 하단 GNB */
+  .bottom-nav{
+    height:68px !important;
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .bottom-nav button{
+    min-width:0 !important;
+    border-radius:12px !important;
+    font-size:16px !important;
+  }
+
+  .bottom-nav span{
+    font-size:9px !important;
+    letter-spacing:-.5px !important;
+  }
+
+  .toast{
+    left:10px !important;
+    right:10px !important;
+    bottom:78px !important;
+  }
+}
+
+@media (max-width: 300px){
+  .screen{
+    padding-left:8px !important;
+    padding-right:8px !important;
+  }
+
+  .home-hero{
+    margin-left:-8px !important;
+    margin-right:-8px !important;
+  }
+
+  .profile-info strong{
+    max-width:118px !important;
+  }
+
+  .fish-grid,
+  .rod-grid{
+    gap:6px !important;
+  }
+
+  .bottom-nav span{
+    font-size:8px !important;
+  }
+}
+
+/* =========================================================
+   세계지도 섬 노드 중앙 기준 정렬 보정
+   - 좌표를 화면 좌측 기준(%)이 아니라 맵 중앙(50%) + offset 기준으로 배치
+   - 디바이스 폭이 줄거나 늘어도 전체 섬 배치가 가운데를 기준으로 유지됨
+   ========================================================= */
+
+.island-map .island-node{
+  left:calc(50% + var(--map-x, 0px)) !important;
+  transform:translateX(-50%) !important;
+}
+
+.island-map .island-node.isle-atlantis{--map-x:clamp(-44px, -11vw, -32px); top:4% !important;}
+.island-map .island-node.isle-origin{--map-x:clamp(-44px, -11vw, -32px); }
+.island-map .island-node.isle-glacier{--map-x:clamp(34px, 11vw, 52px); top:13% !important;}
+.island-map .island-node.isle-abyss{--map-x:clamp(-126px, -31vw, -92px); top:15% !important;}
+.island-map .island-node.isle-storm{--map-x:clamp(70px, 20vw, 96px); top:29% !important;}
+.island-map .island-node.isle-coral{--map-x:clamp(-42px, -10vw, -28px); top:35% !important;}
+.island-map .island-node.isle-rainbow{--map-x:clamp(42px, 13vw, 62px); top:47% !important;}
+.island-map .island-node.isle-crystal{--map-x:clamp(-122px, -30vw, -88px); top:50% !important;}
+.island-map .island-node.isle-moon{--map-x:clamp(-36px, -8vw, -22px); top:62% !important;}
+.island-map .island-node.isle-emerald{--map-x:clamp(48px, 14vw, 68px); top:73% !important;}
+.island-map .island-node.isle-mist{--map-x:clamp(-122px, -30vw, -88px); top:77% !important;}
+
+/* Galaxy Fold 접은 화면처럼 320px 내외에서는 좌우 여백을 더 안전하게 확보 */
+@media (max-width:340px){
+  .island-map .island-node{
+    width:82px !important;
+    min-height:76px !important;
+  }
+
+  .island-map .island-node.isle-atlantis{--map-x:-24px; top:4% !important;}
+  .island-map .island-node.isle-origin{--map-x:-24px; }
+  .island-map .island-node.isle-glacier{--map-x:48px; top:14% !important;}
+  .island-map .island-node.isle-abyss{--map-x:-78px; top:16% !important;}
+  .island-map .island-node.isle-storm{--map-x:74px; top:31% !important;}
+  .island-map .island-node.isle-coral{--map-x:-18px; top:37% !important;}
+  .island-map .island-node.isle-rainbow{--map-x:64px; top:49% !important;}
+  .island-map .island-node.isle-crystal{--map-x:-74px; top:52% !important;}
+  .island-map .island-node.isle-moon{--map-x:-12px; top:64% !important;}
+  .island-map .island-node.isle-emerald{--map-x:64px; top:75% !important;}
+  .island-map .island-node.isle-mist{--map-x:-72px; top:79% !important;}
+}
+
+/* =========================================================
+   세계지도 섬 위치 보정
+   - 섬 배치가 전체적으로 좌측으로 쏠려 보여서
+     디바이스 폭에 따라 자연스럽게 우측으로 이동
+   ========================================================= */
+.screen[data-screen="map"] .island-map .island-node{
+  margin-left:clamp(20px, 6vw, 28px) !important;
+}
+
+@media (max-width:380px){
+  .screen[data-screen="map"] .island-map .island-node{
+    margin-left:22px !important;
+  }
+}
+
+/* =========================================================
+   결과 화면 팝업 스타일 전환
+   - 기존 전체 화면 결과를 딤 처리된 모달 팝업 형태로 변경
+   - 하단 GNB 위로 떠 보이도록 z-index 보정
+   ========================================================= */
+.result-screen{
+  display:none!important;
+  inset:0;
+  padding:18px!important;
+  overflow:hidden!important;
+  background:rgba(3,22,52,.58)!important;
+  color:var(--ink)!important;
+  z-index:80!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.result-screen.is-active{
+  display:grid!important;
+  place-items:center!important;
+}
+.result-screen::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(71,190,255,.34),transparent 34%),
+    linear-gradient(180deg,rgba(0,97,190,.18),rgba(1,14,42,.52));
+  pointer-events:none;
+}
+.result-card{
+  position:relative;
+  z-index:1;
+  width:min(100%,338px)!important;
+  max-height:calc(100vh - 52px);
+  overflow:auto;
+  text-align:center!important;
+  background:#fff!important;
+  color:var(--ink)!important;
+  border-radius:30px!important;
+  padding:24px 20px 20px!important;
+  box-shadow:0 28px 70px rgba(0,22,68,.38), inset 0 0 0 1px rgba(255,255,255,.7)!important;
+  animation:resultPopupIn .22s ease-out;
+}
+@keyframes resultPopupIn{
+  from{opacity:0;transform:translateY(18px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.result-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:116px;
+  border-radius:30px 30px 42px 42px;
+  background:linear-gradient(135deg,#37b7ff,#0077e6);
+  z-index:-1;
+}
+.result-card.is-fail::before{
+  background:linear-gradient(135deg,#778da9,#34506f);
+}
+.result-card h1{
+  display:inline-grid!important;
+  place-items:center;
+  min-height:48px;
+  margin:0 auto 18px!important;
+  padding:0 26px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.22)!important;
+  color:#fff!important;
+  font-size:22px!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+.fish-illust,
+.result-fish{
+  place-items:center!important;
+}
+.result-card.is-fail .fish-illust,
+.result-card.is-fail .result-fish{
+  filter:drop-shadow(0 12px 18px rgba(0,41,90,.14)) grayscale(.08)!important;
+}
+.result-card .badge,
+.result-judge{
+  display:inline-grid;
+  place-items:center;
+  min-width:70px;
+  height:30px;
+  margin:0 auto 8px!important;
+  padding:0 12px!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#4dc7ff,#1477ff)!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+.result-card.is-fail .badge,
+.result-card.is-fail .result-judge{
+  background:#7d8da3!important;
+}
+.result-card h2{
+  margin:0!important;
+  color:var(--ink)!important;
+  font-size:26px!important;
+  line-height:1.18!important;
+  font-weight:900!important;
+}
+.result-card .grade,
+.result-grade{
+  display:inline-grid!important;
+  place-items:center!important;
+  height:32px!important;
+  min-width:58px;
+  margin:8px auto 18px!important;
+  padding:0 14px!important;
+  border-radius:999px!important;
+  background:var(--rare)!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:800!important;
+}
+.result-card.is-fail .grade,
+.result-card.is-fail .result-grade{
+  background:#7d5cff!important;
+}
+.reward-list{
+  margin:0 0 18px!important;
+  padding:8px 14px!important;
+  background:#f7fbff!important;
+  color:var(--ink)!important;
+  border:1px solid #e5f0f8!important;
+  border-radius:22px!important;
+  text-align:left!important;
+  box-shadow:none!important;
+}
+.reward-list li{
+  min-height:54px;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px;
+  padding:10px 2px!important;
+  border-bottom:1px solid #e3edf5!important;
+  font-size:17px!important;
+}
+.reward-list li:last-child{border-bottom:0!important}
+.reward-list b{font-weight:900!important;color:#071f42!important}
+.reward-list span{font-size:15px!important;color:#6d7f99!important;white-space:nowrap}
+.result-card .button-row{
+  display:grid!important;
+  grid-template-columns:1fr 1fr;
+  gap:12px!important;
+  margin:0!important;
+}
+.result-card.is-fail .button-row{grid-template-columns:1fr!important}
+.result-card .button-row button,
+.result-card .primary,
+.result-card .secondary{
+  min-height:56px!important;
+  border-radius:18px!important;
+  font-size:18px!important;
+  font-weight:900!important;
+}
+.result-card .primary{background:linear-gradient(#2aa8ff,#0074e8)!important;color:#fff!important}
+.result-card .secondary{background:linear-gradient(#ffc94a,#ff9600)!important;color:#fff!important}
+
+
+/* profile penguin image */
+.profile .penguin{
+  background: #fff url('../images/penguin-profile-148x148.webp') center/contain no-repeat;
+  min-width: 74px;
+  width:74px;
+  height:74px;
+  border-radius:25%;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  font-size:0;
+  overflow:hidden;
+}
+
+.header-actions .icon_bell { 
+  background: url('../images/icon_bell.webp') center no-repeat;
+  background-size: 90% auto;
+  width:40px;
+  height:40px;
+}
+.header-actions .icon_bell.on { 
+  background: url('../images/icon_bell_on.webp') center no-repeat;
+  background-size: 90% auto;
+}
+
+.header-actions .icon_menu { 
+  background: url('../images/icon_menu.webp') center no-repeat;
+  background-size: 130% auto;
+  width:40px;
+  height:40px;
+}
+
+.wallet-grid span.coin {
+  background: url('../images/icon_worm.webp') center no-repeat;
+  background-size: 100% auto;
+  width:50px;
+  height:50px;
+}
+.wallet-grid .coin-text .sub-text { font-size: 16px; }
+
+.wallet-grid span.resource {
+  background: url('../images/icon_resource.webp') center no-repeat;
+  background-size: 90% auto;
+  width:50px;
+  height:50px;
+}
+
+.wallet-grid .coin-text .sub-text,
+.wallet-grid .resource-text .sub-text { font-size: 18px;}
+
+
+.map-card {
+  position: relative;
+  width: 100%;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 상단 텍스트 영역 */
+.map-info {
+  position: relative;
+  min-height: 340px;
+  z-index: 2;
+  margin-top: 10px;
+  color: #fff;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.map-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(0, 38, 45, 0.65);
+  font-size: 11px;
+}
+
+.map-title {
+  margin: 5px 0;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.map-progress { position: absolute; top: 0; right: 0; display: inline-flex; align-items: center; border-radius: 999px; background: rgba(0, 38, 45, 0.72); font-size: 13px; font-weight: 600; }
+.map-progress span.progress-text { position: relative; flex: 1; padding: 5px 10px; }
+.map-progress span.progress-text:after { content:''; position: absolute; top: 50%; left: 0; width: 1px; height: 10px; margin-top: -4px; background: #fff; }
+.map-progress span.progress-text:first-child:after { display: none; }
+.map-progress span, .map-progress strong { font-weight: 400; }
+.map-progress span.progress-text.collection { min-width: 85px; }
+
+/* 펭귄 이미지 */
+.map-character {
+  position: absolute;
+  left: 22px;
+  bottom: 36px;
+  z-index: 2;
+  width: 58%;
+  max-width: 360px;
+}
+
+.map-character img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* === Home map viewport fixed-angle final override ===
+   맵 일러스트는 홈 전체 배경이 아니라 .map-card 영역에만 적용합니다.
+   background-size:100% auto + aspect-ratio로 디바이스가 달라도 같은 앵글을 유지합니다. */
+.screen[data-screen="home"]{
+  background-image:none!important;
+  background-color:#eaf6fa;
+  background-size:auto;
+  background-position:initial;
+}
+.screen[data-screen="home"]::before{content:none!important;}
+
+.map-card{
+  position:relative;
+  width:100%;
+  aspect-ratio:560 / 760;
+  min-height:auto;
+  margin:10px 0 0;
+  border-radius:0;
+  overflow:hidden;
+  background-repeat:no-repeat;
+  background-size:100% auto;
+}
+
+.map-card .map-info{
+  position:relative;
+  z-index:2;
+  min-height:0;
+  margin:0;
+  padding:14px 10px 0;
+}
+.map-card .map-title{
+  margin-top:5px;
+  font-size:clamp(28px, 7.2vw, 42px);
+  line-height:1.12;
+  white-space:nowrap;
+}
+.map-card .map-progress{
+  top:14px;
+  right:10px;
+  z-index:3;
+}
+.map-card .fish-cta{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  z-index:4;
+  width:calc(100% - 60px);
+  max-width:460px;
+  margin:0;
+  transform:translateX(-50%);
+  background:url("../images/icon_fishing_button.webp") center / 100% auto no-repeat;
+}
+.mission-card{
+  margin-top:10px;
+}
+.event-banner{
+  margin-bottom:14px;
+}
+@media (max-width:360px){
+  .map-card .map-title{font-size:26px;}
+  .map-card .map-progress{font-size:12px;}
+  .map-card .fish-cta{width:calc(100% - 44px);}
+}
+
+
+/* ChatGPT overlap improvement */
+.map-card::after{height:80px !important;bottom:0;background:linear-gradient(to bottom, rgba(234,246,250,0) 0%, rgba(234,246,250,.35) 55%, #eaf6fa 100%) !important;}
+.mission-card,.today-mission,.home-mission{position:relative;z-index:5;}
+
+
+/* === ChatGPT final map layout fix: CTA/mission separation + fixed penguin angle ===
+   - map-card uses the original map image ratio crop point that keeps penguin/fishing scene visible.
+   - fishing CTA stays inside map-card but has enough bottom space.
+   - mission card no longer overlaps the CTA.
+*/
+.map-card{
+  aspect-ratio:853 / 1280 !important;
+  background-size:100% auto !important;
+  overflow:hidden !important;
+  margin: 10px -10px;
+  padding-bottom:0 !important;
+  width: calc(100% + 20px);
+}
+
+/* 페이드가 펭귄/버튼을 가리지 않도록 제거 */
+.map-card::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:80px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #eaf6fa,
+            rgba(234,246,250,0)
+        );
+}
+
+.map-card::after {
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:120px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(234,246,250,0),
+            #eaf6fa
+        );
+}
+
+/* 미션 카드는 버튼과 겹치지 않도록 음수 마진 제거 */
+.mission-card,
+.today-mission,
+.home-mission{
+  position:relative !important;
+  z-index:5 !important;
+  margin-top:16px !important;
+}
+
+/* 작은 화면에서는 버튼 여백만 살짝 줄임 */
+@media (max-width:360px){
+  .map-card{
+    aspect-ratio:853 / 1260 !important;
+  }
+  .map-card .fish-cta{
+    bottom:22px !important;
+  }
+  .mission-card,
+  .today-mission,
+  .home-mission{
+    margin-top:14px !important;
+  }
+}
+
+
+/* island image assets */
+.island-node .island-image{
+ position:absolute;
+ inset:0;
+ background-position:center;
+ background-repeat:no-repeat;
+ background-size:contain;
+ z-index:-1;
+}
+.island-node .island-shape{opacity:0;}
+.isle-mist.island-node small { margin-left: -20px; }
+.isle-moon.island-node small { bottom: 20px; margin-left: -29px; }
+.isle-emerald.island-node small { margin-left: -43px; }
+.isle-crystal.island-node small { margin-left: -22px; }
+.isle-rainbow.island-node small { bottom: 26px; margin-left: -32px; }
+.isle-coral.island-node small { margin-left: -22px; }
+.isle-storm.island-node small { bottom: 21px; margin-left: -29px; }
+.isle-glacier.island-node small { margin-left: -22px; }
+.isle-abyss.island-node small { bottom: 41px; margin-left: -32px; }
+.isle-origin.island-node small { bottom: 25px; margin-left: -27px; }
+.island-node.isle-mist .island-image{background-image:url('../images/map/img_island_n1.webp');}
+.island-node.isle-moon .island-image{background-image:url('../images/map/img_island_n2.webp');}
+.island-node.isle-emerald .island-image{background-image:url('../images/map/img_island_n3.webp');}
+.island-node.isle-crystal .island-image{background-image:url('../images/map/img_island_n4.webp');}
+.island-node.isle-rainbow .island-image{background-image:url('../images/map/img_island_n6.webp');}
+.island-node.isle-coral .island-image{background-image:url('../images/map/img_island_n5.webp');}
+.island-node.isle-storm .island-image{background-image:url('../images/map/img_island_n7.webp');}
+.island-node.isle-glacier .island-image{background-image:url('../images/map/img_island_n8.webp');}
+.island-node.isle-abyss .island-image{background-image:url('../images/map/img_island_n9.webp');}
+.island-node.isle-origin .island-image,
+.island-node.isle-atlantis .island-image{background-image:url('../images/map/img_island_n10.webp');}
+
+/* =========================================================
+   세계지도 섬 겹침 방지 레이아웃
+   - 기존 absolute 좌표 배치를 그리드 배치로 전환
+   - island-image 확대 상태에서도 섬끼리 겹치지 않도록 간격 확보
+   - 이미지 안에 섬 이름/번호가 포함되어 있으므로 strong 텍스트는 숨김 유지
+   ========================================================= */
+.screen[data-screen="map"] .world-map.island-map{
+  position:relative !important;
+  height:auto !important;
+  min-height:1280px !important;
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  align-items:start !important;
+  gap:34px 8px !important;
+  padding:24px 10px 140px !important;
+  overflow:visible !important;
+}
+
+.screen[data-screen="map"] .island-map .island-node{
+  position:relative !important;
+  left:auto !important;
+  top:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  margin-left:0 !important;
+  justify-self:center !important;
+  min-width:0 !important;
+  height:auto !important;
+  min-height:178px !important;
+  aspect-ratio:1 / 1 !important;
+  display:block !important;
+  filter:drop-shadow(0 10px 14px rgba(0,50,100,.16));
+}
+
+.screen[data-screen="map"] .island-map .island-node strong{
+  display:none !important;
+}
+
+/* 지도 진행 순서: 위에서 아래로 10 → 1 */
+.screen[data-screen="map"] .island-map .island-node.isle-origin{order:1;}
+.screen[data-screen="map"] .island-map .island-node.isle-abyss{order:2;}
+.screen[data-screen="map"] .island-map .island-node.isle-glacier{order:3;}
+.screen[data-screen="map"] .island-map .island-node.isle-storm{order:4;}
+.screen[data-screen="map"] .island-map .island-node.isle-coral{order:5;}
+.screen[data-screen="map"] .island-map .island-node.isle-rainbow{order:6;}
+.screen[data-screen="map"] .island-map .island-node.isle-crystal{order:7;}
+.screen[data-screen="map"] .island-map .island-node.isle-moon{order:8;}
+.screen[data-screen="map"] .island-map .island-node.isle-emerald{order:9;}
+.screen[data-screen="map"] .island-map .island-node.isle-mist{order:10;}
+
+@media (max-width:360px){
+  .screen[data-screen="map"] .world-map.island-map{
+    min-height:1200px !important;
+    gap:28px 4px !important;
+    padding-left:6px !important;
+    padding-right:6px !important;
+  }
+  .screen[data-screen="map"] .island-map .island-node{
+    width:46vw !important;
+    min-height:162px !important;
+  }
+  .screen[data-screen="map"] .island-map .island-node.isle-origin,
+  .screen[data-screen="map"] .island-map .island-node.isle-mist{
+    width:60vw !important;
+  }
+}
+
+/* =========================================================
+   세계지도 탐험형 랜덤 배치 최종 보정
+   - 그리드 정렬 느낌을 제거하고 1 → 10 순서가 지그재그로 이어지도록 배치
+   - island-image 확대 상태에서도 섬끼리 겹치지 않도록 세로 간격 확보
+   ========================================================= */
+.screen[data-screen="map"] .world-map.island-map{
+  position:relative !important;
+  display:block !important;
+  height:2060px !important;
+  min-height:2060px !important;
+  padding:0 0 120px !important;
+  overflow:visible !important;
+}
+
+.screen[data-screen="map"] .island-map .island-node{
+  position:absolute !important;
+  left:calc(50% + var(--path-x, 0px)) !important;
+  top:var(--path-y, 0px) !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:translateX(-50%) !important;
+  margin:0 !important;
+  min-width:0 !important;
+  height:auto !important;
+  min-height:min(54vw, 220px) !important;
+  aspect-ratio:1 / 1 !important;
+  display:block !important;
+  z-index:2 !important;
+}
+
+/* 진행 순서: 아래 1번에서 시작해 지그재그로 위 10번까지 탐험하는 느낌 */
+.screen[data-screen="map"] .island-map .island-node.isle-origin{width:310px;--path-x:-70px; --path-y:0px;}
+.screen[data-screen="map"] .island-map .island-node.isle-abyss{width:260px;--path-x:66px; --path-y:285px;}
+.screen[data-screen="map"] .island-map .island-node.isle-glacier{width:240px;--path-x:-70px; --path-y:525px;}
+.screen[data-screen="map"] .island-map .island-node.isle-storm{width:200px;--path-x:74px; --path-y:745px;}
+.screen[data-screen="map"] .island-map .island-node.isle-coral{width:200px;--path-x:88px; --path-y:1130px;}
+.screen[data-screen="map"] .island-map .island-node.isle-rainbow{width:210px;--path-x:-75px; --path-y:944px;}
+.screen[data-screen="map"] .island-map .island-node.isle-crystal{width:190px;--path-x:-78px; --path-y:1300px;}
+.screen[data-screen="map"] .island-map .island-node.isle-emerald{width:230px;--path-x:78px; --path-y:1470px;}
+.screen[data-screen="map"] .island-map .island-node.isle-moon{width:205px;--path-x:-78px; --path-y:1660px;}
+.screen[data-screen="map"] .island-map .island-node.isle-mist{width:235px;--path-x:74px; --path-y:1815px;}
+
+@media (max-width:360px){
+  .screen[data-screen="map"] .world-map.island-map{
+    height:1900px !important;
+    min-height:1900px !important;
+  }
+  .screen[data-screen="map"] .island-map .island-node{
+    width:52vw !important;
+    min-height:52vw !important;
+  }
+  .screen[data-screen="map"] .island-map .island-node.isle-origin{
+    width:58vw !important;
+    min-height:58vw !important;
+  }
+  .screen[data-screen="map"] .island-map .island-node.isle-origin{--path-x:0px; --path-y:60px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-abyss{--path-x:78px; --path-y:280px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-glacier{--path-x:-68px; --path-y:460px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-storm{--path-x:66px; --path-y:650px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-coral{--path-x:-66px; --path-y:825px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-rainbow{--path-x:68px; --path-y:1000px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-crystal{--path-x:-68px; --path-y:1175px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-emerald{--path-x:68px; --path-y:1350px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-moon{--path-x:-68px; --path-y:1525px;}
+  .screen[data-screen="map"] .island-map .island-node.isle-mist{--path-x:0px; --path-y:1700px;}
+}
+
+/* =========================================================
+   세계지도 바다 배경 CSS 구현
+   - 이미지 없이 world-map island-map 영역에 수채화 바다 느낌 적용
+   - 은은한 물결/구름/종이 질감 레이어 추가
+   ========================================================= */
+.screen[data-screen="map"] .world-map.island-map{
+  isolation:isolate !important;
+  background:
+    radial-gradient(ellipse at 18% 10%, rgba(255,255,255,.62) 0 8%, transparent 22%),
+    radial-gradient(ellipse at 82% 18%, rgba(255,255,255,.42) 0 6%, transparent 18%),
+    radial-gradient(ellipse at 30% 74%, rgba(255,255,255,.34) 0 7%, transparent 20%),
+    radial-gradient(ellipse at 76% 62%, rgba(255,255,255,.30) 0 6%, transparent 18%),
+    linear-gradient(180deg, #dff3f3 0%, #ccecf0 38%, #b9e0e9 72%, #acd6e4 100%) !important;
+  border-radius:0 !important;
+}
+
+.screen[data-screen="map"] .world-map.island-map::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    repeating-linear-gradient(-8deg, transparent 0 44px, rgba(255,255,255,.34) 45px 47px, transparent 48px 94px),
+    repeating-linear-gradient(7deg, transparent 0 68px, rgba(66,143,166,.10) 69px 70px, transparent 71px 132px),
+    radial-gradient(circle at 22% 28%, rgba(255,255,255,.34) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 54%, rgba(255,255,255,.28) 0 1px, transparent 2px);
+  background-size:auto, auto, 18px 18px, 24px 24px;
+  opacity:.58;
+  filter:blur(.15px);
+}
+
+.screen[data-screen="map"] .world-map.island-map::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 14% 36%, rgba(255,255,255,.45) 0 4%, transparent 12%),
+    radial-gradient(ellipse at 90% 42%, rgba(255,255,255,.32) 0 5%, transparent 14%),
+    radial-gradient(ellipse at 47% 53%, rgba(255,255,255,.22) 0 3%, transparent 11%),
+    repeating-radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.16) 0 2px, transparent 3px 36px);
+  opacity:.55;
+}
+
+.screen[data-screen="map"] .world-map.island-map .island-node{
+  z-index:3 !important;
+}
+
+.screen[data-screen="map"] .world-map.island-map > *:not(.island-node){
+  position:relative;
+  z-index:3;
+}
+
+/* 낚시 게이지 판정 영역 복구: 실패/성공/PERFECT 경계 표시 */
+.fishing-screen .fishing-panel .gauge{
+  display:flex !important;
+  align-items:stretch !important;
+  position:relative !important;
+  overflow:hidden !important;
+  background:#ef4353 !important;
+  border:3px solid rgba(255,255,255,.72) !important;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.14),0 4px 12px rgba(0,40,90,.16) !important;
+}
+
+.fishing-screen .fishing-panel .gauge i{
+  display:block !important;
+  height:100% !important;
+  min-width:0 !important;
+  position:relative !important;
+}
+
+.fishing-screen .fishing-panel .gauge i + i::before{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  top:0 !important;
+  bottom:0 !important;
+  width:2px !important;
+  background:rgba(255,255,255,.72) !important;
+}
+
+.fishing-screen .fishing-panel .gauge .bad{
+  flex:1.15 !important;
+  background:#ef4353 !important;
+}
+
+.fishing-screen .fishing-panel .gauge .good{
+  flex:.57 !important;
+  background:#ffd34e !important;
+}
+
+.fishing-screen .fishing-panel .gauge .best{
+  flex:.25 !important;
+  background:#36db8d !important;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.45) !important;
+}
+
+.fishing-screen .fishing-panel #gaugePointer{
+  z-index:5 !important;
+}
+
+/* 도감 상세 화면: WEBP 이미지가 없는 물고기는 이모지 아이콘을 정상 노출 */
+.fish-detail-visual div .fish-detail-emoji{
+  display:block;
+  font-size:112px;
+  line-height:1;
+  letter-spacing:0;
+  filter:drop-shadow(0 14px 20px rgba(0,40,90,.28));
+}
+.fish-detail-visual div:empty::before{
+  content:'🐟';
+  display:block;
+  font-size:112px;
+  line-height:1;
+}
+
+
+/* 물고기 종류별 아이콘 구분 */
+.fish-grid .fish-symbol,
+.fish-detail-visual .fish-symbol{
+  position:relative;
+  width:58px;
+  height:58px;
+  margin:0 auto 6px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  line-height:1;
+  background:linear-gradient(180deg,#eef9ff,#d7efff);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 7px 14px rgba(0,80,150,.14);
+}
+.fish-detail-visual .fish-symbol{width:132px;height:132px;border-radius:42px;font-size:78px;margin:0;box-shadow:inset 0 4px 0 rgba(255,255,255,.78),0 18px 24px rgba(0,40,90,.24)}
+.fish-symbol::after{content:'';position:absolute;right:6px;bottom:6px;width:13px;height:13px;border-radius:50%;background:rgba(255,255,255,.82);box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+.fish-carp{background:linear-gradient(180deg,#fff2b8,#ffd36a)}
+.fish-eel{background:linear-gradient(180deg,#d7fff4,#7bd9c3);border-radius:999px}
+.fish-octopus,.fish-squid{background:linear-gradient(180deg,#f4e7ff,#caa7ff)}
+.fish-crustacean,.fish-crab{background:linear-gradient(180deg,#ffe8d5,#ffb072)}
+.fish-shell{background:linear-gradient(180deg,#fff2fb,#ffd3ee)}
+.fish-puffer,.fish-catfish{background:linear-gradient(180deg,#fff8c9,#ffe37a)}
+.fish-whale{background:linear-gradient(180deg,#d9f2ff,#86c9ff)}
+.fish-shark{background:linear-gradient(180deg,#e8edf3,#aebdcc)}
+.fish-ray{background:linear-gradient(180deg,#e8fff9,#98dccf);border-radius:28px 28px 20px 20px}
+.fish-seahorse{background:linear-gradient(180deg,#fff0c6,#ffc76d)}
+.fish-dragon,.fish-deep{background:linear-gradient(180deg,#efe7ff,#9d8cff)}
+.fish-slim{background:linear-gradient(180deg,#e8fbff,#9be7ff)}
+.fish-tropical{background:linear-gradient(180deg,#e7fff1,#8ee6b4)}
+.fish-grid button[data-type="eel"] .fish-symbol{transform:rotate(-8deg)}
+.fish-grid button[data-type="ray"] .fish-symbol{transform:scaleX(1.08)}
+.fish-grid button[data-type="dragon"] .fish-symbol,
+.fish-grid button[data-type="deep"] .fish-symbol{box-shadow:inset 0 2px 0 rgba(255,255,255,.75),0 0 16px rgba(134,88,255,.32),0 7px 14px rgba(0,80,150,.14)}
+.fish-grid button[data-grade="전설"] .fish-symbol{box-shadow:inset 0 2px 0 rgba(255,255,255,.8),0 0 16px rgba(255,204,77,.45),0 8px 16px rgba(245,168,0,.22)}
+
+/* Fish icon classification refinement */
+.fish-anchovy{background:linear-gradient(180deg,#e8fbff,#b6efff)}
+.fish-catfish{background:linear-gradient(180deg,#eef6e0,#c6df8c)}
+.fish-crustacean,.fish-crab,.fish-shrimp{background:linear-gradient(180deg,#ffe8d5,#ffb072)}
+.fish-jelly{background:linear-gradient(180deg,#eef1ff,#c9d4ff)}
+.fish-deep{background:linear-gradient(180deg,#2d3c72,#121a3f);color:#fff}
+.fish-symbol.fish-catfish{font-size:30px;letter-spacing:-6px}
+.fish-symbol.fish-anchovy{font-size:38px}
+.fish-detail-visual .fish-symbol.fish-catfish{font-size:58px;letter-spacing:-10px}
+.fish-detail-visual .fish-symbol.fish-anchovy{font-size:72px}
+
+
+/* Species-specific fish SVG icons */
+.fish-grid .fish-asset{width:64px;height:64px;object-fit:contain;display:block;margin:0 auto 6px;filter:drop-shadow(0 7px 12px rgba(0,80,150,.16))}
+.fish-detail-asset{width:168px;height:168px;object-fit:contain;display:block;filter:drop-shadow(0 14px 20px rgba(0,40,90,.28))}
+.result-fish-asset{width:112px;height:112px;object-fit:contain;display:block;filter:drop-shadow(0 12px 18px rgba(0,41,90,.22))}
+.fish-clam{background:linear-gradient(180deg,#fff2fb,#ffd3ee)}
+.fish-conch{background:linear-gradient(180deg,#f0e9ff,#d3c4ff)}
+.fish-seahorse{background:linear-gradient(180deg,#fff0c6,#ffc76d)}
+.fish-ray{background:linear-gradient(180deg,#e8fff9,#98dccf)}
+.fish-tuna{background:linear-gradient(180deg,#e1f5ff,#8ed1ff)}
+.fish-herring{background:linear-gradient(180deg,#eef8ff,#b9d6e9)}
+.fish-minnow{background:linear-gradient(180deg,#fff7ce,#f6d66a)}
+.fish-bass{background:linear-gradient(180deg,#e8ffe8,#9bd58d)}
+.fish-crucian{background:linear-gradient(180deg,#fff1c8,#d1b06a)}
+
+/* 등급별 결과 색상 보정 */
+.result-card .grade.normal,
+.result-card.normal .grade,
+.result-card.normal .result-grade,
+.result-grade.normal{
+  background:linear-gradient(135deg,#9aa4b2,#6f7b8a)!important;
+  color:#fff!important;
+  box-shadow:0 6px 14px rgba(111,123,138,.22)!important;
+}
+.result-card .grade.rare,
+.result-card.rare .grade,
+.result-card.rare .result-grade,
+.result-grade.rare{
+  background:linear-gradient(135deg,#58b7ff,#247de8)!important;
+  color:#fff!important;
+  box-shadow:0 0 10px rgba(47,128,237,.45),0 8px 18px rgba(47,128,237,.24)!important;
+}
+.result-card .grade.hero,
+.result-card.hero .grade,
+.result-card.hero .result-grade,
+.result-grade.hero{
+  background:linear-gradient(135deg,#b56cff,#7d35d8)!important;
+  color:#fff!important;
+  box-shadow:0 0 12px rgba(155,81,224,.52),0 8px 18px rgba(155,81,224,.26)!important;
+}
+.result-card .grade.legend,
+.result-card.legend .grade,
+.result-card.legend .result-grade,
+.result-grade.legend{
+  background:linear-gradient(135deg,#ffe680,#f5a800,#ff8a00)!important;
+  color:#4f3100!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.55)!important;
+  box-shadow:0 0 14px rgba(245,168,0,.72),0 0 26px rgba(245,168,0,.38),0 10px 22px rgba(245,168,0,.28)!important;
+}
+.result-card.rare{
+  border-color:rgba(47,128,237,.45)!important;
+  box-shadow:0 18px 36px rgba(47,128,237,.16)!important;
+}
+.result-card.hero{
+  border-color:rgba(155,81,224,.5)!important;
+  box-shadow:0 18px 38px rgba(155,81,224,.18)!important;
+}
+.result-card.legend{
+  border-color:rgba(245,168,0,.7)!important;
+  box-shadow:0 0 0 2px rgba(255,226,117,.35),0 0 32px rgba(245,168,0,.28),0 20px 44px rgba(245,168,0,.2)!important;
+  animation:legendResultGlow 1.8s ease-in-out infinite alternate;
+}
+.result-card.is-fail .grade,
+.result-card.is-fail .result-grade,
+.result-grade.fail{
+  background:linear-gradient(135deg,#8b95a1,#64748b)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+@keyframes legendResultGlow{
+  from{filter:drop-shadow(0 0 0 rgba(245,168,0,0));}
+  to{filter:drop-shadow(0 0 18px rgba(245,168,0,.42));}
+}
+
+.result-grade.grade-common,.result-card .grade-common{color:#8b95a1}
+.result-grade.grade-rare,.result-card .grade-rare{color:#2f80ed;text-shadow:0 0 8px rgba(47,128,237,.4)}
+.result-grade.grade-epic,.result-card .grade-epic{color:#9b51e0;text-shadow:0 0 10px rgba(155,81,224,.5)}
+.result-grade.grade-legend,.result-card .grade-legend{color:#f2c94c;text-shadow:0 0 8px rgba(242,201,76,.7),0 0 16px rgba(242,201,76,.4)}
+
+/* 미끼 부족 상태 */
+.fishing-screen #catchBtn:disabled,
+.fishing-screen #catchBtn.is-disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    filter: grayscale(.35);
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* 낚싯대 해금/구매 상태 */
+.rod-grid button em{
+  display:inline-block;
+  margin-top:2px;
+  padding:3px 8px;
+  border-radius:999px;
+  font-size:10px;
+  font-style:normal;
+  font-weight:900;
+  color:#54708a;
+  background:#edf5fb;
+}
+.rod-grid button.is-equipped em{
+  color:#fff;
+  background:linear-gradient(135deg,#20c96b,#0bb768);
+}
+.rod-grid button.is-available{
+  outline:2px solid rgba(32,201,107,.45);
+  box-shadow:0 8px 18px rgba(32,201,107,.16);
+}
+.rod-grid button.is-available em{
+  color:#fff;
+  background:linear-gradient(135deg,#20c96b,#0bb768);
+}
+.rod-grid button.is-locked{
+  opacity:.58;
+  filter:grayscale(.55);
+}
+.rod-grid button.is-locked .rod-symbol::after{
+  content:'🔒';
+  display:block;
+  margin-top:-8px;
+  font-size:16px;
+}
+.rod-grid button.is-locked em{
+  color:#7b8794;
+  background:#eef1f5;
+}
+
+
+/* =========================================================
+   Fishing screen polish: bait button + region theme matching
+   ========================================================= */
+.fishing-screen #catchBtn,
+.fishing-screen #catchBtn:disabled,
+.fishing-screen #catchBtn.is-disabled{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow:hidden !important;
+  line-height:1 !important;
+  letter-spacing:-.04em !important;
+}
+.fishing-screen #catchBtn:disabled,
+.fishing-screen #catchBtn.is-disabled{
+  width:86px !important;
+  height:86px !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  padding:0 !important;
+  opacity:.62 !important;
+  color:rgba(255,255,255,.9) !important;
+  background:linear-gradient(180deg,#7092bc,#405d88) !important;
+  box-shadow:0 0 0 6px rgba(255,255,255,.22), inset 0 8px 18px rgba(255,255,255,.12) !important;
+  transform:translateX(-50%) !important;
+}
+
+/* 지역별 낚시 화면 색상 변수 */
+.fishing-screen.region-mist{
+  --sky1:#cfeeff;--sky2:#f7ffff;--hill1:#a9d6ca;--hill2:#5f9f91;--water1:#82d6e8;--water2:#338fb4;--panel:#08385c;--accent:#9ed7e0;--sun:#f5fbff;--cloud-opacity:.62;
+}
+.fishing-screen.region-emerald{
+  --sky1:#64d8ff;--sky2:#d7fbff;--hill1:#86cf9d;--hill2:#31a875;--water1:#17b4df;--water2:#087fbd;--panel:#06335e;--accent:#35d58d;--sun:#f7fff5;--cloud-opacity:.48;
+}
+.fishing-screen.region-moon{
+  --sky1:#142758;--sky2:#486f9e;--hill1:#536e9c;--hill2:#24395f;--water1:#27579d;--water2:#11295e;--panel:#071c42;--accent:#d5d4ff;--sun:#fff3c7;--cloud-opacity:.32;
+}
+.fishing-screen.region-crystal{
+  --sky1:#a5eeff;--sky2:#f5fdff;--hill1:#c9f6ff;--hill2:#78bfe9;--water1:#5bdcff;--water2:#1a98df;--panel:#063a6a;--accent:#80e8ff;--sun:#ffffff;--cloud-opacity:.48;
+}
+.fishing-screen.region-coral{
+  --sky1:#80e4ff;--sky2:#ffe4d9;--hill1:#ffb6aa;--hill2:#ff7793;--water1:#21c7d5;--water2:#087aa8;--panel:#09395d;--accent:#ff8ca6;--sun:#fff3df;--cloud-opacity:.5;
+}
+.fishing-screen.region-rainbow{
+  --sky1:#8de6ff;--sky2:#ffefc6;--hill1:#ffd166;--hill2:#45bf88;--water1:#32c4ee;--water2:#1278cf;--panel:#0a3665;--accent:#ffb13b;--sun:#ffd58a;--cloud-opacity:.46;
+}
+.fishing-screen.region-storm{
+  --sky1:#3d5366;--sky2:#86a2b0;--hill1:#4d6670;--hill2:#253b49;--water1:#236b91;--water2:#102d4a;--panel:#071f39;--accent:#ffd15f;--sun:#d8e1ea;--cloud-opacity:.72;
+}
+.fishing-screen.region-glacier{
+  --sky1:#c8f5ff;--sky2:#fbffff;--hill1:#e4fbff;--hill2:#98d8ef;--water1:#8be4ff;--water2:#2ea7d8;--panel:#0a3c67;--accent:#bff6ff;--sun:#ffffff;--cloud-opacity:.42;
+}
+.fishing-screen.region-abyss{
+  --sky1:#08162e;--sky2:#17375c;--hill1:#18314f;--hill2:#081a31;--water1:#123b63;--water2:#041228;--panel:#041830;--accent:#7b8cff;--sun:#8eb6ff;--cloud-opacity:.18;
+}
+.fishing-screen.region-origin{
+  --sky1:#060b18;--sky2:#1c2f66;--hill1:#20275f;--hill2:#101936;--water1:#182b74;--water2:#050916;--panel:#06102b;--accent:#9b7cff;--sun:#b5a4ff;--cloud-opacity:.16;
+}
+
+.screen.fishing-screen[data-screen="fishing"]{
+  background:linear-gradient(180deg,var(--sky1),var(--sky2) 46%,var(--water1) 47%,var(--water2) 100%) !important;
+}
+.fishing-screen .fishing-panel{
+  background:linear-gradient(180deg,color-mix(in srgb,var(--panel) 88%,#ffffff 12%),var(--panel)) !important;
+  border:1px solid color-mix(in srgb,var(--accent) 38%,transparent) !important;
+  box-shadow:0 -12px 28px rgba(0,40,90,.24), inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+.fishing-screen .sun-moon{
+  background:var(--sun) !important;
+  box-shadow:0 0 42px color-mix(in srgb,var(--sun) 72%,transparent) !important;
+}
+.fishing-screen.region-moon .sun-moon,
+.fishing-screen.region-abyss .sun-moon,
+.fishing-screen.region-origin .sun-moon{
+  left:auto !important;
+  right:80px !important;
+  top:92px !important;
+  width:58px !important;
+  height:58px !important;
+  background:radial-gradient(circle at 35% 35%,#fff9d7 0 42%,#f7dc88 58%,#dbb65b 100%) !important;
+}
+.fishing-screen.region-moon .sun-moon::after,
+.fishing-screen.region-abyss .sun-moon::after,
+.fishing-screen.region-origin .sun-moon::after{
+  content:"";
+  position:absolute;
+  inset:0 0 0 18px;
+  border-radius:50%;
+  background:var(--sky1);
+  opacity:.82;
+}
+.fishing-screen .cloud{opacity:var(--cloud-opacity,.48) !important;}
+.fishing-screen.region-storm .cloud{
+  background:rgba(55,75,90,.72) !important;
+  box-shadow:42px 8px 0 rgba(55,75,90,.44),84px 2px 0 rgba(55,75,90,.35) !important;
+}
+.fishing-screen.region-abyss .cloud,
+.fishing-screen.region-origin .cloud{display:none !important;}
+
+.fishing-screen .far-hills{filter:saturate(1.05) !important;}
+.fishing-screen .near-hills{filter:saturate(1.12) !important;}
+.fishing-screen .lake-surface{
+  background:
+    radial-gradient(ellipse at 82% 18%,color-mix(in srgb,var(--accent) 34%,transparent) 0 20%,transparent 42%),
+    linear-gradient(180deg,var(--water1),var(--water2)) !important;
+}
+.fishing-screen.region-coral .lake-surface{
+  background:
+    radial-gradient(circle at 74% 58%,rgba(255,130,160,.34) 0 4px,transparent 6px),
+    radial-gradient(circle at 82% 70%,rgba(255,205,120,.28) 0 5px,transparent 7px),
+    linear-gradient(180deg,var(--water1),var(--water2)) !important;
+}
+.fishing-screen.region-storm .fishing-bg::after{
+  content:"";
+  position:absolute;
+  right:92px;
+  top:128px;
+  width:3px;
+  height:136px;
+  transform:skew(-18deg);
+  background:linear-gradient(180deg,transparent,#fff8bf,transparent);
+  opacity:.78;
+  filter:drop-shadow(0 0 8px #fff8bf);
+}
+.fishing-screen.region-glacier .near-hills,
+.fishing-screen.region-glacier .far-hills{
+  background:
+    linear-gradient(135deg,transparent 0 35%,rgba(255,255,255,.9) 36% 52%,transparent 53%),
+    radial-gradient(ellipse at 22% 100%,var(--hill2) 0 115px,transparent 117px),
+    radial-gradient(ellipse at 72% 100%,var(--hill1) 0 145px,transparent 147px) !important;
+}
+.fishing-screen.region-rainbow .fishing-bg::after{
+  content:"";
+  position:absolute;
+  right:18px;
+  top:142px;
+  width:170px;
+  height:86px;
+  border-radius:170px 170px 0 0;
+  border-top:8px solid rgba(255,120,120,.42);
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  opacity:.55;
+}
+.fishing-screen.region-origin .water-ripples,
+.fishing-screen.region-abyss .water-ripples{
+  opacity:.22 !important;
+  background:
+    repeating-radial-gradient(ellipse at 55% 40%,rgba(140,160,255,.38) 0 2px,transparent 4px 54px),
+    radial-gradient(circle at 72% 32%,rgba(120,92,255,.32),transparent 32%) !important;
+}
+.fishing-screen .gauge .best{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 55%,#2ce87f),#37dc83) !important;}
+.fishing-screen .sub-header.floating strong{color:#fff !important;}
+.fishing-screen.region-moon .sub-header.floating span,
+.fishing-screen.region-storm .sub-header.floating span,
+.fishing-screen.region-abyss .sub-header.floating span,
+.fishing-screen.region-origin .sub-header.floating span{
+  background:rgba(255,255,255,.92) !important;
+  color:#10213d !important;
+}
+
+/* =========================================================
+   2026-06 UI 통일: 맵별 포인트 컬러 + 공통 카드 시스템
+   - 홈 비주얼은 유지하고, 세계지도/미션/도감/상점/랭킹/업적/낚싯대 화면만 동일한 게임 UI로 정리
+   ========================================================= */
+:root{
+  --region-accent:#6FA99F;
+  --region-accent-2:#9ED4C7;
+  --region-bg:#ECFAF8;
+  --region-panel:#FFF6E8;
+  --ui-blue:#118EF2;
+  --ui-blue-2:#006FDB;
+  --ui-cream:#F9EFE0;
+  --ui-soft:#EDF8FC;
+  --ui-card:#FFFFFF;
+  --ui-line:#D8EEF8;
+  --ui-shadow:0 8px 22px rgba(40,110,170,.08);
+}
+
+/* 서브 화면 공통 바탕 */
+.screen[data-screen="mission"],
+.screen[data-screen="collection"],
+.screen[data-screen="rod"],
+.screen[data-screen="shop"],
+.screen[data-screen="achievement"],
+.screen[data-screen="ranking"],
+.screen[data-screen="map"]{
+  background:
+    radial-gradient(circle at 50% -40px, color-mix(in srgb, var(--region-accent-2) 24%, transparent), transparent 260px),
+    linear-gradient(180deg, var(--region-bg) 0%, #F6FCFF 54%, #EAF8FF 100%)!important;
+  padding:12px 12px 88px;
+}
+
+/* 헤더는 기존 구조 유지 + 부드러운 게임형 버튼 */
+.screen:not([data-screen="home"]) .sub-header{
+  height:48px;
+  margin:0 0 16px;
+}
+.screen:not([data-screen="home"]) .sub-header button{
+  width:42px;
+  height:42px;
+  background:#fff;
+  border:1px solid rgba(216,238,248,.8);
+  box-shadow:0 8px 20px rgba(40,110,170,.09);
+  color:#10223f;
+  font-size:28px;
+  line-height:1;
+}
+.screen:not([data-screen="home"]) .sub-header strong{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.04em;
+}
+.screen:not([data-screen="home"]) .sub-header span:not(.shop-point-badge){
+  min-width:42px;
+  height:32px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--ui-cream);
+  border-radius:999px;
+  color:#10223f;
+  box-shadow:0 6px 14px rgba(43,56,76,.08);
+}
+
+/* 탭 공통 */
+.tabs{
+  gap:8px;
+  margin:0 0 18px!important;
+}
+.tabs button{
+  height:46px;
+  border-radius:15px!important;
+  background:#E8F3FA!important;
+  color:#3C526A!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+}
+.tabs button.active,
+.mission-tabs button.active,
+.shop-tabs button.active,
+.achievement-tabs button.active,
+.ranking-tabs button.active,
+.collection-tabs [data-filter="전체"].active{
+  background:linear-gradient(180deg, var(--region-accent-2), var(--region-accent))!important;
+  color:#fff!important;
+  box-shadow:0 8px 16px color-mix(in srgb, var(--region-accent) 30%, transparent)!important;
+}
+
+/* 리스트 카드 공통 */
+.task-list article,
+.shop-list article,
+.achievement-list article,
+.ranking-list li{
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid var(--ui-line)!important;
+  border-radius:20px!important;
+  box-shadow:var(--ui-shadow)!important;
+}
+.task-list article,
+.screen[data-screen="mission"] .task-list article{
+  min-height:86px;
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  padding:16px!important;
+}
+.task-list article strong,
+.achievement-list article strong,
+.shop-list article strong,
+.ranking-list li strong{
+  color:#10223f;
+  font-weight:900;
+  letter-spacing:-.035em;
+}
+.task-list article b,
+.shop-list article b,
+.ranking-list li em{
+  color:#FF9200!important;
+  font-weight:900;
+}
+.task-list article progress,
+.achievement-list article progress{
+  width:100%;
+  height:7px;
+  border:0;
+  border-radius:999px;
+  overflow:hidden;
+  background:#DCE7EC;
+}
+.task-list article progress::-webkit-progress-bar,
+.achievement-list article progress::-webkit-progress-bar{background:#DCE7EC;border-radius:999px}
+.task-list article progress::-webkit-progress-value,
+.achievement-list article progress::-webkit-progress-value{background:linear-gradient(90deg,var(--region-accent-2),var(--region-accent));border-radius:999px}
+.task-list article progress::-moz-progress-bar,
+.achievement-list article progress::-moz-progress-bar{background:linear-gradient(90deg,var(--region-accent-2),var(--region-accent));border-radius:999px}
+.screen[data-screen="mission"] .task-list article button,
+.task-list article button{
+  min-width:62px;
+  height:44px;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#25A8FF,#0074DE)!important;
+  color:#fff!important;
+  font-weight:900!important;
+}
+.screen[data-screen="mission"] .task-list article.is-ready,
+.task-list article.is-ready{
+  outline:2px solid #25C875!important;
+  background:color-mix(in srgb, #EFFFF7 82%, var(--region-bg))!important;
+}
+.screen[data-screen="mission"] .task-list article.is-ready button,
+.task-list article.is-ready button{
+  background:linear-gradient(180deg,#24D884,#10B762)!important;
+}
+
+/* 도감 */
+.collection-head{
+  background:transparent!important;
+  padding:6px 0 18px!important;
+}
+.donut{
+  background:conic-gradient(var(--region-accent) calc(var(--value)*1%), #E5F1F7 0)!important;
+  box-shadow:0 10px 24px rgba(40,110,170,.08);
+}
+.donut::after{background:#fff!important}
+.collection-filter-info{
+  color:#637690!important;
+  font-size:14px!important;
+  margin:0 0 14px!important;
+}
+.fish-grid button,
+.rod-grid button{
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid var(--ui-line)!important;
+  border-radius:20px!important;
+  box-shadow:var(--ui-shadow)!important;
+}
+.fish-grid button:not(.unknown){
+  border-color:color-mix(in srgb, var(--region-accent) 32%, var(--ui-line))!important;
+}
+.fish-grid strong,.rod-grid strong{font-weight:900;color:#10223f}
+
+/* 낚싯대 */
+.equipped-card{
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid color-mix(in srgb, var(--region-accent) 28%, var(--ui-line))!important;
+  border-radius:26px!important;
+  box-shadow:var(--ui-shadow)!important;
+}
+.equipped-card h2{color:#10223f;font-weight:900}
+.equipped-card p{color:#0067C8!important;font-weight:800}
+.rod-grid button.is-equipped{
+  outline:3px solid var(--region-accent)!important;
+  background:color-mix(in srgb, var(--region-bg) 70%, #fff)!important;
+}
+.rod-grid button em{
+  background:#EAF4FA;
+  color:#5E7088;
+  border-radius:999px;
+  padding:5px 8px;
+  font-style:normal;
+  font-weight:900;
+}
+.rod-grid button.is-equipped em{background:#20C875;color:#fff}
+
+/* 상점 */
+.shop-list article{
+  grid-template-columns:54px minmax(0,1fr) auto!important;
+  min-height:82px;
+  padding:16px!important;
+}
+.shop-list span{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:color-mix(in srgb, var(--region-bg) 70%, #fff);
+  font-size:30px!important;
+}
+.screen[data-screen="shop"] .sub-header strong{transform:none!important;text-align:center}
+.shop-point-badge,
+.screen[data-screen="shop"] .sub-header span{
+  background:var(--ui-cream)!important;
+  color:#10223f!important;
+  border:0!important;
+}
+
+/* 업적 */
+.achievement-list article{
+  grid-template-columns:52px minmax(0,1fr) auto!important;
+  min-height:96px;
+  padding:16px!important;
+}
+.achievement-list article > span{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:color-mix(in srgb, var(--region-bg) 72%, #fff);
+  font-size:30px!important;
+}
+.achievement-list article b{
+  border-radius:999px;
+  background:#EEF5FA;
+  color:#58718C!important;
+  padding:8px 12px;
+  font-weight:900;
+}
+.achievement-list article.is-complete b{background:linear-gradient(180deg,#24D884,#10B762);color:#fff!important}
+
+/* 랭킹 */
+.ranking-list li{
+  min-height:78px;
+  grid-template-columns:44px 50px minmax(0,1fr) auto!important;
+  padding:14px 16px!important;
+}
+.ranking-list li.my{
+  background:linear-gradient(135deg,var(--region-accent-2),var(--region-accent))!important;
+  color:#fff!important;
+  border:0!important;
+}
+.ranking-list li.my strong,
+.ranking-list li.my small,
+.ranking-list li.my em{color:#fff!important}
+
+/* 세계지도 */
+.map-screen{
+  background:
+    radial-gradient(circle at 50% 0, color-mix(in srgb, var(--region-accent-2) 18%, transparent), transparent 260px),
+    linear-gradient(180deg,#EAFBFF,#E7F8FF)!important;
+}
+.world-map{
+  border-radius:26px;
+  background:
+    linear-gradient(rgba(255,255,255,.38),rgba(255,255,255,.38)),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,.9), transparent 180px),
+    repeating-linear-gradient(18deg, rgba(80,150,190,.06) 0 1px, transparent 1px 44px),
+    linear-gradient(180deg,#DFF7FA,#EFFFFB)!important;
+  min-height:720px;
+  overflow:hidden;
+}
+.island-node.selected strong,
+.island-node:hover strong{color:#10223f;text-shadow:none}
+.island-node.selected small{background:linear-gradient(180deg,var(--region-accent-2),var(--region-accent));color:#fff}
+
+@supports not (color: color-mix(in srgb, red, white)){
+  .tabs button.active,.mission-tabs button.active,.shop-tabs button.active,.achievement-tabs button.active,.ranking-tabs button.active,.collection-tabs [data-filter="전체"].active{background:linear-gradient(180deg,#36B6FF,#0787E4)!important}
+  .screen[data-screen="mission"],.screen[data-screen="collection"],.screen[data-screen="rod"],.screen[data-screen="shop"],.screen[data-screen="achievement"],.screen[data-screen="ranking"],.screen[data-screen="map"]{background:#EAF8FF!important}
+}
+
+/* 미션 헤더 진행 현황 배지 */
+.screen[data-screen="mission"] .mission-summary-badge{
+  min-width:76px!important;
+  height:34px!important;
+  padding:0 14px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:var(--ui-cream)!important;
+  border:1px solid rgba(255,255,255,.65)!important;
+  border-radius:999px!important;
+  color:#10223f!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  letter-spacing:-.02em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 6px 14px rgba(43,56,76,.08)!important;
+}
+.screen[data-screen="mission"] .mission-summary-badge.is-complete{
+  background:linear-gradient(180deg,#38d77b,#14b861)!important;
+  color:#fff!important;
+}
+
+
+/* 도감 헤더 배지 + 5개 필터 탭 한 줄 고정 */
+.screen[data-screen="collection"] .collection-summary-badge{
+  min-width:76px!important;
+  height:34px!important;
+  padding:0 14px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:var(--ui-cream)!important;
+  border:1px solid rgba(255,255,255,.65)!important;
+  border-radius:999px!important;
+  color:#10223f!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  letter-spacing:-.02em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 6px 14px rgba(43,56,76,.08)!important;
+  white-space:nowrap!important;
+}
+.screen[data-screen="collection"] .collection-summary-badge.is-complete{
+  background:linear-gradient(180deg,#38d77b,#14b861)!important;
+  color:#fff!important;
+}
+.screen[data-screen="collection"] .collection-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:8px!important;
+  overflow:visible!important;
+  flex-wrap:nowrap!important;
+  width:100%!important;
+  padding-bottom:0!important;
+}
+.screen[data-screen="collection"] .collection-tabs button{
+  min-width:0!important;
+  width:100%!important;
+  flex:1 1 0!important;
+  padding:0 2px!important;
+  height:46px!important;
+  font-size:14px!important;
+  white-space:nowrap!important;
+}
+@media (max-width:380px){
+  .screen[data-screen="collection"] .collection-tabs{gap:6px!important;}
+  .screen[data-screen="collection"] .collection-tabs button{font-size:13px!important;}
+}
+
+/* 공통 서브화면 우측 요약 배지: 낚싯대·업적·랭킹 */
+.screen[data-screen="rod"] .screen-summary-badge,
+.screen[data-screen="achievement"] .screen-summary-badge,
+.screen[data-screen="ranking"] .screen-summary-badge{
+  min-width:76px!important;
+  height:34px!important;
+  padding:0 14px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:var(--ui-cream)!important;
+  border:1px solid rgba(255,255,255,.65)!important;
+  border-radius:999px!important;
+  color:#10223f!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  letter-spacing:-.02em;
+  white-space:nowrap!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 6px 14px rgba(43,56,76,.08)!important;
+}
+.screen[data-screen="rod"] .screen-summary-badge.is-complete,
+.screen[data-screen="achievement"] .screen-summary-badge.is-complete{
+  background:linear-gradient(180deg,#38d77b,#14b861)!important;
+  color:#fff!important;
+}
+.screen[data-screen="ranking"] .screen-summary-badge.is-top{
+  background:linear-gradient(180deg,#FFD76A,#F6A623)!important;
+  color:#6b4300!important;
+}
