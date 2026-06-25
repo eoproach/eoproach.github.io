@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>사이다 낚시왕</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="app-shell" aria-label="사이다 낚시왕">
+    <section class="device">
+      <div class="screen map-emerald is-active" data-screen="home">
+        <header class="home-hero">
+          <div class="profile">
+            <div class="penguin" aria-hidden="true"></div>
+            <div class="profile-info">
+              <strong id="homeLevel">Lv.1 펭펭이</strong>
+              <span id="homeFishingTitle">초보 낚시꾼</span>
+              <div class="progress"><i style="width:0%"></i></div>
+              <small id="homeExpText">EXP 0 / 500</small>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button type="button" id="notifyBtn" class="icon_bell"></button>
+            <button type="button" id="menuBtn" class="icon_menu"></button>
+          </div>
+        </header>
+
+        <section class="wallet-grid">
+          <article>
+            <span class="coin"></span>
+            <div class="coin-text"><strong id="homePoint" class="sub-text">0 P</strong><small>보유 포인트</small></div>
+          </article>
+          <article>
+            <span class="resource"></span>
+            <div class="resource-text"><strong id="homeBait"  class="sub-text">0 개</strong><small>보유 미끼</small></div>
+          </article>
+          <div class="bait-chip-row" id="homeBaitChips" aria-label="보유 미끼 요약"></div>
+        </section>
+
+        <section class="map-card map-emerald">
+          <div class="map-info">
+            <span class="map-badge">현재 위치</span>
+            <h2 class="map-title">에메랄드 호수</h2>
+            <div class="map-progress">
+              <span class="progress-text collection"><span>수집률</span> <strong>0%</strong></span>
+              <span class="progress-text"><strong>0 / 0</strong></span>
+            </div>
+          </div>
+
+          <article class="recommended-bait-card" id="homeRecommendedBait" aria-label="추천 미끼">
+            <span class="recommended-bait-icon">🌫️</span>
+            <div>
+              <strong>추천 미끼</strong>
+              <p>안개 미끼 보유 0개</p>
+            </div>
+            <button type="button" data-go="shop">상점</button>
+          </article>
+
+          <button type="button" class="fish-cta" data-go="fishing"></button>
+        </section>
+
+        <section class="card mission-card">
+          <div class="section-title">
+            <h2>오늘의 미션</h2>
+            <button type="button" data-go="mission">더보기</button>
+          </div>
+          <ul class="mission-list" id="homeMissionList">
+            <li data-home-mission="attendance" class="attendance"><span class="icon"></span><span class="text">출석 체크</span><em>0/1</em></li>
+            <li data-home-mission="fish3" class="fish3"><span class="icon"></span><span class="text">낚시 3회 성공</span><em>0/3</em></li>
+            <li data-home-mission="quiz" class="quiz"><span class="icon"></span><span class="text">금융 퀴즈 맞추기</span><em>0/1</em></li>
+            <li data-home-mission="product" class="product"><span class="icon"></span><span class="text">상품 페이지 방문</span><em>0/1</em></li>
+          </ul>
+        </section>
+        <!-- <div class="quick-grid">
+          <button type="button" data-go="map">🌍 세계지도</button>
+          <button type="button" data-go="shop">🎁 상점</button>
+        </div> -->
+
+        <section class="event-banner" id="productBanner" role="button" tabindex="0" aria-label="상품 페이지 방문 미션"></section>
+      </div>
+
+      <div class="screen fishing-screen region-emerald" data-screen="fishing" data-current-region="에메랄드 호수">
+        <header class="sub-header floating">
+          <button type="button" data-go="home">‹</button>
+          <strong id="fishingRegionTitle">에메랄드 호수</strong>
+          <span class="fishing-time" id="fishingTime">--:--</span>
+        </header>
+
+        <div class="fishing-bg">
+          <div class="sun-moon"></div>
+          <div class="cloud cloud-a"></div>
+          <div class="cloud cloud-b"></div>
+          <div class="far-hills"></div>
+          <div class="near-hills"></div>
+          <div class="lake-surface"></div>
+          <div class="water-ripples"></div>
+        </div>
+
+        <div class="fishing-stage">
+          <div class="penguin-fishing" id="penguinFishing"></div>
+          <div class="rod-stick" id="rodStick"></div>
+          <div class="fishing-line" id="fishingLine"></div>
+          <div class="bobber" id="bobber"></div>
+        </div>
+
+        <div class="fishing-panel">
+          <p id="fishStatus">입질 타이밍을 맞춰보세요!</p>
+          <div class="gauge" aria-label="낚시 성공 판정 게이지">
+            <i class="bad" aria-hidden="true"></i>
+            <i class="good" aria-hidden="true"></i>
+            <i class="best" aria-hidden="true"></i>
+            <i class="good" aria-hidden="true"></i>
+            <i class="bad" aria-hidden="true"></i>
+            <b id="gaugePointer" aria-hidden="true"></b>
+          </div>
+          <button type="button" class="round-action" id="catchBtn">입질!</button>
+        </div>
+      </div>
+
+      <div class="screen result-screen" data-screen="result">
+        <div class="result-card" id="resultCard">
+          <h1 id="resultTitle">낚시 성공!</h1>
+          <div class="fish-illust" id="resultFish">🐟</div>
+          <span class="badge rare" id="resultBadge">NEW</span>
+          <h2 id="resultName">황금 송어</h2>
+          <p class="grade" id="resultGrade">희귀</p>
+          <ul class="reward-list" id="resultRewards">
+            <li><b>🪱 +300 P</b><span>포인트</span></li>
+            <li><b>💧 +50 EXP</b><span>경험치</span></li>
+            <li><b>📖 도감 등록</b><span>완료</span></li>
+          </ul>
+          <div class="button-row">
+            <button type="button" class="primary" data-go="fishing">확인</button>
+            <button type="button" class="secondary" id="shareBtn">자랑하기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen map-screen" data-screen="map">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>세계지도</strong>
+          <span id="mapCount">0/0</span>
+        </header>
+        <div class="world-map island-map" id="worldMap"></div>
+      </div>
+
+      <div class="screen" data-screen="region">
+        <header class="sub-header">
+          <button type="button" data-go="map">‹</button>
+          <strong id="regionTitle">에메랄드 호수</strong>
+          <button type="button" id="regionHelp" class="region-help-btn" aria-label="지역 가이드 보기">?</button>
+        </header>
+        <section class="region-visual region-visual-emerald" id="regionVisual">
+          <div class="region-sky"></div>
+          <div class="region-sun"></div>
+          <div class="region-land land-a"></div>
+          <div class="region-land land-b"></div>
+          <div class="region-water"></div>
+          <div class="region-effect"></div>
+          <div class="region-hero-info">
+            <div class="region-badges">
+              <span id="regionTierBadge">초보자 지역</span>
+              <span id="regionStars">★☆☆☆☆</span>
+            </div>
+            <p id="regionDescription">맵 설명</p>
+          </div>
+        </section>
+        <section class="card region-summary">
+          <div class="donut" id="regionDonut" style="--value:0"><b>0%</b><span>수집률</span></div>
+          <div class="region-summary-info">
+            <small>도감 진행도</small>
+            <strong id="regionFishCount">0 / 0 종</strong>
+            <div class="region-progress-bar" aria-hidden="true"><i id="regionProgressBar" style="width:0%"></i></div>
+            <div class="region-level-row">
+              <span id="regionLevel">Lv.1</span>
+              <em id="regionLevelLabel">초보자</em>
+            </div>
+          </div>
+        </section>
+        <section class="card legend-fish">
+          <div class="legend-head">
+            <h2>전설 물고기</h2>
+            <span id="regionLegendGrade">LEGENDARY</span>
+          </div>
+          <div class="legend-body"><span id="regionLegendIcon">❔</span><strong id="regionLegendName">전설 물고기</strong><small id="regionLegendCondition">출현 조건 ???</small></div>
+        </section>
+        <button type="button" class="bottom-primary" id="regionEnterBtn" data-go="fishing">입장하기 <small>입장권 1개 사용</small></button>
+      </div>
+
+      <div class="screen" data-screen="mission">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>미션</strong>
+          <span id="missionSummaryBadge" class="mission-summary-badge" aria-label="미션 완료 현황">0/0</span>
+        </header>
+        <div class="tabs mission-tabs" id="missionTabs">
+          <button type="button" class="active" data-mission-tab="daily">일일 미션</button>
+          <button type="button" data-mission-tab="weekly">주간 미션</button>
+          <button type="button" data-mission-tab="finance">금융 미션</button>
+        </div>
+        <div class="task-list" id="missionTaskList"></div>
+      </div>
+
+      <div class="screen" data-screen="collection">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>도감</strong>
+          <span id="collectionSummaryBadge" class="collection-summary-badge" aria-label="도감 발견 현황">0/200</span>
+        </header>
+        <section class="collection-head">
+          <div class="donut" id="collectionDonut" style="--value:0"><b>0%</b><span>수집률</span></div>
+          <strong id="collectionCount">0 / 200 종류</strong>
+        </section>
+        <div class="tabs wrap collection-tabs" id="collectionTabs">
+          <button type="button" class="active" data-filter="전체">전체</button>
+          <button type="button" data-filter="일반">일반</button>
+          <button type="button" data-filter="희귀">희귀</button>
+          <button type="button" data-filter="영웅">영웅</button>
+          <button type="button" data-filter="전설">전설</button>
+        </div>
+        <div class="collection-filter-info" id="collectionFilterInfo">전체 200종</div>
+        <div class="fish-grid" id="fishGrid"></div>
+      </div>
+
+      <div class="screen" data-screen="fishDetail">
+        <header class="sub-header">
+          <button type="button" data-go="collection">‹</button>
+          <strong>황금붕어</strong>
+          <span></span>
+        </header>
+        <section class="fish-detail-visual">
+          <span class="badge rare">희귀</span>
+          <div>🐠</div>
+          <h1>황금붕어</h1>
+          <p>★★★★☆</p>
+        </section>
+        <section class="card detail-table">
+          <dl><dt>출현 지역</dt><dd>에메랄드 호수</dd></dl>
+          <dl><dt>발견일</dt><dd>2024.06.18</dd></dl>
+          <dl><dt>크기</dt><dd>32.5 cm</dd></dl>
+          <dl><dt>설명</dt><dd>은은히 황금빛으로 빛나는 신비한 붕어. 행운을 가져다준다고 전해진다.</dd></dl>
+        </section>
+      </div>
+
+      <div class="screen" data-screen="rod">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>낚싯대</strong>
+          <span id="rodSummaryBadge" class="screen-summary-badge rod-summary-badge" aria-label="보유 낚싯대 현황">0/0</span>
+        </header>
+        <section class="equipped-card" id="equippedRodCard">
+          <div class="rod-img" id="equippedRodIcon">🎣</div>
+          <div>
+            <span class="badge hero" id="equippedRodGrade">희귀 · 장착 중</span>
+            <h2 id="equippedRodName">월광의 낚싯대 +3</h2>
+            <p id="equippedRodEffect1">희귀 확률 +15%</p>
+            <p id="equippedRodEffect2">전설 확률 +3%</p>
+            <p id="equippedRodEffect3">포인트 증가 +10%</p>
+          </div>
+        </section>
+        <h2 class="list-title">보유 낚싯대</h2>
+        <div class="rod-grid" id="rodGrid"></div>
+        <button type="button" class="bottom-primary" id="enhanceBtn">강화하기</button>
+      </div>
+
+      <div class="screen" data-screen="shop">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>포인트 상점</strong>
+          <span id="shopPoint">0P</span>
+        </header>
+        <div class="tabs wrap shop-tabs" id="shopTabs">
+          <button type="button" class="active" data-shop-tab="bait">미끼</button>
+          <button type="button" data-shop-tab="rod">낚싯대</button>
+          <button type="button" data-shop-tab="skin">스킨</button>
+          <button type="button" data-shop-tab="etc">기타</button>
+        </div>
+        <div class="shop-list" id="shopList"></div>
+      </div>
+
+      <div class="screen" data-screen="achievement">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>업적</strong>
+          <span id="achievementSummaryBadge" class="screen-summary-badge achievement-summary-badge" aria-label="업적 완료 현황">0/0</span>
+        </header>
+        <div class="tabs wrap achievement-tabs" id="achievementTabs">
+          <button type="button" class="active" data-achievement-tab="collection">수집</button>
+          <button type="button" data-achievement-tab="fishing">낚시</button>
+          <button type="button" data-achievement-tab="legend">전설</button>
+          <button type="button" data-achievement-tab="finance">금융</button>
+        </div>
+        <div class="achievement-list" id="achievementList"></div>
+      </div>
+
+      <div class="screen" data-screen="ranking">
+        <header class="sub-header">
+          <button type="button" data-go="home">‹</button>
+          <strong>랭킹</strong>
+          <span id="rankingSummaryBadge" class="screen-summary-badge ranking-summary-badge" aria-label="나의 랭킹">-위</span>
+        </header>
+        <div class="tabs wrap ranking-tabs" id="rankingTabs">
+          <button type="button" class="active" data-ranking-tab="weekly">주간 랭킹</button>
+          <button type="button" data-ranking-tab="total">전체 랭킹</button>
+          <button type="button" data-ranking-tab="mine">내 순위</button>
+        </div>
+        <ol class="ranking-list" id="rankingList"></ol>
+      </div>
+
+
+      <div class="modal" id="appModal" aria-hidden="true">
+        <div class="modal-dim" data-close-modal></div>
+        <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <button type="button" class="modal-x" data-close-modal aria-label="닫기"></button>
+          <h2 id="modalTitle">알림</h2>
+          <div id="modalBody"></div>
+          <button type="button" class="modal-close" data-close-modal>확인</button>
+        </section>
+      </div>
+      <div class="toast" id="toast" aria-live="polite"></div>
+
+      <nav class="bottom-nav" aria-label="하단 메뉴">
+        <button class="home active" data-go="home"><img src="images/icon_gnb_home.webp" class="img"><span>홈</span></button>
+        <button class="mission" data-go="mission"><img src="images/icon_gnb_mission.webp" class="img"><span>미션</span></button>
+        <button class="collection" data-go="collection"><img src="images/icon_gnb_fieldguide.webp" class="img"><span>도감</span></button>
+        <button class="rod" data-go="rod"><img src="images/icon_gnb_fishing.webp" class="img"><span>낚싯대</span></button>
+        <button class="achievement" data-go="achievement"><img src="images/icon_gnb_achievements.webp" class="img"><span>업적</span></button>
+      </nav>
+    </section>
+  </main>
+  <script src="./js/app.js"></script>
+</body>
+</html>
